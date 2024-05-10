@@ -10,7 +10,7 @@ const TrackerPage = lazy(() => import('../pages/TrackerPage/TrackerPage'));
 
 export const App = () => {
   return (
-    <div>
+    <>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<HomePage />} />
@@ -20,6 +20,6 @@ export const App = () => {
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-    </div>
+    </>
   );
 };
