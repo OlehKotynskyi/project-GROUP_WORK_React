@@ -1,6 +1,6 @@
 //src/pages/HomePage.jsx
 import style from '../Base.module.css';
-const HomePage = () => {
+function HomePage() {
   return (
     <div className={style.container}>
       <h1>HomePage</h1>
@@ -8,6 +8,6 @@ const HomePage = () => {
       <a href="/signin">Sign In</a>
     </div>
   );
-};
+}
 
 export default HomePage;
