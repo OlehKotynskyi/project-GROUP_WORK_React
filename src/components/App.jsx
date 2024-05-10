@@ -1,12 +1,12 @@
 //src/components/App.jsx
 import { lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { SharedLayout } from '../components/SharedLayout/SharedLayout.jsx';
-import NotFoundPage from '../pages/NotFoundPage/NotFoundPage.jsx';
-const HomePage = lazy(() => import('../pages/HomePage/HomePage.jsx'));
-const SignUpPage = lazy(() => import('../pages/SignUpPage/SignUpPage.jsx'));
-const SignInPage = lazy(() => import('../pages/SignInPage/SignInPage.jsx'));
-const TrackerPage = lazy(() => import('../pages/TrackerPage/TrackerPage.jsx'));
+import { SharedLayout } from '../components/SharedLayout/SharedLayout';
+import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
+const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
+const SignUpPage = lazy(() => import('../pages/SignUpPage/SignUpPage'));
+const SignInPage = lazy(() => import('../pages/SignInPage/SignInPage'));
+const TrackerPage = lazy(() => import('../pages/TrackerPage/TrackerPage'));
 
 export const App = () => {
   return (

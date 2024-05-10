@@ -1,6 +1,6 @@
 //src/pages/SignInPage.jsx
-const SignInPage = () => {
+function SignInPage() {
   return <h1>SignInPage</h1>;
-};
+}
 
 export default SignInPage;
