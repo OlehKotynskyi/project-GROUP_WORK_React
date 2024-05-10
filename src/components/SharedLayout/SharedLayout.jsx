@@ -1,11 +1,13 @@
 // components/SharedLayout.js
+import { Suspense } from 'react';
+import { Outlet } from 'react-router-dom';
 import stayle from '../../pages/Base.module.css';
-export const SharedLayout = ({ children }) => {
+export const SharedLayout = () => {
   return (
     <div className={stayle.wrapper}>
-      <header>header</header>
-      <main>{children}</main>
-      <footer>footer</footer>
+      <Suspense fallback={null}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };
