@@ -1,0 +1,116 @@
+.section {
+  background-color: var(--background);
+  background-image: url('../../img/girlish/girl_mob@1x.jpg');
+  background-repeat: no-repeat;
+  border-radius: 30px;
+  padding: 209px 16px 32px;
+}
+
+.customersWrapper {
+  display: flex;
+  gap: 4px;
+  max-width: 160px;
+  padding: 10px 14px;
+  background-color: var(--main-white);
+  border-radius: 30px;
+  margin-bottom: 8px;
+}
+
+.caption {
+  color: var(--main-text);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.caption span {
+  color: var(--accent);
+}
+
+.list {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  max-width: 168px;
+  margin-right: 0;
+  margin-left: auto;
+}
+
+.item {
+  display: flex;
+  border-radius: 30px;
+  padding: 9px 12px;
+}
+
+.link {
+  font-weight: 700;
+  font-size: 8px;
+  line-height: 100%;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: var(--main);
+}
+
+.itemHabit {
+  background-color: var(--main);
+}
+
+.linkHabit {
+  color: var(--main-white);
+}
+
+.itemStat {
+  background-color: var(--accent);
+}
+
+.itemRate {
+  background-color: var(--main-white);
+}
+
+@media screen and (min-width: 768px) {
+  .section {
+    background-image: url('../../img/girlish/girl_tab@1x.jpg');
+    padding: 283px 32px 32px;
+  }
+
+  .customersWrapper {
+    max-width: 237px;
+    padding: 10px 20px;
+  }
+
+  .groupImg {
+    width: 103px;
+    height: 47px;
+  }
+
+  .caption {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+
+  .list {
+    gap: 10px;
+    margin-top: -14px;
+    max-width: 242px;
+  }
+
+  .link {
+    font-size: 12px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .section {
+    flex-grow: 1;
+    flex-basis: 0;
+    background-image: url('../../img/girlish/girl_desk@1x.jpg');
+
+    padding: 537px 32px 64px 32px;
+  }
+
+  .title {
+    font-size: 80px;
+    line-height: 95%;
+  }
+}

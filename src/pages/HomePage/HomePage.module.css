@@ -1,0 +1,11 @@
+.homePageContainer{
+
+}
+
+@media screen and (min-width: 1440px) {
+  .homePageContainer {
+display: flex;
+    gap: 32px;
+    justify-content: center;
+  }
+}
