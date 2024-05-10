@@ -11,18 +11,12 @@
 
 .wrapper>main {
 	flex-grow: 1;
-	padding-top: 128px;
+	padding: 16px 0;
 }
 
 @media only screen and (min-width: 768px) {
 	.wrapper>main {
-		padding-top: 188px;
-	}
-}
-
-@media only screen and (min-width: 1440px) {
-	.wrapper>main {
-		padding-top: 149px;
+		padding: 32px 0;
 	}
 }
 
@@ -30,7 +24,7 @@
 .container {
 	max-width: 375px;
 	min-width: 320px;
-	padding: 0 20px 0 20px;
+	padding: 0 16px;
 	margin: 0 auto;
 }
 
@@ -45,7 +39,18 @@
 @media only screen and (min-width: 1440px) {
 	.container {
 		max-width: 1440px;
-		padding-right: 100px;
-		padding-left: 100px;
 	}
 }
+
+/*Як імпортувати спрайти*/
+/*Шляхи можуть відрізнятись в залежності від вашого положення в коді*/
+/*import sprite from '../../img/svg/sprite.svg';
+<svg  className= {} width="24" height="24">
+   <use xlinkHref= {`${sprite}#icon-water-glass-fill`}></use>
+</svg>*/
+
+
+/*Як імпортувати картинки*/
+/*Шляхи можуть відрізнятись в залежності від вашого положення в коді*/
+/*import girlDeskImage from '../../img/girlish/girl_desk@1x.jpg';*/
+/*<img src= {girlDeskImage} alt="" width={300} height={300}/>*/

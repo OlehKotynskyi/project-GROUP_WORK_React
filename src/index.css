@@ -1,13 +1,28 @@
 /*index.css*/
+@import url(https://fonts.googleapis.com/css?family=Poppins:regular,700&display=swap);
+
 :root {
-	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-	line-height: 1.5;
+	--main-text: #2F2F2F;
+	--main: #323F47;
+	--accent: #9BE1A0;
+	--background: #F0EFF4;
+	--main-white: #FFFFFF;
+}
+
+body {
+	font-family: Poppins, sans-serif;
+	line-height: 1.3;
 	font-weight: 400;
-	background-color: #d2d4ec;
-	font-synthesis: none;
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+	font-size: 14px;
+	background-color: var(--main-white);
+	color: var(--main-text);
+}
+
+@media only screen and (min-width: 768px) {
+	body {
+		line-height: 1.5;
+		font-size: 16px;
+	}
 }
 
 h1,
