@@ -1,6 +1,3 @@
-* {
-  box-sizing: border-box;
-}
 .section {
   position: relative;
   background-color: var(--background);
@@ -11,7 +8,6 @@
 
 .caption {
   color: var(--main-text);
-  line-height: 129%;
   letter-spacing: 0.06em;
   margin-bottom: 16px;
 }
@@ -80,6 +76,7 @@
     flex-grow: 1;
     flex-basis: 0;
     padding: 188px 61px 188px 64px;
+    margin-bottom: 0;
   }
 
   .title {

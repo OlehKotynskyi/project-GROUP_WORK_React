@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom';
 import Logo from '../Logo/Logo'
 
 import css from './WelcomeSection.module.css';
@@ -11,14 +12,14 @@ export default function WelcomeSection() {
         <h1 className={css.title}>Water consumption tracker</h1>
         <div className={css.wrap}>
           <div className={css.wrapTry}>
-            <a href="/signup" className={css.wrapLink}>
+            <Link to="/signup" className={css.wrapLink}>
               Try tracker
-            </a>
+            </Link>
           </div>
           <div className={css.wrapSign}>
-            <a href="/signin" className={css.wrapLink}>
+            <Link to="/signin" className={css.wrapLink}>
               Sign in
-            </a>
+            </Link>
           </div>
         </div>
       </section>

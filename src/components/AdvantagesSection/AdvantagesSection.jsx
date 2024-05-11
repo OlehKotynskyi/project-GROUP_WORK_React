@@ -21,15 +21,15 @@ export default function AdvantagesSection() {
         </div>
         <ul className={css.list}>
           <li className={`${css.item} ${css.itemHabit}`}>
-            <a className={`${css.link} ${css.linkHabit}`}>Habit drive</a>
+            <p className={`${css.link} ${css.linkHabit}`}>Habit drive</p>
           </li>
           <li className={`${css.item} ${css.itemStat}`}>
-            <a className={`${css.link} ${css.linkStat}`}>View statistics</a>
+            <p className={`${css.link} ${css.linkStat}`}>View statistics</p>
           </li>
           <li className={`${css.item} ${css.itemRate}`}>
-            <a className={`${css.link} ${css.linkRate}`}>
+            <p className={`${css.link} ${css.linkRate}`}>
               Personal rate setting
-            </a>
+            </p>
           </li>
         </ul>
       </section>
