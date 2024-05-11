@@ -1,11 +1,9 @@
-.homePageContainer{
-
-}
+.homePageContainer {}
 
 @media screen and (min-width: 1440px) {
-  .homePageContainer {
-display: flex;
-    gap: 32px;
-    justify-content: center;
-  }
+	.homePageContainer {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 32px;
+	}
 }
