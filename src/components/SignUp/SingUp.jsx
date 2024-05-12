@@ -36,6 +36,7 @@ const SignUp = () => {
           <label>Email</label>
           <input
             type="text"
+            placeholder="Enter your email"
             // name="email"
             {...register('email')}
           />
@@ -45,14 +46,22 @@ const SignUp = () => {
         </div>
         <div>
           <label>Password</label>
-          <input type="text" {...register('password', { required: true })} />
+          <input
+            type="text"
+            placeholder="Enter your password"
+            {...register('password', { required: true })}
+          />
           {errors.password && (
             <p style={{ color: 'red' }}>{errors.password.message}</p>
           )}
         </div>
         <div>
           <label>Repeat Password</label>
-          <input type="password" {...register('repeatPassword')} />
+          <input
+            type="password"
+            placeholder="Repeat password"
+            {...register('repeatPassword')}
+          />
           {errors.repeatPassword && (
             <p style={{ color: 'red' }}>{errors.repeatPassword.message}</p>
           )}

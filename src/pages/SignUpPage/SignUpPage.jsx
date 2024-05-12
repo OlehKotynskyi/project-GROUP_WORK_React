@@ -4,6 +4,7 @@ import AdvantagesSection from 'components/AdvantagesSection/AdvantagesSection';
 import Logo from 'components/Logo/Logo';
 import style from '../Base.module.css';
 import css from './SignPage.module.css';
+
 function SignUpPage() {
   return (
     <div className={`${css.SignUpPageContainer} ${style.container}`}>
