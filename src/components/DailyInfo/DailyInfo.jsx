@@ -1,7 +1,7 @@
 // src/components/DailyInfo.jsx
 import { useState } from 'react';
 import { ChooseDate } from '../ChooseDate/ChooseDate';
-import { AddWaterBtn } from '../AddWaterBtn/AddWaterBtn';
+import { AddWaterBtnDetailInfo } from '../AddWaterBtnDetailInfo/AddWaterBtnDetailInfo';
 import { WaterList } from '../WaterList/WaterList';
 import css from './DailyInfo.module.css'
 
@@ -17,7 +17,7 @@ export const DailyInfo = () => {
       <div className={css.headerDailyInfo}>
         <p className={css.date}>Today</p>
       {/* <ChooseDate onChange={handleDateChange} /> */}
-        <AddWaterBtn />
+        <AddWaterBtnDetailInfo />
       </div>      
       <WaterList date={selectedDate} />
     </section>
