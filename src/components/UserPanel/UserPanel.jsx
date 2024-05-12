@@ -1,6 +1,7 @@
 // src/components/UserPanel.jsx
 import { useState } from 'react';
 import { Modal } from '../Modal/Modal';
+import css from './UserPanel.module.css'
 
 export const UserPanel = ({ username }) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -28,25 +29,29 @@ export const UserPanel = ({ username }) => {
   };
 
   return (
-    <div>
-      <button onClick={togglePopover}>{username}</button>
-      {isSettingsModalOpen && (
-        <Modal title="User Settings" onClose={closeSettingsModal}>
-          {/* User Settings Form */}
-          <button onClick={closeSettingsModal}>Close</button>
-        </Modal>
-      )}
-      {isLogoutModalOpen && (
-        <Modal title="Logout" onClose={closeLogoutModal}>
-          <p>Are you sure you want to log out?</p>
-          <button onClick={closeLogoutModal}>Cancel</button>
-          <button onClick={() => console.log('Logged out')}>Logout</button>
-        </Modal>
-      )}
+    <div className={css.container}>
+      <div className={css.userInfo}>
+        <p className={css.helloUser}>Hello, <span className={css.userName}>{username}</span>!</p>
+        <button onClick={togglePopover} className={css.btnUser}><span className={css.btnUserName}>{username}</span></button>
+        {isSettingsModalOpen && (
+          <Modal title="User Settings" onClose={closeSettingsModal}>
+            {/* User Settings Form */}
+            <button onClick={closeSettingsModal}>Close</button>
+          </Modal>
+        )}
+        {isLogoutModalOpen && (
+          <Modal title="Logout" onClose={closeLogoutModal}>
+            <p>Are you sure you want to log out?</p>
+            <button onClick={closeLogoutModal}>Cancel</button>
+            <button onClick={() => console.log('Logged out')}>Logout</button>
+          </Modal>
+        )}
 
-      {/* Temporary inclusion to prevent eslint warnings */}
-      <button style={{ display: 'none' }} onClick={openSettingsModal} />
-      <button style={{ display: 'none' }} onClick={openLogoutModal} />
+        {/* Temporary inclusion to prevent eslint warnings */}
+        <button style={{ display: 'none' }} onClick={openSettingsModal} />
+        <button style={{ display: 'none' }} onClick={openLogoutModal} />
+      </div>
+      
     </div>
   );
 };
