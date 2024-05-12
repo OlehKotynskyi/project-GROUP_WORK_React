@@ -1,0 +1,7 @@
+.sectionDetailed {
+    padding: 20px;
+border-radius: 30px;
+min-width: 343px;
+height: 770px;
+background: var(--background);
+}

@@ -1,0 +1,20 @@
+.dateInfo {
+min-width: 303px;
+height: 160px;
+
+}
+
+.headerDailyInfo {
+display: flex;
+align-items: center;
+justify-content: space-between;
+margin-bottom: 24px;
+}
+.date {
+font-family: var(--font-family);
+font-weight: 700;
+font-size: 20px;
+line-height: 120%;
+letter-spacing: -0.01em;
+color: var(--main);
+}
