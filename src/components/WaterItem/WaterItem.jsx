@@ -1,7 +1,7 @@
 // src/components/WaterItem.jsx
 import { useState } from 'react';
 import { Modal } from '../Modal/Modal';
-import { WaterForm } from '../WaterForm/WaterForm';
+import { WaterForm } from '../WaterForm/EditWaterForm';
 
 export const WaterItem = ({ date, amount, onDelete, onEdit }) => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
