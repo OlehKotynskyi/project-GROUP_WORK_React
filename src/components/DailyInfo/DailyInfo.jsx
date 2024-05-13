@@ -4,6 +4,7 @@ import { ChooseDate } from '../ChooseDate/ChooseDate';
 import { AddWaterBtnDetailInfo } from '../AddWaterBtnDetailInfo/AddWaterBtnDetailInfo';
 import { WaterList } from '../WaterList/WaterList';
 import css from './DailyInfo.module.css'
+import { Slider } from 'components/Slider/Slider';
 
 export const DailyInfo = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -20,6 +21,7 @@ export const DailyInfo = () => {
         <AddWaterBtnDetailInfo />
       </div>      
       <WaterList date={selectedDate} />
+      <Slider />
     </section>
   );
 };

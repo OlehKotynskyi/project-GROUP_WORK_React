@@ -10,6 +10,8 @@ padding: 0;
 .iconPlus {
 border-radius: 30px;
 fill: var(--accent);
+stroke-width: 1.50px;
+stroke: var(--main);
 }
 
 .addWaterText {

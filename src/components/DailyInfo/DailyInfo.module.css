@@ -1,5 +1,5 @@
 .dateInfo {
-min-width: 303px;
+width: 303px;
 height: 160px;
 
 }
@@ -17,4 +17,24 @@ font-size: 20px;
 line-height: 120%;
 letter-spacing: -0.01em;
 color: var(--main);
+}
+
+@media screen and (min-width: 768px) {
+.dateInfo {
+width: 640px;
+height: 174px;
+}
+.date {
+font-size: 28px;
+line-height: 114%;
+}
+}
+
+@media screen and (min-width: 1440px) {
+.dateInfo {
+width: 608px;
+height: 174px;
+
+}
+
 }

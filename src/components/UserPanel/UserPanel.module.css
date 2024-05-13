@@ -1,57 +1,84 @@
-.container {
-padding-top: 20px;
-
-}
-.userInfo {
-
-}
 
 .helloUser {
-font-family: "Gilroy", sans-serif;
-font-weight: 400;
-font-size: 32px;
-line-height: 100%;
-letter-spacing: -0.01em;
-color: var(--main);
-margin-bottom: 20px;
+  font-family: "Gilroy", sans-serif;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 100%;
+  letter-spacing: -0.01em;
+  color: var(--main);
+  margin-bottom: 20px;
 }
 
 .userName {
-font-weight: 700;
+  font-weight: 700;
 }
 
 .btncontainer {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
+  min-width: 137px;
+  height: 50px;
+
+
 }
 
 .btnUser {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-border-radius: 30px;
-padding: 6px 12px;
-min-width: 137px;
-height: 50px;
-background-color: #323F47;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  border-radius: 30px;
+  padding: 6px 12px;
+  min-width: 137px;
+  height: 50px;
+  background: var(--main);
 }
 
 .btnUserName {
-font-family: var(--font-family);
-font-weight: 700;
-font-size: 14px;
-line-height: 129%;
-letter-spacing: -0.01em;
-text-align: center;
-color: var(--main-white);
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: var(--main-white);
 }
 
 .imgAavatar {
-border-radius: 100%;
-width: 38px;
-height: 38px;
+  border-radius: 100%;
+  width: 38px;
+  height: 38px;
 }
 .iconUserSetting {
-fill: white;
+  stroke-width: 1.50px;
+  stroke: var(--main-white);
   width: 16px;
   height: 16px;
 }
+
+
+@media screen and (min-width: 768px) {
+
+.userInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 49px;
+}
+
+.btncontainer {
+  margin-bottom: 0px;
+  min-width: 157px;
+  height: 56px;
+}
+
+.helloUser {
+  font-size: 36px;
+  line-height: 106%;
+  margin-bottom: 0px;
+}
+
+.btnUser {
+  min-width: 157px;
+  height: 56px;
+}
+}
+

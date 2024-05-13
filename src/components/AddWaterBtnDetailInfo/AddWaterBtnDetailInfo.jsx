@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { Modal } from '../Modal/Modal.jsx';
 import { WaterForm } from '../WaterForm/WaterForm.jsx';
+import sprite from '../../img/svg/sprite.svg'
 import css from './AddWaterBtnDetailInfo.module.css'
 
 export const AddWaterBtnDetailInfo = () => {
@@ -18,8 +19,8 @@ export const AddWaterBtnDetailInfo = () => {
   return (
     <>
       <button className={css.btnAddWater} onClick={handleAddWater}>        
-          <svg className={css.iconPlus} width='30px' height='30px' fill="currentColor">
-            <use xlinkHref='../../img/svg/plus.svg' ></use>
+          <svg className={css.iconPlus} width="30px" height="30px">
+            <use xlinkHref={`${sprite}#icon-plus-stroke`}></use>
           </svg>
           <span className={css.addWaterText}>Add Water</span>      
       </button>

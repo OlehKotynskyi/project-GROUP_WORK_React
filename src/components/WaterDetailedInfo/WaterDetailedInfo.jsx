@@ -9,8 +9,7 @@ export const WaterDetailedInfo = () => {
     <section className={css.sectionDetailed}>
       <UserPanel username="John Doe" />
       <DailyInfo />
-      <MonthInfo />
-      
+      <MonthInfo />      
     </section>
   );
 };

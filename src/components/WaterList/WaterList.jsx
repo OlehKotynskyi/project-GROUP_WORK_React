@@ -1,10 +1,11 @@
 // src/components/WaterList/WaterList.jsx
 import React from 'react';
 // import { WaterItem } from '../WaterItem/WaterItem';
+import css from './WaterList.module.css'
 
 export const WaterList = ({ waterData }) => {
   return (
-    <div>
+    <section className={css.sectionWaterlist}>
       <h3>Water Consumption List</h3>
       {/* <ul>
         {waterData.map((item, index) => (
@@ -13,6 +14,6 @@ export const WaterList = ({ waterData }) => {
           </li>
         ))}
       </ul> */}
-    </div>
+    </section>
   );
 };

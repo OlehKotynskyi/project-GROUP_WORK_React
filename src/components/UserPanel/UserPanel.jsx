@@ -1,7 +1,8 @@
 // src/components/UserPanel.jsx
 import { useState } from 'react';
 import { Modal } from '../Modal/Modal';
-
+import sprite from '../../img/svg/sprite.svg'
+import userAvatar from '../../img/avatars/avatar.jpg'
 import css from './UserPanel.module.css'
 
 export const UserPanel = ({ username }) => {
@@ -36,9 +37,9 @@ export const UserPanel = ({ username }) => {
         <div className={css.btncontainer}>
           <button onClick={togglePopover} className={css.btnUser}>
             <span className={css.btnUserName}>{username}</span>
-            <img className={css.imgAavatar} src="" alt="avatar"/>
-            <svg className={css.iconUserSetting} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none">
-              <path d="M5 7.5L10 12.5L15 7.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <img className={css.imgAavatar} src={userAvatar} alt="avatar"/>
+            <svg className={css.iconUserSetting}>
+              <use xlinkHref={`${sprite}#icon-chevron-down`}></use>
             </svg>
           </button>
             {isSettingsModalOpen && (
