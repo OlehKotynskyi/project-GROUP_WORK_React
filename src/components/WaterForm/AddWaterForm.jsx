@@ -16,7 +16,7 @@ const schema = Yup.object().shape({
 
 const date = new Date();
 
-const AddWaterForm = () => {
+export const AddWaterForm = () => {
     const {
         register,
         handleSubmit,
@@ -114,5 +114,3 @@ const AddWaterForm = () => {
     </div>
   );
 };
-
-export default AddWaterForm;

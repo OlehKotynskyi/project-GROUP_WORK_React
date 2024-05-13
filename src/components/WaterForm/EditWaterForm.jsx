@@ -14,7 +14,7 @@ const schema = Yup.object().shape({
     time: Yup.string().required("Required field!"),
 });
 
-const EditWaterForm = ({userTime, userAmount}) => {
+export const EditWaterForm = ({userTime, userAmount}) => {
     const {
         register,
         handleSubmit,
@@ -113,5 +113,3 @@ const EditWaterForm = ({userTime, userAmount}) => {
     </div>
   );
 };
-
-export default EditWaterForm;
