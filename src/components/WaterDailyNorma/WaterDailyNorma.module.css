@@ -18,7 +18,6 @@
   line-height: 1;
   opacity: 60%;
 }
-
 @media screen and (min-width: 768px) {
   .wrap {
     width: 129px;

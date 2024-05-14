@@ -3,7 +3,8 @@ import { Slider } from '@mui/material';
 import css from './WaterProgressBar.module.css';
 
 export const WaterProgressBar = ({ currentAmount, dailyNorm }) => {
-  const percentage = (currentAmount / dailyNorm) * 100;
+  // const percentage = (currentAmount / dailyNorm) * 100;
+  const percentage = 500;
 
   return (
     <>
