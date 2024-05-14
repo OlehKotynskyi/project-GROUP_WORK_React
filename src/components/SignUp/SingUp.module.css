@@ -1,0 +1,31 @@
+.wrapTry {
+  border-radius: 30px;
+  padding: 14px 19px;
+  background-color: var(--accent);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  transition: 0.3s ease-in-out;
+}
+
+.wrapTry:hover {
+  cursor: pointer;
+  background-color: #87d28d;
+}
+.contact {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  /* text-align: center; */
+}
+.email {
+  display: flex;
+
+  color: var(--main-text);
+  letter-spacing: 0.06em;
+  font-size: 16px;
+  height: 24px;
+  align-items: center;
+}
+.input {
+  margin-bottom: 16px;
+}

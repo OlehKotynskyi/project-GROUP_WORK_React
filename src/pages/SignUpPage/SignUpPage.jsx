@@ -9,15 +9,13 @@ function SignUpPage() {
   return (
     <div className={`${css.SignUpPageContainer} ${style.container}`}>
       <section className={css.section}>
-        <div className={css.logo}>
-          <Logo className={css.logo} />
-        </div>
+        <Logo className={css.logo} />
+
         <h1 className={css.title}>Sign Up</h1>
         <SignUp />
       </section>
-      <section>
-        <AdvantagesSection />
-      </section>
+
+      <AdvantagesSection />
     </div>
   );
 }

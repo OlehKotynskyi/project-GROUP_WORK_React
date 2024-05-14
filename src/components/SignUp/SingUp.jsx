@@ -1,9 +1,13 @@
 // import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
+import { useState, React } from 'react';
+import { NavLink } from 'react-router-dom';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import eye from '../../img/svg/eye.svg';
+import eyeOff from '../../img/svg/eye-off.svg';
 
-// import css from './SingUp.module.css';
+import css from './SingUp.module.css';
 
 const userSchema = Yup.object().shape({
   email: Yup.string()
@@ -29,44 +33,77 @@ const SignUp = () => {
   });
   const onSubmit = data => console.log(data);
 
+  const [showPassword, setShowPassword] = useState(false);
+  // const [showPasswordReset, setShowPasswordReset] = useState(false);
+
+  const passwordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+  const passwordResetVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <section>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <label>Email</label>
+      <form className={css.contact} onSubmit={handleSubmit(onSubmit)}>
+        <div className={css.input}>
+          <label className={css.email}>Email</label>
           <input
             type="text"
-            placeholder="Enter your email"
-            // name="email"
             {...register('email')}
+            placeholder="Enter your email"
           />
           {errors.email && (
             <p style={{ color: 'red' }}>{errors.email.message}</p>
           )}
         </div>
-        <div>
-          <label>Password</label>
+        <div className={css.input}>
+          <label className={css.email}>Password</label>
           <input
-            type="text"
+            type={showPassword ? 'text' : 'password'}
             placeholder="Enter your password"
             {...register('password', { required: true })}
           />
+          <button type="button" onClick={passwordVisibility}>
+            <img
+              // className={}
+              width="24"
+              height="24"
+              src={showPassword ? eye : eyeOff}
+              alt="Toggle password visibility"
+            />
+          </button>
+
           {errors.password && (
             <p style={{ color: 'red' }}>{errors.password.message}</p>
           )}
         </div>
-        <div>
-          <label>Repeat Password</label>
+        <div className={css.input}>
+          <label className={css.email}>Repeat Password</label>
           <input
-            type="password"
+            type={showPassword ? 'text' : 'password'}
             placeholder="Repeat password"
             {...register('repeatPassword')}
           />
+          <button type="button" onClick={passwordResetVisibility}>
+            <img
+              // className={}
+              width="24"
+              height="24"
+              src={showPassword ? eye : eyeOff}
+              alt="Toggle  repeat password visibility"
+            />
+          </button>
           {errors.repeatPassword && (
             <p style={{ color: 'red' }}>{errors.repeatPassword.message}</p>
           )}
         </div>
-        <button type="submit">Sign Up</button>
+
+        <button className={css.wrapTry} type="submit">
+          Sign Up
+        </button>
+
+        <NavLink to="/signin">Already have account? Sign In</NavLink>
       </form>
     </section>
   );
