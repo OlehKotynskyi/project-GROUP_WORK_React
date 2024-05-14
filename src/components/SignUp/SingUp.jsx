@@ -67,8 +67,8 @@ const SignUp = () => {
           <button type="button" onClick={passwordVisibility}>
             <img
               // className={}
-              width="24"
-              height="24"
+              width="20"
+              height="20"
               src={showPassword ? eye : eyeOff}
               alt="Toggle password visibility"
             />
@@ -88,8 +88,8 @@ const SignUp = () => {
           <button type="button" onClick={passwordResetVisibility}>
             <img
               // className={}
-              width="24"
-              height="24"
+              width="20"
+              height="20"
               src={showPassword ? eye : eyeOff}
               alt="Toggle  repeat password visibility"
             />
