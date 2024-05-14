@@ -1,7 +1,7 @@
 // src/components/WaterItem.jsx
 import { useState } from 'react';
 import { Modal } from '../Modal/Modal';
-import { WaterForm } from '../WaterForm/WaterForm';
+import { EditWaterForm } from '../WaterForm/EditWaterForm';
 
 export const WaterItem = ({ date, amount, onDelete, onEdit }) => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -22,7 +22,7 @@ export const WaterItem = ({ date, amount, onDelete, onEdit }) => {
       <button onClick={handleEdit}>Edit</button>
       {isEditModalOpen && (
         <Modal title="Edit Water" onClose={closeModal}>
-          <WaterForm
+          <EditWaterForm
             date={date}
             amount={amount}
             onClose={closeModal}
