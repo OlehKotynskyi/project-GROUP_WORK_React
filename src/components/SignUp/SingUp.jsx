@@ -5,8 +5,7 @@ import { NavLink } from 'react-router-dom';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import sprite from '../../img/svg/sprite.svg';
-import eyeOff from '../../img/svg/eye-off.svg';
-import eye from '../../img/svg/eye.svg';
+
 import css from './SingUp.module.css';
 
 const userSchema = Yup.object().shape({
@@ -65,24 +64,13 @@ const SignUp = () => {
             {...register('password', { required: true })}
           />
           <button type="button" onClick={passwordVisibility}>
-            {showPassword ? (
-              <svg className={css.icon} width="20" height="20">
-                <use xlinkHref={`${sprite}#icon-eye.svg`}></use>
-              </svg>
-            ) : (
-              <svg className={css.icon} width="20" height="20">
-                <use xlinkHref={`${sprite}#icon-eye-off.svg`}></use>
-              </svg>
-              // eyeOff
-            )}
-
-            {/* <img
-              // className={}
-              width="20"
-              height="20"
-              src={showPassword ? eye : eyeOff}
-              alt="Toggle password visibility"
-            /> */}
+            <svg className={css.icon} width="20" height="20">
+              <use
+                xlinkHref={`${sprite}#${
+                  showPassword ? 'icon-eye' : 'icon-eye-off'
+                }`}
+              ></use>
+            </svg>
           </button>
 
           {errors.password && (
@@ -97,13 +85,13 @@ const SignUp = () => {
             {...register('repeatPassword')}
           />
           <button type="button" onClick={passwordResetVisibility}>
-            <img
-              // className={}
-              width="20"
-              height="20"
-              src={showPassword ? eye : eyeOff}
-              alt="Toggle  repeat password visibility"
-            />
+            <svg className={css.icon} width="20" height="20">
+              <use
+                xlinkHref={`${sprite}#${
+                  showPassword ? 'icon-eye' : 'icon-eye-off'
+                }`}
+              ></use>
+            </svg>
           </button>
           {errors.repeatPassword && (
             <p style={{ color: 'red' }}>{errors.repeatPassword.message}</p>
