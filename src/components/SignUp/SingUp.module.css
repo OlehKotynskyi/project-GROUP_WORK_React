@@ -28,3 +28,8 @@
 .input {
   margin-bottom: 16px;
 }
+.icon {
+  stroke: #2f2f2f;
+  width: 20px;
+  height: 20px;
+}
