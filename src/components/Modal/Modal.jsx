@@ -1,38 +1,29 @@
 // src/components/Modal.jsx
-import { useEffect } from 'react';
+import ReactModal from 'react-modal';
 
-export const Modal = ({ title, children, onClose }) => {
-  useEffect(() => {
-    const handleKeyDown = event => {
-      if (event.key === 'Escape') {
-        onClose();
-      }
-    };
+import sprite from "../../img/svg/sprite.svg";
+import css from "./Modal.module.css";
 
-    const handleOutsideClick = event => {
-      if (!event.target.closest('.modalContent')) {
-        onClose();
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    document.addEventListener('click', handleOutsideClick);
-
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-      document.removeEventListener('click', handleOutsideClick);
-    };
-  }, [onClose]);
-
+export const Modal = ({ isMainModalOpen, children, onClose, onAfterOpen }) => {
   return (
     <div>
-      <div>
+      <ReactModal
+        isOpen={isMainModalOpen}
+        onAfterOpen={onAfterOpen}
+        onRequestClose={onClose}
+        className={css.modal}
+        overlayClassName={css.backdrop}
+        contentLabel="Example Modal"
+      >
         <div>
-          <h2>{title}</h2>
-          <button onClick={onClose}>✕</button>
+          <button className={css.button} onClick={onClose}>
+            <svg className={css.icon} width="14" height="14">
+              <use xlinkHref={`${sprite}#icon-exsit`}></use>
+            </svg>
+          </button>
+          <div>{children}</div>
         </div>
-        <div>{children}</div>
-      </div>
+      </ReactModal>
     </div>
   );
 };

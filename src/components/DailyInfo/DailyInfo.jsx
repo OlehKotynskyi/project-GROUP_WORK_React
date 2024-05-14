@@ -4,7 +4,7 @@ import { ChooseDate } from '../ChooseDate/ChooseDate';
 import { AddWaterBtn } from '../AddWaterBtn/AddWaterBtn';
 import { WaterList } from '../WaterList/WaterList';
 
-export const DailyInfo = () => {
+export const DailyInfo = ({openWaterModal}) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const handleDateChange = date => {
