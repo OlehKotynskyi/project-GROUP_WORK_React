@@ -2,12 +2,12 @@
 import { WaterDailyNorma } from '../WaterDailyNorma/WaterDailyNorma.jsx';
 import { WaterProgressBar } from '../WaterProgressBar/WaterProgressBar.jsx';
 import Logo from '../Logo/Logo';
-import {AddWaterBtn} from '../AddWaterBtn/AddWaterBtn.jsx'
+import { AddWaterBtn } from '../AddWaterBtn/AddWaterBtn.jsx';
 import css from './WaterMainInfo.module.css';
 import thermos1x from '../../img/thermos/thermos_desk@1x.png';
 import thermos2x from '../../img/thermos/thermos_desk@2x.png';
 
-export const WaterMainInfo = () => {
+export const WaterMainInfo = ({openWaterModal}) => {
   // Assuming dailyNorm is passed as props from parent component
   const dailyNorm = 1500; // Example value, replace with actual value
   return (
@@ -23,16 +23,21 @@ export const WaterMainInfo = () => {
 
         <div className={css.wrapper}>
           <div className={css.dailyNorm}>
-            <WaterDailyNorma dailyNorm={dailyNorm} />
+            <div>
+              <WaterDailyNorma dailyNorm={dailyNorm} />
+            </div>
           </div>
           <div className={css.waterBar}>
-            <WaterProgressBar currentAmount={1500} dailyNorm={dailyNorm} />
+            <div>
+              <WaterProgressBar currentAmount={0} dailyNorm={dailyNorm} />
+            </div>
           </div>
-          <div>
-            <AddWaterBtn />
+          <div className={css.btn}>
+            <div>
+              <AddWaterBtn openAddWaterModal={openWaterModal} theme={'dark'} />
+            </div>
           </div>
         </div>
-
       </section>
     </>
   );

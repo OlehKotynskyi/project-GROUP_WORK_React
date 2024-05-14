@@ -3,7 +3,8 @@
   border-radius: 15px;
   padding: 12px;
   width: 102px;
-
+  z-index: 1;
+  position: relative;
 }
 .dailyNorm {
   color: var(--main);
@@ -17,3 +18,20 @@
   line-height: 1;
   opacity: 60%;
 }
+
+@media screen and (min-width: 768px) {
+  .wrap {
+    width: 129px;
+    padding: 14px 18px;
+  }
+  .dailyNorm {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .text {
+    font-size: 12px;
+    margin-top: 4px;
+    line-height: 1.9;
+  }
+}
+
