@@ -1,0 +1,148 @@
+.section {
+  position: relative;
+  background-color: var(--background);
+  border-radius: 30px;
+  padding: 216px 16px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 100%;
+  letter-spacing: -0.01em;
+  color: var(--main);
+  margin-bottom: 32px;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  color: var(--main-text);
+}
+
+.input {
+  background-color: transparent;
+  border: 1px solid rgba(47, 47, 47, 0.2);
+  border-radius: 15px;
+  padding: 16px;
+  height: 50px;
+  width: 100%;
+}
+
+.inputError {
+  border-color: #ef5050;
+  color: #ef5050;
+}
+
+.error {
+  height: 24px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  color: #ef5050;
+}
+
+.icon {
+  stroke: var(--main-text);
+  fill: none;
+}
+
+.submitBtn {
+  background-color: var(--accent);
+  color: var(--main);
+  border-radius: 30px;
+  padding: 16px;
+  width: 100%;
+  height: 50px;
+  margin-bottom: 16px;
+  margin-top: 16px;
+
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  text-align: center;
+  transition: 0.3s ease-in-out;
+}
+
+.submitBtn:hover,
+.submitBtn:focus {
+  background-color: #87d28d;
+}
+
+.redirect {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: rgba(47, 47, 47, 0.5);
+}
+
+.nav {
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: var(--main-text);
+}
+
+.passwordContainer {
+  position: relative;
+  width: 100%;
+}
+
+.visibilityBtn {
+  position: absolute;
+  top: 18px;
+  right: 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .section {
+    padding: 281px 134px;
+  }
+
+  .title {
+    font-size: 36px;
+    line-height: 106%;
+  }
+
+  .label {
+    font-size: 16px;
+    line-height: 150%;
+  }
+
+  .input {
+    width: 436px;
+    height: 56px;
+  }
+
+  .submitBtn {
+    padding: 18px;
+    width: 436px;
+    height: 60px;
+
+    font-size: 16px;
+    line-height: 150%;
+  }
+  .redirect {
+    font-size: 16px;
+    line-height: 150%;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .section {
+    padding: 169px 118px;
+    margin-bottom: 0px;
+  }
+}

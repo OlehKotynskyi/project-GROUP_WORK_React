@@ -1,0 +1,7 @@
+@media screen and (min-width: 1440px) {
+  .signIncontainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+}
