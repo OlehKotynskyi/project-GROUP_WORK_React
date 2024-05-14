@@ -1,0 +1,67 @@
+.form {
+}
+
+.inputTitle {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  color: var(--main-text);
+  margin-bottom: 4px;
+}
+
+.inputTitleBold {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: -0.01em;
+  color: var(--main);
+  margin-bottom: 4px;
+}
+
+.inputTitleSmall {
+  margin-bottom: 8px;
+}
+
+.genderInputWrap {
+  display: flex;
+  margin-top: 14px;
+  margin-bottom: 24px;
+}
+
+.genderInput {
+  margin-right: 10px;
+}
+
+.inputField,
+.border {
+  border: 1px solid rgba(47, 47, 47, 0.15);
+  border-radius: 15px;
+  padding: 14px 16px 14px 16px;
+  margin-top: 8px;
+  width: 100%;
+}
+
+.borderText {
+  color: rgba(47, 47, 47, 0.6);
+}
+
+.partWrap {
+  margin-bottom: 24px;
+   display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+
+
+.normaForm {
+  margin-bottom: 14px;
+}
+
+.accentText {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
