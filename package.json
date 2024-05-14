@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://OlehKotynskyi.github.io/project-GROUP_WORK_React/",
   "dependencies": {
+    "@hookform/resolvers": "^3.3.4",
     "@redux-devtools/extension": "^3.3.0",
     "@reduxjs/toolkit": "^2.2.3",
     "@testing-library/jest-dom": "^5.16.3",

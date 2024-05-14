@@ -1,0 +1,133 @@
+.modalContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    border-radius: 15px;
+    background-color: #FFFFFF;
+    box-shadow: 0 1px 4px rgb(47 47 47 / 40%);
+    outline: none;
+    border: none;
+    padding: 40px 20px;
+
+    @media screen and (min-width: 768px) {
+        padding: 40px 80px;
+    }
+}
+
+.buttonContainer {
+    position: absolute;
+    top: 20px;
+    right: 16px;
+
+    @media screen and (min-width: 768px) {
+        right: 20px;
+    }
+}
+
+.closeButton {
+    border: none;
+    background: transparent;
+}
+
+.icon {
+    stroke: #2F2F2F;
+    width: 24px;
+    height: 24px;
+
+    @media screen and (min-width: 768px) {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+.contentContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 800;
+    margin-bottom: 16px;
+
+    @media screen and (min-width: 768px) {
+        font-size: 28px;
+        line-height: 32px;
+    }
+}
+
+.question {
+    font-size: 14px;
+    line-height: 18px;
+    margin-bottom: 24px;
+    text-align: center;
+
+    @media screen and (min-width: 768px) {
+        font-size: 18px;
+        line-height: 24px;
+    }
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (min-width: 768px) {
+        flex-direction: row;
+        gap: 10px;
+    }
+}
+
+.yesButton {
+    margin-bottom: 9px;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 800;
+    border-radius: 30px;
+    background-color: #9BE1A0;
+    color: #323F47;
+    width: 304px;
+    height: 46px;
+
+    @media screen and (min-width: 768px) {
+        margin-bottom: 0px;
+        font-size: 16px;
+        line-height: 24px;
+        width: 170px;
+        height: 60px;
+    }
+}
+
+.yesButton:hover,
+.yesButton:focus {
+    cursor: pointer;
+    background-color: #87D28D;
+}
+
+.noButton {
+    composes: yesButton;
+    margin-bottom: 0px;
+    padding: 14px 126px;
+    background-color: #F0EFF4;
+    color: rgb(50	63	71 / 30%);
+
+    @media screen and (min-width: 768px) {
+        padding: 18px 59px;
+        margin-bottom: 0px;
+        font-size: 16px;
+        line-height: 24px;
+        max-width: 170px;
+    }
+}
+
+.noButton:hover,
+.noButton:focus {
+    cursor: pointer;
+    background-color: #F0EFF4;
+    color: #323F47;
+}

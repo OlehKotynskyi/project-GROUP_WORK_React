@@ -1,0 +1,134 @@
+h1,
+h2,
+h3,
+h4,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+input {
+    outline: none;
+    border: none;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 400;
+
+    @media screen and (min-width: 768px) and (max-width: 1439px) {
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    @media screen and (min-width: 1440px) {
+        font-size: 18px;
+        line-height: 24px;
+    }
+}
+
+.stepperItem {
+    margin-top: 20px;
+    margin-bottom: 16px;
+}
+
+.itemTitle {
+    margin-bottom: 8px;
+    font-size: 14px;
+    line-height: 18px;
+
+    @media screen and (min-width: 768px) {
+        font-size: 16px;
+        line-height: 24px;
+    }
+}
+
+.stepper {
+    display: flex;
+    align-items: center;
+}
+
+.stepButton {
+    border-radius: 50%;
+    min-width: 40px;
+    min-height: 40px;
+    border: 1.5px solid #323F47;
+    background-color: #FFFFFF;
+    color: #323F47;
+
+    margin-right: 8px;
+
+    @media screen and (min-width: 768px) {
+        min-width: 43px;
+        min-height: 43px;
+    }
+}
+
+
+.stepperAmount {
+    border-radius: 30px;
+    padding: 11px 20px;
+    background-color: #323F47;
+    text-align: center;
+    color: #FFFFFF;
+
+    margin-right: 8px;
+}
+
+.inputItem {
+    display: flex;
+    flex-direction: column;
+}
+
+.item {
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input {
+    max-width: 303px;
+    background-color: #FFFFFF;
+    border: 1.5px solid rgba(47,47,47, 0.15);
+    border-radius: 15px;
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 18px;
+
+    @media screen and (min-width: 768px) {
+        padding: 16px 16px;
+        max-width: 438px;
+        font-size: 16px;
+        line-height: 24px;
+    }
+}
+
+.amountLabel {
+    composes: title;
+    margin-bottom: 8px;
+}
+
+.saveButton {
+    border: none;
+    padding: 14px 40px;
+    border-radius: 30px;
+    max-width: 116px;
+    background-color: #9BE1A0;
+    text-align: center;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 400;
+
+    @media screen and (min-width: 768px) {
+        padding: 18px 50px;
+        max-width: 141px;
+        font-size: 16px;
+        line-height: 24px;
+    }
+}
