@@ -8,7 +8,7 @@ function TrackerPage() {
     <div className={style.container}>
       <WaterMainInfo />
       <WaterDetailedInfo />
-      <AddWaterBtn />
+      {/* <AddWaterBtn /> */}
     </div>
   );
 }

@@ -1,0 +1,24 @@
+.wrapper {
+  width: 198px;
+  padding: 12px;
+  background-color: var(--main-white);
+  border-radius: 15px;
+  position: relative;
+  z-index: 123;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.text {
+  color: var(--main);
+  font-weight: 700;
+  line-height: 1;
+}
+.percentageList {
+  display: flex;
+  justify-content: space-between;
+  color: var(--main-text);
+  opacity: 60%;
+  font-size: 10px;
+  line-height: 1;
+}

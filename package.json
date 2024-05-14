@@ -4,6 +4,9 @@
   "private": true,
   "homepage": "https://OlehKotynskyi.github.io/project-GROUP_WORK_React/",
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/material": "^5.15.17",
     "@redux-devtools/extension": "^3.3.0",
     "@reduxjs/toolkit": "^2.2.3",
     "@testing-library/jest-dom": "^5.16.3",
