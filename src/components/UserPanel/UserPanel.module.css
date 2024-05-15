@@ -22,7 +22,7 @@
 .btncontainer {
   min-width: 137px;
   height: 50px;
-
+position: relative;
 
 }
 
@@ -66,6 +66,68 @@
   height: 16px;
 }
 
+.popover {
+  position: absolute;
+  border-radius: 15px;
+padding: 14px 57px 14px 20px;
+width: 157px;
+height: 82px;
+margin-top: 8px;
+
+box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+background: var(--main-white);
+}
+
+.iconSettings {
+  fill: none;
+  stroke: var(--main);
+}
+
+.settingsBtn {
+  font-weight: 700;
+font-size: 15px;
+line-height: 149%;
+color: var(--main);
+background-color: transparent;
+padding: 0;
+display: flex;
+gap: 8px;
+align-items: center;
+margin-bottom: 8px;
+}
+
+.settingsBtn:hover {
+  color: var(--accent);
+}
+
+.settingsBtn:hover .iconSettings {
+  stroke: var(--accent);
+}
+
+.iconLogout {
+  fill: none;
+  stroke: rgba(50, 63, 71, 0.4);
+}
+
+.logoutBtn {
+  font-weight: 700;
+font-size: 15px;
+line-height: 149%;
+color: rgba(50, 63, 71, 0.4);
+background-color: transparent;
+padding: 0;
+display: flex;
+gap: 8px;
+align-items: center;
+}
+
+.logoutBtn:hover {
+  color: var(--main);
+}
+
+.logoutBtn:hover .iconLogout {
+  stroke: var(--main);
+}
 
 @media screen and (min-width: 768px) {
 
@@ -97,4 +159,3 @@
   line-height: 150%;
 }
 }
-
