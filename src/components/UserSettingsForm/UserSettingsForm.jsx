@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 
 import css from './UserSettingsForm.module.css';
 
-export default function UserSettingsForm() {
+export default function UserSettingsForm({ onClose }) {
   const nameId = useId();
   const emailId = useId();
 
