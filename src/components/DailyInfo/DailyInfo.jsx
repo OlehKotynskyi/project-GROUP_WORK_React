@@ -13,8 +13,6 @@ export const DailyInfo = ({openModal}) => {
     setSelectedDate(date);
   };
 
-
-  
   return (
 
     <section className={css.dateInfo}>
