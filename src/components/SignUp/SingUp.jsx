@@ -49,7 +49,7 @@ const SignUp = () => {
         <div className={css.input}>
           <label className={css.email}>Email</label>
           <input
-            type="text"
+            type="password"
             {...register('email')}
             placeholder="Enter your email"
           />
