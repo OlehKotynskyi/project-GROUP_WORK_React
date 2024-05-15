@@ -33,11 +33,13 @@ export const UserPanel = ({ username }) => {
   return (
     <section className={css.container}>
       <div className={css.userInfo}>
-        <p className={css.helloUser}>Hello, <span className={css.userName}>{username}</span>!</p>
+        <p className={css.helloUser}>Hello, <span className={css.userName}>{username}</span><span className={css.exclamationPoint}>!</span></p>
         <div className={css.btncontainer}>
           <button onClick={togglePopover} className={css.btnUser}>
             <span className={css.btnUserName}>{username}</span>
-            <img className={css.imgAavatar} src={userAvatar} alt="avatar"/>
+            <div className={css.imgAavatar}>
+                <img src={userAvatar} alt="avatar"/>
+            </div>            
             <svg className={css.iconUserSetting}>
               <use xlinkHref={`${sprite}#icon-chevron-down`}></use>
             </svg>

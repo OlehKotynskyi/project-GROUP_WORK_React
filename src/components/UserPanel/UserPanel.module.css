@@ -1,4 +1,7 @@
-
+.userInfo {
+  
+  margin-bottom: 40px;
+}
 .helloUser {
   font-family: "Gilroy", sans-serif;
   font-weight: 400;
@@ -13,8 +16,10 @@
   font-weight: 700;
 }
 
+.exclamationPoint {
+  font-weight: 700;
+}
 .btncontainer {
-  margin-bottom: 40px;
   min-width: 137px;
   height: 50px;
 
@@ -43,10 +48,17 @@
 }
 
 .imgAavatar {
-  border-radius: 100%;
+  border-radius: 50%;
   width: 38px;
   height: 38px;
+  overflow: hidden;
 }
+
+.imgAavatar img {
+  width: 100%;
+  object-fit: cover;
+}
+
 .iconUserSetting {
   stroke-width: 1.50px;
   stroke: var(--main-white);
@@ -79,6 +91,10 @@
 .btnUser {
   min-width: 157px;
   height: 56px;
+}
+.btnUserName {
+  font-size: 16px;
+  line-height: 150%;
 }
 }
 

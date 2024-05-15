@@ -1,7 +1,7 @@
 .sectionDetailed {
 padding: 40px 20px;
 border-radius: 30px;
-width: 343px;
+max-width: 343px;
 height: 770px;
 background: var(--background);
 }
@@ -10,7 +10,7 @@ background: var(--background);
 
 .sectionDetailed {
 padding: 32px 32px 35px 32px;
-width: 704px;
+max-width: 704px;
 height: 738px;
 }
 }
@@ -18,7 +18,7 @@ height: 738px;
 @media screen and (min-width: 1440px) {
 .sectionDetailed {
 padding: 32px 32px 33px 32px;
-width: 672px;
+max-width: 672px;
 height: 736px;
 }
 }

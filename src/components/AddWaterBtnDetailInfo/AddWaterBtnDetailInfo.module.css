@@ -14,6 +14,11 @@ stroke-width: 1.50px;
 stroke: var(--main);
 }
 
+.btnAddWater:hover .iconPlus{
+fill: var(--main);
+stroke: var(--main-white);
+}
+
 .addWaterText {
 font-family: var(--font-family);
 font-weight: 700;
