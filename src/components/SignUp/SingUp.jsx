@@ -1,4 +1,5 @@
 // import { useDispatch } from 'react-redux';
+import Logo from 'components/Logo/Logo';
 import { useForm } from 'react-hook-form';
 import { useState, React } from 'react';
 import { NavLink } from 'react-router-dom';
@@ -33,21 +34,24 @@ const SignUp = () => {
   const onSubmit = data => console.log(data);
 
   const [showPassword, setShowPassword] = useState(false);
-  // const [showPasswordReset, setShowPasswordReset] = useState(false);
+  const [showPasswordReset, setShowPasswordReset] = useState(false);
 
   const passwordVisibility = () => {
     setShowPassword(!showPassword);
   };
   const passwordResetVisibility = () => {
-    setShowPassword(!showPassword);
+    setShowPasswordReset(!showPasswordReset);
   };
 
   return (
-    <section>
+    <section className={css.section}>
+      <Logo className={css.logo} />
+      <h1 className={css.title}>Sign Up</h1>
       <form className={css.contact} onSubmit={handleSubmit(onSubmit)}>
-        <div className={css.input}>
+        <div className={css.inputContainer}>
           <label className={css.email}>Email</label>
           <input
+            className={css.input}
             type="text"
             {...register('email')}
             placeholder="Enter your email"
@@ -56,14 +60,19 @@ const SignUp = () => {
             <p style={{ color: 'red' }}>{errors.email.message}</p>
           )}
         </div>
-        <div className={css.input}>
+        <div className={css.inputContainer}>
           <label className={css.email}>Password</label>
           <input
+            className={css.input}
             type={showPassword ? 'text' : 'password'}
             placeholder="Enter your password"
             {...register('password', { required: true })}
           />
-          <button type="button" onClick={passwordVisibility}>
+          <button
+            type="button"
+            className={css.eyeBtn}
+            onClick={passwordVisibility}
+          >
             <svg className={css.icon} width="20" height="20">
               <use
                 xlinkHref={`${sprite}#${
@@ -77,18 +86,23 @@ const SignUp = () => {
             <p style={{ color: 'red' }}>{errors.password.message}</p>
           )}
         </div>
-        <div className={css.input}>
+        <div className={css.inputContainer}>
           <label className={css.email}>Repeat Password</label>
           <input
-            type={showPassword ? 'text' : 'password'}
+            className={css.input}
+            type={showPasswordReset ? 'text' : 'password'}
             placeholder="Repeat password"
             {...register('repeatPassword')}
           />
-          <button type="button" onClick={passwordResetVisibility}>
+          <button
+            type="button"
+            className={css.eyeBtn}
+            onClick={passwordResetVisibility}
+          >
             <svg className={css.icon} width="20" height="20">
               <use
                 xlinkHref={`${sprite}#${
-                  showPassword ? 'icon-eye' : 'icon-eye-off'
+                  showPasswordReset ? 'icon-eye' : 'icon-eye-off'
                 }`}
               ></use>
             </svg>

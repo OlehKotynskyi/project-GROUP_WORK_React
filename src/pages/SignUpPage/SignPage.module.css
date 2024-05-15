@@ -1,27 +1,20 @@
 /* @media screen and (min-width: 1440px)  */
 
 .SignUpPageContainer {
-  display: flex;
-  padding: 10px 14px;
-  /* background-color: var(--background); */
+  display: grid;
+  gap: 32px;
+  grid-template-columns: 1fr 1fr;
+
   border-radius: 30px;
-  margin-bottom: 8px;
+  /* margin-bottom: 8px; */
 }
-.section {
-  position: relative;
+/* .section {
   background-color: var(--background);
   border-radius: 30px;
   padding: 118px 16px 67px;
   margin-bottom: 16px;
-}
-.title {
-  color: var(--main);
-  font-size: 36px;
-  font-weight: 700;
-  line-height: 38px;
-  letter-spacing: -0.01em;
-  /* margin-bottom: 32px; */
-}
+} */
+
 /* .logo {
   display: flex;
   margin-bottom: 25px;
