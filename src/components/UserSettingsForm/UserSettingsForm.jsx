@@ -1,31 +1,31 @@
 import { useId } from 'react';
 import * as Yup from 'yup';
 
+import sprite from '../../img/svg/sprite.svg';
+
+import avatar from '../../img/avatars/avatar.jpg';
+
 import css from './UserSettingsForm.module.css';
 
 export default function UserSettingsForm() {
   const nameId = useId();
   const emailId = useId();
 
-  const UserSettingsSchema = Yup.object().shape({
-    name: Yup.string()
-      .min(2, 'Too short!')
-      .max(50, 'Too long!')
-      .required('Required'),
-    gender: Yup.string().oneOf(['woman', 'man']).required('Required'),
-  });
-
   return (
-    //  <Formik
-    //    initialValues={{}}
-    //    onSubmit={() => {}}
-    //    validationSchema={UserSettingsSchema}
-    //  >
     <form className={css.form}>
-      <div>
-        <img />
-        <svg />
-        <p>Upload a photo</p>
+      <h1 className={css.modalTitle}>Setting</h1>
+
+      <div className={css.imageWrap}>
+        <img src={avatar} alt="user avatar" />
+
+        <div className={css.uploadImage}>
+          <button className={css.button}>
+            <svg className={css.icon} width="18" height="18">
+              <use xlinkHref={`${sprite}#icon-upload`}></use>
+            </svg>
+          </button>
+          <p>Upload a photo</p>
+        </div>
       </div>
 
       <div>
@@ -52,91 +52,120 @@ export default function UserSettingsForm() {
         </div>
       </div>
 
-      <div className={`${css.partWrap} ${css.firstPart}`}>
-        <div>
-          <label
-            htmlFor={nameId}
-            className={`${css.inputTitleBold}  ${css.inputTitleSmall}`}
-          >
-            Your name
-          </label>
-          <input
-            type="text"
-            name="name"
-            id={nameId}
-            className={css.inputField}
-          />
-        </div>
-        <div>
-          <label
-            htmlFor={emailId}
-            className={`${css.inputTitleBold}  ${css.inputTitleSmall}`}
-          >
-            Email
-          </label>
-          <input
-            type="email"
-            name="email"
-            id={emailId}
-            className={css.inputField}
-          />
-        </div>
-      </div>
-
-      <div className={css.partWrap}>
-        <h2 className={css.inputTitleBold}>My daily norma</h2>
-        <div className={css.normaForm}>
-          <div>
-            <h3 className={css.inputTitle}>For woman:</h3>
-            <p className={css.accentText}>V=(M*0,03) + (T*0,4)</p>
+      <div className={css.block}>
+        <div className={css.blockWrap}>
+          <div className={css.partWrap}>
+            <div>
+              <label
+                htmlFor={nameId}
+                className={`${css.inputTitleBold}  ${css.inputTitleSmall}`}
+              >
+                Your name
+              </label>
+              <input
+                type="text"
+                name="name"
+                id={nameId}
+                className={css.inputField}
+              />
+            </div>
+            <div>
+              <label
+                htmlFor={emailId}
+                className={`${css.inputTitleBold}  ${css.inputTitleSmall}`}
+              >
+                Email
+              </label>
+              <input
+                type="email"
+                name="email"
+                id={emailId}
+                className={css.inputField}
+              />
+            </div>
           </div>
-          <div>
-            <h3 className={css.inputTitle}>For man:</h3>
-            <p className={css.accentText}>V=(M*0,04) + (T*0,6)</p>
+
+          <div className={css.partWrap}>
+            <h2 className={`${css.inputTitleBold} ${css.dailyTitle}`}>
+              My daily norma
+            </h2>
+            <div className={css.normaForm}>
+              <div className={css.normaFormWoman}>
+                <h3 className={css.inputTitle}>For woman:</h3>
+                <p className={css.accentText}>V=(M*0,03) + (T*0,4)</p>
+              </div>
+              <div className={css.normaFormMan}>
+                <h3 className={css.inputTitle}>For man:</h3>
+                <p className={css.accentText}>V=(M*0,04) + (T*0,6)</p>
+              </div>
+            </div>
+
+            <div className={css.border}>
+              <p className={css.borderText}>
+                <span className={css.accentText}>*</span> V is the volume of the
+                water norm in liters per day, M is your body weight, T is the
+                time of active sports, or another type of activity commensurate
+                in terms of loads (in the absence of these, you must set 0)
+              </p>
+            </div>
+            <p>Active time in hours</p>
           </div>
         </div>
 
-        <div className={css.border}>
-          <p className={css.borderText}>
-            <span className={css.accentText}>*</span> V is the volume of the
-            water norm in liters per day, M is your body weight, T is the time
-            of active sports, or another type of activity commensurate in terms
-            of loads (in the absence of these, you must set 0)
-          </p>
+        <div className={css.blockWrap}>
+          <div className={css.partWrap}>
+            <div>
+              <label className={css.inputTitle}>
+                Your weight in kilograms:
+              </label>
+              <input
+                value={0}
+                type="number"
+                name="weight"
+                className={css.inputField}
+              />
+            </div>
+            <div>
+              <label className={css.inputTitle}>
+                The time of active participation in sports:
+              </label>
+              <input
+                value={0}
+                type="number"
+                name="sport"
+                className={css.inputField}
+              />
+            </div>
+          </div>
+
+          <div className={`${css.partWrap} ${css.requiredAmountWrap}`}>
+            <div className={css.requiredAmount}>
+              <h3 className={css.inputTitle}>
+                The required amount of water in liters per day:
+              </h3>
+              <p className={`${css.accentText} ${css.accentLiter}`}>10 L</p>
+            </div>
+
+            <div>
+              <label
+                className={` ${css.inputTitleBold}  ${css.inputTitleSmall}`}
+              >
+                Write down how much water you will drink:
+              </label>
+              <input
+                value={0}
+                type="number"
+                name="water"
+                className={css.inputField}
+              />
+            </div>
+          </div>
         </div>
-        <p>Active time in hours</p>
       </div>
 
-      <div className={css.partWrap}>
-        <div>
-          <label className={css.inputTitle}>Your weight in kilograms:</label>
-          <input type="number" name="weight" className={css.inputField} />
-        </div>
-        <div>
-          <label className={css.inputTitle}>
-            The time of active participation in sports:
-          </label>
-          <input type="number" name="sport" className={css.inputField} />
-        </div>
-      </div>
-
-      <div className={css.partWrap}>
-        <div>
-          <h3 className={css.inputTitle}>
-            The required amount of water in liters per day:
-          </h3>
-          <p className={css.accentText}></p>
-        </div>
-
-        <div>
-          <label className={` ${css.inputTitleBold}  ${css.inputTitleSmall}`}>
-            Write down how much water you will drink:
-          </label>
-          <input type="number" name="water" className={css.inputField} />
-        </div>
-      </div>
-
-      <button type="submit">Save</button>
+      <button type="submit" className={css.submitBtn}>
+        Save
+      </button>
     </form>
   );
 }
