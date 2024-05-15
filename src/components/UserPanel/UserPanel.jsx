@@ -1,36 +1,21 @@
 // src/components/UserPanel.jsx
 import { useState } from 'react';
+
 import { Modal } from '../Modal/Modal';
 import sprite from '../../img/svg/sprite.svg'
 import userAvatar from '../../img/avatars/avatar.jpg'
 import css from './UserPanel.module.css'
 
-export const UserPanel = ({ username }) => {
+
+export const UserPanel = ({ username, openModal }) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-  const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
-  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
 
   const togglePopover = () => {
     setIsPopoverOpen(!isPopoverOpen);
   };
 
-  const openSettingsModal = () => {
-    setIsSettingsModalOpen(true);
-  };
-
-  const closeSettingsModal = () => {
-    setIsSettingsModalOpen(false);
-  };
-
-  const openLogoutModal = () => {
-    setIsLogoutModalOpen(true);
-  };
-
-  const closeLogoutModal = () => {
-    setIsLogoutModalOpen(false);
-  };
-
   return (
+
     <section className={css.container}>
       <div className={css.userInfo}>
         <p className={css.helloUser}>
@@ -89,12 +74,13 @@ export const UserPanel = ({ username }) => {
           )}
 
           {/* Temporary inclusion to prevent eslint warnings */}
-          <button style={{ display: 'none' }} onClick={openSettingsModal} />
-          <button style={{ display: 'none' }} onClick={openLogoutModal} />
+          <button onClick={() => openModal("settings")}>Settings</button>
+      <button onClick={() => openModal("logout")}>Log out</button>
         </div>
       </div>
         
       
     </section>
+
   );
 };

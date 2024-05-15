@@ -4,12 +4,15 @@ import { DailyInfo } from '../DailyInfo/DailyInfo';
 import { MonthInfo } from '../MonthInfo/MonthInfo';
 import css from './WaterDetailedInfo.module.css'
 
-export const WaterDetailedInfo = () => {
+export const WaterDetailedInfo = ({openModal}) => {
   return (
+
     <section className={css.sectionDetailed}>
-      <UserPanel username="John Doe" />
-      <DailyInfo />
+      <UserPanel username="John Doe" openModal={openModal} />
+      <DailyInfo openModal={openModal}/>
       <MonthInfo />      
     </section>
+
+
   );
 };

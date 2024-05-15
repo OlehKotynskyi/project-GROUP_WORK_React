@@ -6,7 +6,7 @@ import { WaterList } from '../WaterList/WaterList';
 import css from './DailyInfo.module.css'
 import { Slider } from 'components/Slider/Slider';
 
-export const DailyInfo = () => {
+export const DailyInfo = ({openModal}) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const handleDateChange = date => {
@@ -14,14 +14,16 @@ export const DailyInfo = () => {
   };
 
   return (
+
     <section className={css.dateInfo}>
       <div className={css.headerDailyInfo}>
         <p className={css.date}>Today</p>
       {/* <ChooseDate onChange={handleDateChange} /> */}
-        <AddWaterBtnDetailInfo />
+        <AddWaterBtnDetailInfo openModal={openModal}/>
       </div>      
-      <WaterList date={selectedDate} />
+      <WaterList date={selectedDate} openModal={openModal}/>
       <Slider />
     </section>
+
   );
 };
