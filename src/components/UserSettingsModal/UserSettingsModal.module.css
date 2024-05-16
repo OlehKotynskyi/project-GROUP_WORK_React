@@ -9,7 +9,7 @@
   line-height: 1.2;
 }
 
-.modalSetting {
+.modal {
   position: absolute;
   top: 80px;
   left: 50%;
@@ -22,21 +22,44 @@
   z-index: 1000;
 }
 
+.button {
+  position: absolute;
+  top: 20px;
+  right: 16px;
+  background-color: transparent;
+}
+
+.icon {
+  stroke: #2f2f2f;
+  width: 24px;
+  height: 24px;
+}
+
 @media screen and (min-width: 768px) {
   .formTitle {
     font-size: 28px;
     line-height: 1.4;
   }
 
-  .modalSetting {
+  .modal {
     top: 64px;
     width: 648px;
     padding: 40px;
   }
+
+  .button {
+  top: 40px;
+  right: 40px;
+}
+
+  .icon {
+    width: 28px;
+    height: 28px;
+  }
 }
 
 @media screen and (min-width: 1440px) {
-  .modalSetting {
+  .modal {
     width: 920px;
   }
 }
