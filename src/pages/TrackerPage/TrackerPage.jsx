@@ -40,7 +40,6 @@ function TrackerPage() {
     <div className={`${style.container} ${css.trackerContainer}`}>
       <div>
         <WaterMainInfo openModal={openModal}/>
-        <AddWaterBtn openModal={openModal} />
         {modal.isOpen && <Modal isMainModalOpen={modal.isOpen} onClose={closeModal} onAfterOpen={afterOpenModal}>
         {((modal.content === "add") || (modal.content === "edit")) && (
           <WaterModal modal={modal} onClose={closeModal}>
@@ -53,7 +52,7 @@ function TrackerPage() {
         {modal.content === "settings" && <UserSettingsModal onClose={closeModal} />}
       </Modal>}
       </div>
-      <WaterDetailedInfo />
+      <WaterDetailedInfo openModal={openModal} />
     </div>
   );
 }
