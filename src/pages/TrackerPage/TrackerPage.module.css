@@ -1,0 +1,10 @@
+@media screen and (min-width: 1440px) {
+
+
+.trackerContainer {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    justify-content: center;
+}
+}

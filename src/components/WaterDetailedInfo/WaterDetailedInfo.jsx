@@ -2,14 +2,17 @@
 import { UserPanel } from '../UserPanel/UserPanel';
 import { DailyInfo } from '../DailyInfo/DailyInfo';
 import { MonthInfo } from '../MonthInfo/MonthInfo';
+import css from './WaterDetailedInfo.module.css'
 
 export const WaterDetailedInfo = ({openModal}) => {
   return (
-    <div>
-      <h2>Detailed Information</h2>
+
+    <section className={css.sectionDetailed}>
       <UserPanel username="John Doe" openModal={openModal} />
-      <DailyInfo openModal={openModal} />
-      <MonthInfo />
-    </div>
+      <DailyInfo openModal={openModal}/>
+      <MonthInfo />      
+    </section>
+
+
   );
 };

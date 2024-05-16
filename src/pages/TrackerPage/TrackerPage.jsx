@@ -11,12 +11,13 @@ import { DeleteWaterModal } from 'components/DeleteWaterModal/DeleteWaterModal';
 import { LogOutModal } from 'components/LogOutModal/LogOutModal';
 import { AddWaterForm } from 'components/WaterForm/AddWaterForm';
 import { EditWaterForm } from 'components/WaterForm/EditWaterForm';
+import UserSettingsModal from 'components/UserSettingsModal/UserSettingsModal.jsx';
+import css from './TrackerPage.module.css'
 
 //import css from './TrakerPage.module.css'
 import style from '../Base.module.css';
-import UserSettingsModal from 'components/UserSettingsModal/UserSettingsModal.jsx';
-
 ReactModal.setAppElement('#root');
+
 
 function TrackerPage() {
   const [modal, setModal] = useState({ isOpen: false, content: null });
@@ -35,11 +36,12 @@ function TrackerPage() {
   }
 
   return (
-    <div className={style.container}>
-      <WaterMainInfo />
-      <WaterDetailedInfo openModal={openModal}/>
-      <AddWaterBtn openModal={openModal} />
-      {modal.isOpen && <Modal isMainModalOpen={modal.isOpen} onClose={closeModal} onAfterOpen={afterOpenModal}>
+
+    <div className={`${style.container} ${css.trackerContainer}`}>
+      <div>
+        <WaterMainInfo openModal={openModal}/>
+        <AddWaterBtn openModal={openModal} />
+        {modal.isOpen && <Modal isMainModalOpen={modal.isOpen} onClose={closeModal} onAfterOpen={afterOpenModal}>
         {((modal.content === "add") || (modal.content === "edit")) && (
           <WaterModal modal={modal} onClose={closeModal}>
             {modal.content === "add" && <AddWaterForm />}
@@ -50,6 +52,8 @@ function TrackerPage() {
         {modal.content === "logout" && <LogOutModal onClose={closeModal} />}
         {modal.content === "settings" && <UserSettingsModal onClose={closeModal} />}
       </Modal>}
+      </div>
+      <WaterDetailedInfo />
     </div>
   );
 }

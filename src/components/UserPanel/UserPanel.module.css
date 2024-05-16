@@ -1,0 +1,161 @@
+.userInfo {
+  
+  margin-bottom: 40px;
+}
+.helloUser {
+  font-family: "Gilroy", sans-serif;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 100%;
+  letter-spacing: -0.01em;
+  color: var(--main);
+  margin-bottom: 20px;
+}
+
+.userName {
+  font-weight: 700;
+}
+
+.exclamationPoint {
+  font-weight: 700;
+}
+.btncontainer {
+  min-width: 137px;
+  height: 50px;
+position: relative;
+
+}
+
+.btnUser {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  border-radius: 30px;
+  padding: 6px 12px;
+  min-width: 137px;
+  height: 50px;
+  background: var(--main);
+}
+
+.btnUserName {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: var(--main-white);
+}
+
+.imgAavatar {
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  overflow: hidden;
+}
+
+.imgAavatar img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.iconUserSetting {
+  stroke-width: 1.50px;
+  stroke: var(--main-white);
+  width: 16px;
+  height: 16px;
+}
+
+.popover {
+  position: absolute;
+  border-radius: 15px;
+padding: 14px 57px 14px 20px;
+width: 157px;
+height: 82px;
+margin-top: 8px;
+
+box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+background: var(--main-white);
+}
+
+.iconSettings {
+  fill: none;
+  stroke: var(--main);
+}
+
+.settingsBtn {
+  font-weight: 700;
+font-size: 15px;
+line-height: 149%;
+color: var(--main);
+background-color: transparent;
+padding: 0;
+display: flex;
+gap: 8px;
+align-items: center;
+margin-bottom: 8px;
+}
+
+.settingsBtn:hover {
+  color: var(--accent);
+}
+
+.settingsBtn:hover .iconSettings {
+  stroke: var(--accent);
+}
+
+.iconLogout {
+  fill: none;
+  stroke: rgba(50, 63, 71, 0.4);
+}
+
+.logoutBtn {
+  font-weight: 700;
+font-size: 15px;
+line-height: 149%;
+color: rgba(50, 63, 71, 0.4);
+background-color: transparent;
+padding: 0;
+display: flex;
+gap: 8px;
+align-items: center;
+}
+
+.logoutBtn:hover {
+  color: var(--main);
+}
+
+.logoutBtn:hover .iconLogout {
+  stroke: var(--main);
+}
+
+@media screen and (min-width: 768px) {
+
+.userInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 49px;
+}
+
+.btncontainer {
+  margin-bottom: 0px;
+  min-width: 157px;
+  height: 56px;
+}
+
+.helloUser {
+  font-size: 36px;
+  line-height: 106%;
+  margin-bottom: 0px;
+}
+
+.btnUser {
+  min-width: 157px;
+  height: 56px;
+}
+.btnUserName {
+  font-size: 16px;
+  line-height: 150%;
+}
+}
