@@ -27,12 +27,15 @@ const SignUp = () => {
   const {
     register,
     handleSubmit,
+
     formState: { errors },
   } = useForm({
     resolver: yupResolver(userSchema),
   });
-  const onSubmit = data => console.log(data);
-
+  const onSubmit = (data, evt) => {
+    console.log(data);
+    evt.target.reset();
+  };
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordReset, setShowPasswordReset] = useState(false);
 
@@ -40,6 +43,9 @@ const SignUp = () => {
     setShowPassword(!showPassword);
   };
   const passwordResetVisibility = () => {
+    if (!showPasswordReset) {
+      setShowPassword(true);
+    }
     setShowPasswordReset(!showPasswordReset);
   };
 
@@ -62,61 +68,69 @@ const SignUp = () => {
         </div>
         <div className={css.inputContainer}>
           <label className={css.email}>Password</label>
-          <input
-            className={css.input}
-            type={showPassword ? 'text' : 'password'}
-            placeholder="Enter your password"
-            {...register('password', { required: true })}
-          />
-          <button
-            type="button"
-            className={css.eyeBtn}
-            onClick={passwordVisibility}
-          >
-            <svg className={css.icon} width="20" height="20">
-              <use
-                xlinkHref={`${sprite}#${
-                  showPassword ? 'icon-eye' : 'icon-eye-off'
-                }`}
-              ></use>
-            </svg>
-          </button>
-
+          <div className={css.passwordConteiner}>
+            <input
+              className={css.input}
+              type={showPassword ? 'text' : 'password'}
+              placeholder="Enter your password"
+              {...register('password', { required: true })}
+            />
+            <button
+              type="button"
+              className={css.eyeBtn}
+              onClick={passwordVisibility}
+            >
+              <svg className={css.icon} width="20" height="20">
+                <use
+                  xlinkHref={`${sprite}#${
+                    showPassword ? 'icon-eye' : 'icon-eye-off'
+                  }`}
+                ></use>
+              </svg>
+            </button>
+          </div>
           {errors.password && (
             <p style={{ color: 'red' }}>{errors.password.message}</p>
           )}
         </div>
         <div className={css.inputContainer}>
           <label className={css.email}>Repeat Password</label>
-          <input
-            className={css.input}
-            type={showPasswordReset ? 'text' : 'password'}
-            placeholder="Repeat password"
-            {...register('repeatPassword')}
-          />
-          <button
-            type="button"
-            className={css.eyeBtn}
-            onClick={passwordResetVisibility}
-          >
-            <svg className={css.icon} width="20" height="20">
-              <use
-                xlinkHref={`${sprite}#${
-                  showPasswordReset ? 'icon-eye' : 'icon-eye-off'
-                }`}
-              ></use>
-            </svg>
-          </button>
+
+          <div className={css.passwordConteiner}>
+            <input
+              className={css.input}
+              type={showPasswordReset ? 'text' : 'password'}
+              placeholder="Repeat password"
+              {...register('repeatPassword')}
+            />
+            <button
+              type="button"
+              className={css.eyeBtn}
+              onClick={passwordResetVisibility}
+            >
+              <svg className={css.icon} width="20" height="20">
+                <use
+                  xlinkHref={`${sprite}#${
+                    showPasswordReset ? 'icon-eye' : 'icon-eye-off'
+                  }`}
+                ></use>
+              </svg>
+            </button>
+          </div>
           {errors.repeatPassword && (
             <p style={{ color: 'red' }}>{errors.repeatPassword.message}</p>
           )}
         </div>
 
-        <button className={css.wrapTry} type="submit">
+        <button className={css.singUpBtn} type="submit">
           Sign Up
         </button>
-
-        <NavLink to="/signin">Already have account? Sign In</NavLink>
+        <p className={css.text}>
+          Already have account?{' '}
+          <NavLink to="/signin" className={css.navLink}>
+            Sign In
+          </NavLink>
+        </p>
       </form>
     </section>
   );
