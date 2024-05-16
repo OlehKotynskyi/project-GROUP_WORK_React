@@ -18,20 +18,6 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  position: relative;
-}
-
-.emailContainer {
-  margin-bottom: 16px;
-}
-
-.inputPassword {
-  margin-bottom: 32px;
-}
-
-.passwordContainer {
-  position: relative;
-  width: 100%;
 }
 
 .label {
@@ -57,14 +43,12 @@
 }
 
 .error {
-  bottom: 0px;
+  height: 24px;
   font-weight: 400;
-  font-size: 10px;
-  line-height: 100%;
+  font-size: 14px;
+  line-height: 129%;
   letter-spacing: -0.01em;
   color: #ef5050;
-  position: absolute;
-bottom: -19px;
 }
 
 .icon {
@@ -80,6 +64,7 @@ bottom: -19px;
   width: 100%;
   height: 50px;
   margin-bottom: 16px;
+  margin-top: 16px;
 
   font-weight: 700;
   font-size: 14px;
@@ -110,7 +95,10 @@ bottom: -19px;
   color: var(--main-text);
 }
 
-
+.passwordContainer {
+  position: relative;
+  width: 100%;
+}
 
 .visibilityBtn {
   position: absolute;
@@ -136,15 +124,6 @@ bottom: -19px;
   .input {
     width: 436px;
     height: 56px;
-  }
-
-  .emailContainer {
-    margin-bottom: 20px;
-  }
-
-  .error {
-    font-size: 14px;
-    line-height: 129%;
   }
 
   .submitBtn {

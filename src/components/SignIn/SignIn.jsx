@@ -53,7 +53,7 @@ const SignIn = () => {
       <Logo />
       <h1 className={css.title}>Sing In</h1>
       <form action="" onSubmit={handleSubmit(onSubmit)} className={css.form}>
-        <div className={`${css.inputContainer} ${css.emailContainer}`}>
+        <div className={css.inputContainer}>
           <label htmlFor="email" className={css.label}>
             Email
           </label>
@@ -64,9 +64,11 @@ const SignIn = () => {
             {...register('email')}
             className={`${css.input} ${errors.email && css.inputError}`}
           />
-          {errors.email && <p className={css.error}>{errors.email.message}</p>}
+          <div className={css.error}>
+            {errors.email && <p>{errors.email.message}</p>}
+          </div>
         </div>
-        <div className={`${css.inputContainer} ${css.inputPassword}`}>
+        <div className={css.inputContainer}>
           <label htmlFor="password" className={css.label}>
             Password
           </label>
@@ -94,9 +96,10 @@ const SignIn = () => {
               </button>
             )}
           </div>
-          {errors.password && (
-            <p className={css.error}>{errors.password.message}</p>
-          )}
+
+          <div className={css.error}>
+            {errors.password && <p>{errors.password.message}</p>}
+          </div>
         </div>
 
         <button type="submit" className={css.submitBtn}>
