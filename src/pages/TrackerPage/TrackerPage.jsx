@@ -12,7 +12,7 @@ import { LogOutModal } from 'components/LogOutModal/LogOutModal';
 import { AddWaterForm } from 'components/WaterForm/AddWaterForm';
 import { EditWaterForm } from 'components/WaterForm/EditWaterForm';
 
-import css from './TrakerPage.module.css'
+//import css from './TrakerPage.module.css'
 import style from '../Base.module.css';
 import UserSettingsModal from 'components/UserSettingsModal/UserSettingsModal.jsx';
 
