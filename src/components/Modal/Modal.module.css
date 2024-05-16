@@ -12,6 +12,7 @@
     visibility: visible;
     pointer-events: initial;
     overflow: scroll;
+    z-index: 999;
 }
 
 .modal {
