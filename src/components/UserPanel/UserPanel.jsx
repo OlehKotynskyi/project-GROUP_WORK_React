@@ -8,12 +8,30 @@ import css from './UserPanel.module.css'
 
 
 export const UserPanel = ({ username, openModal }) => {
-  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-
-  const togglePopover = () => {
-    setIsPopoverOpen(!isPopoverOpen);
-  };
-
+	const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+	const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
+	const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+ 
+	const togglePopover = () => {
+	  setIsPopoverOpen(!isPopoverOpen);
+	};
+ 
+	const openSettingsModal = () => {
+	  setIsSettingsModalOpen(true);
+	};
+ 
+	const closeSettingsModal = () => {
+	  setIsSettingsModalOpen(false);
+	};
+ 
+	const openLogoutModal = () => {
+	  setIsLogoutModalOpen(true);
+	};
+ 
+	const closeLogoutModal = () => {
+	  setIsLogoutModalOpen(false);
+	};
+ 
   return (
 
     <section className={css.container}>
