@@ -1,0 +1,36 @@
+.wrap {
+  background-color: var(--main-white);
+  border-radius: 15px;
+  padding: 12px;
+  width: 102px;
+  z-index: 1;
+  position: relative;
+}
+.dailyNorm {
+  color: var(--main);
+  font-weight: 700;
+  line-height: 1;
+}
+.text {
+  color: var(--main-text);
+  font-size: 10px;
+  margin-top: 6px;
+  line-height: 1;
+  opacity: 60%;
+}
+@media screen and (min-width: 768px) {
+  .wrap {
+    width: 129px;
+    padding: 14px 18px;
+  }
+  .dailyNorm {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .text {
+    font-size: 12px;
+    margin-top: 4px;
+    line-height: 1.9;
+  }
+}
+
