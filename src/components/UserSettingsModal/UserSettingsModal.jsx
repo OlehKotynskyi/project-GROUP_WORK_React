@@ -1,42 +1,27 @@
 import UserSettingsForm from '../UserSettingsForm/UserSettingsForm';
 
-import ReactModal from 'react-modal';
+import { Modal } from '../Modal/Modal';
 
-import sprite from '../../img/svg/sprite.svg';
-
-
-import style from '../../pages/Base.module.css'
 import css from './UserSettingsModal.module.css';
 
 export default function UserSettingsModal() {
-  let isMainModalOpen = true
+  let isMainModalOpen = true;
   const onAfterOpen = () => {
-    console.log('opened modal')
-  }
+    console.log('opened modal');
+  };
   const onClose = () => {
-    isMainModalOpen= false
-  }
+    isMainModalOpen = false;
+  };
   return (
-    <div className={style.container}>
-      <ReactModal
-        isOpen={isMainModalOpen}
-        onAfterOpen={onAfterOpen}
-        onRequestClose={onClose}
-        className={css.modal}
-        overlayClassName={css.backdrop}
-        contentLabel="Example Modal"
-      >
-        <div>
-          <button className={css.button} onClick={onClose}>
-            <svg className={css.icon} width="14" height="14">
-              <use xlinkHref={`${sprite}#icon-exsit`}></use>
-            </svg>
-          </button>
+    <div className={css.modalSetting}>
+      <h1 className={css.formTitle}>Setting</h1>
 
-          <UserSettingsForm />
-        </div>
-      </ReactModal>
+      <Modal
+        isMainModalOpen={isMainModalOpen}
+        onClose={onClose}
+        onAfterOpen={onAfterOpen}
+      />
+      <UserSettingsForm />
     </div>
   );
-}   
-
+}
