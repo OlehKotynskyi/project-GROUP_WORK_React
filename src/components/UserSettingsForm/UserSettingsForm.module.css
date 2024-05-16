@@ -5,6 +5,16 @@
   margin-bottom: 40px;
 }
 
+.avatarImg {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+}
+
+.imgInput {
+  display: none;
+}
+
 .buttonUpload {
   background-color: transparent;
   display: flex;
@@ -139,6 +149,11 @@
   letter-spacing: -0.01em;
   text-align: center;
   color: var(--main);
+}
+
+.submitBtn:hover {
+  cursor: pointer;
+  background-color: #87d28d;
 }
 
 .buttonUpload {

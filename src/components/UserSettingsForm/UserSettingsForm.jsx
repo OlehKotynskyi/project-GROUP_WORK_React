@@ -8,72 +8,105 @@ import avatar from '../../img/avatars/avatar.jpg';
 
 import css from './UserSettingsForm.module.css';
 
-
-  const schema = Yup.object().shape({
-    name: Yup.string()
-      .min(2, 'Too short!')
-      .max(50, 'Too long!')
-      .required('Required'),
-    email: Yup.string()
-      .email('Invalid email')
-      .min(2, 'Too short!')
-      .required('Required'),
-    weight: Yup.number()
-      .required('Required')
-      .positive('Weight must be a positive number'),
-    sport: Yup.number()
-      .required('Required')
-      .min(0, 'Sport time must be 0 or more'),
-    water: Yup.number()
-      .required('Required')
-      .positive('Water consumption must be a positive number'),
-    gender: Yup.string().oneOf(['woman', 'man']).required('Required'),
-  });
-
+const schema = Yup.object().shape({
+  name: Yup.string()
+    .min(2, 'Too short!')
+    .max(50, 'Too long!')
+    .required('Required'),
+  email: Yup.string()
+    .email('Invalid email')
+    .min(2, 'Too short!')
+    .required('Required'),
+  weight: Yup.number()
+    .required('Required')
+    .positive('Weight must be a positive number'),
+  sport: Yup.number()
+    .required('Required')
+    .min(0, 'Sport time must be 0 or more'),
+  water: Yup.number()
+    .required('Required')
+    .positive('Water consumption must be a positive number'),
+  gender: Yup.string().oneOf(['woman', 'man']).required('Required'),
+});
 
 export default function UserSettingsForm() {
-  const { register, handleSubmit, control, formState: { errors }
-  } = useForm({ resolver: yupResolver(schema) })
-  
-  console.log(register);
-  console.log(handleSubmit);
-  console.log(control);
-  console.log(errors);
-  
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
+
+  // console.log(register);
+  // console.log(handleSubmit);
+  // console.log(control);
+  // console.log(errors);
+
   const nameId = useId();
   const emailId = useId();
-  const [file, setFile] = useState(null)
+  const [file, setFile] = useState(null);
   const [gender, setGender] = useState('');
   const [weight, setWeight] = useState(0);
   const [time, setTime] = useState(0);
+  const [amount, setAmount] = useState(0);
+
+  const onFileChange = e => {
+    setFile(e.target.files[0]);
+  };
 
   const handleChangeGender = e => {
     setGender(e.target.value);
   };
 
   const onWeightChange = e => {
-    const value = e.target.value ? Number(e.target.value) : ''
+    const value = e.target.value ? Number(e.target.value) : '';
     setWeight(value);
   };
 
   const onTimeChange = e => {
-        const value = e.target.value ? Number(e.target.value) : '';
-        setTime(value);
+    const value = e.target.value ? Number(e.target.value) : '';
+    setTime(value);
   };
 
+  const onAmountChange = e => {
+    const value = e.target.value ? Number(e.target.value) : '';
+    setAmount(value);
+  };
+
+  const calculate = () => {
+    if (gender === 'woman') {
+      return (weight * 0.03 + time * 0.04).toFixed(1);
+    } else if (gender === 'man') {
+      return (weight * 0.04 + time * 0.06).toFixed(1);
+    }
+    return 0;
+  };
+
+  const submit = data => {
+    console.log(data);
+  };
 
   return (
-    <form className={css.form}>
+    <form className={css.form} onSubmit={submit}>
       <div className={css.imageWrap}>
-        <img src={avatar} alt="user avatar" />
+        <img
+          src={file ? URL.createObjectURL(file) : avatar}
+          alt="user avatar"
+          className={css.avatarImg}
+        />
 
-        <button className={css.buttonUpload}>
+        <label className={css.buttonUpload}>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={onFileChange}
+            className={css.imgInput}
+          />
           <svg className={css.iconUpload} width="18" height="18">
             <use xlinkHref={`${sprite}#icon-upload`}></use>
           </svg>
-
           <p>Upload a photo</p>
-        </button>
+        </label>
       </div>
 
       <div>
@@ -225,9 +258,7 @@ export default function UserSettingsForm() {
                 The required amount of water in liters per day:
               </h3>
               <p className={`${css.accentText} ${css.accentLiter}`}>
-                {gender === 'woman'
-                  ? { weight } * 0.03 + { time } * 0.04
-                  : { weight } * 0.04 + { time } * 0.06}
+                {calculate()} L
               </p>
             </div>
 
@@ -238,10 +269,11 @@ export default function UserSettingsForm() {
                 Write down how much water you will drink:
               </label>
               <input
-                value={0}
+                value={amount}
                 type="number"
                 name="water"
                 className={css.inputField}
+                onChange={onAmountChange}
               />
             </div>
           </div>
