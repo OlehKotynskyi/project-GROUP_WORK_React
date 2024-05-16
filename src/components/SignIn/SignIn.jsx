@@ -1,0 +1,119 @@
+import { useForm } from 'react-hook-form';
+import React, { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
+import * as Yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import Logo from 'components/Logo/Logo';
+import sprite from '../../img/svg/sprite.svg';
+import css from './SignIn.module.css';
+
+const userSchema = Yup.object().shape({
+  email: Yup.string()
+    .email('Enter a valid email address')
+    .required('Email field is required'),
+  password: Yup.string()
+    .min(6, 'Password must be at least 6 characters long')
+    .matches(/[A-Z]/, 'Password must contain at least one uppercase letter')
+    .required('Password field is required'),
+});
+
+const SignIn = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(userSchema) });
+  const onSubmit = (data, event) => {
+    console.log(data);
+    event.target.reset();
+  };
+  const [showPass, setShowPass] = useState(false);
+  const togglePasswordVisibility = () => {
+    setShowPass(!showPass);
+  };
+
+  return (
+    <section className={css.section}>
+      <Logo />
+      <h1 className={css.title}>Sing In</h1>
+      <form action="" onSubmit={handleSubmit(onSubmit)} className={css.form}>
+        <div className={css.inputContainer}>
+          <label htmlFor="email" className={css.label}>
+            Email
+          </label>
+          <input
+            type="text"
+            id="email"
+            placeholder="Enter your email"
+            {...register('email')}
+            className={`${css.input} ${errors.email && css.inputError}`}
+          />
+          <div className={css.error}>
+            {errors.email && <p>{errors.email.message}</p>}
+          </div>
+        </div>
+        <div className={css.inputContainer}>
+          <label htmlFor="password" className={css.label}>
+            Password
+          </label>
+          <div className={css.passwordContainer}>
+            <input
+              type={showPass ? 'text' : 'password'}
+              id="password"
+              placeholder="Enter your password"
+              {...register('password')}
+              className={`${css.input} ${errors.password && css.inputError}`}
+            />
+            {!isMobile && (
+              <button
+                type="button"
+                onClick={togglePasswordVisibility}
+                className={css.visibilityBtn}
+              >
+                <svg className={css.icon} width="20" height="20">
+                  {showPass ? (
+                    <use xlinkHref={`${sprite}#icon-eye`}></use>
+                  ) : (
+                    <use xlinkHref={`${sprite}#icon-eye-off`}></use>
+                  )}
+                </svg>
+              </button>
+            )}
+          </div>
+
+          <div className={css.error}>
+            {errors.password && <p>{errors.password.message}</p>}
+          </div>
+        </div>
+
+        <button type="submit" className={css.submitBtn}>
+          Sign In
+        </button>
+        <p className={css.redirect}>
+          Don’t have an account?{' '}
+          <NavLink to="/signup" className={css.nav}>
+            Sign Up
+          </NavLink>
+        </p>
+      </form>
+    </section>
+  );
+};
+
+export default SignIn;

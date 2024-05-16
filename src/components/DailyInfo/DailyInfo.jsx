@@ -4,7 +4,7 @@ import { ChooseDate } from '../ChooseDate/ChooseDate';
 import { AddWaterBtn } from '../AddWaterBtn/AddWaterBtn';
 import { WaterList } from '../WaterList/WaterList';
 
-export const DailyInfo = () => {
+export const DailyInfo = ({openModal}) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const handleDateChange = date => {
@@ -14,8 +14,8 @@ export const DailyInfo = () => {
   return (
     <div>
       <ChooseDate onChange={handleDateChange} />
-      <AddWaterBtn />
-      <WaterList date={selectedDate} />
+      <AddWaterBtn openModal={openModal} />
+      <WaterList date={selectedDate} openModal={openModal} />
     </div>
   );
 };
