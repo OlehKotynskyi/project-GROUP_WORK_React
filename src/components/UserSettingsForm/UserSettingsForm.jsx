@@ -7,7 +7,7 @@ import avatar from '../../img/avatars/avatar.jpg';
 
 import css from './UserSettingsForm.module.css';
 
-export default function UserSettingsForm() {
+export default function UserSettingsForm({ onClose }) {
   const nameId = useId();
   const emailId = useId();
 

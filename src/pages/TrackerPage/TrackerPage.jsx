@@ -13,6 +13,7 @@ import { AddWaterForm } from 'components/WaterForm/AddWaterForm';
 import { EditWaterForm } from 'components/WaterForm/EditWaterForm';
 
 import style from '../Base.module.css';
+import UserSettingsModal from 'components/UserSettingsModal/UserSettingsModal.jsx';
 
 ReactModal.setAppElement('#root');
 
@@ -35,8 +36,8 @@ function TrackerPage() {
   return (
     <div className={style.container}>
       <WaterMainInfo />
-      <WaterDetailedInfo openWaterModal={openModal}/>
-      <AddWaterBtn openAddWaterModal={openModal} />
+      <WaterDetailedInfo openModal={openModal}/>
+      <AddWaterBtn openModal={openModal} />
       {modal.isOpen && <Modal isMainModalOpen={modal.isOpen} onClose={closeModal} onAfterOpen={afterOpenModal}>
         {((modal.content === "add") || (modal.content === "edit")) && (
           <WaterModal modal={modal} onClose={closeModal}>
@@ -46,6 +47,7 @@ function TrackerPage() {
         )}
         {modal.content === "delete" && <DeleteWaterModal onClose={closeModal} />}
         {modal.content === "logout" && <LogOutModal onClose={closeModal} />}
+        {modal.content === "settings" && <UserSettingsModal onClose={closeModal} />}
       </Modal>}
     </div>
   );
