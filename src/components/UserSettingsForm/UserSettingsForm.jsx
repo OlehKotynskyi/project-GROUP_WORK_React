@@ -1,5 +1,5 @@
 import { useId } from 'react';
-import * as Yup from 'yup';
+//import * as Yup from 'yup';
 
 import sprite from '../../img/svg/sprite.svg';
 
