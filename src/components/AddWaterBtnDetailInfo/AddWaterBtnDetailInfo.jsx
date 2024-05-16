@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Modal } from '../Modal/Modal.jsx';
-import { WaterForm } from '../WaterForm/WaterForm.jsx';
+//import { WaterForm } from '../WaterForm/WaterForm.jsx';
 import sprite from '../../img/svg/sprite.svg';
 import css from './AddWaterBtnDetailInfo.module.css';
 
@@ -27,7 +27,7 @@ export const AddWaterBtnDetailInfo = () => {
       </button>
       {isModalOpen && (
         <Modal title="Add Water" onClose={closeModal}>
-          <WaterForm onClose={closeModal} />
+          {/*<WaterForm onClose={closeModal} />*/}
         </Modal>
       )}
     </>
