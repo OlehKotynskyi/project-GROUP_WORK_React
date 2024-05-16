@@ -14,6 +14,7 @@ import { EditWaterForm } from 'components/WaterForm/EditWaterForm';
 
 import css from './TrakerPage.module.css'
 import style from '../Base.module.css';
+import UserSettingsModal from 'components/UserSettingsModal/UserSettingsModal.jsx';
 
 ReactModal.setAppElement('#root');
 
@@ -35,28 +36,20 @@ function TrackerPage() {
 
   return (
     <div className={style.container}>
-      <div className={css.trakerPageContainer}>
-        <WaterMainInfo openWaterModal={openModal} />
-        {/* <WaterDetailedInfo openWaterModal={openModal} /> */}
-      </div>
-      {modal.isOpen && (
-        <Modal
-          isMainModalOpen={modal.isOpen}
-          onClose={closeModal}
-          onAfterOpen={afterOpenModal}
-        >
-          {(modal.content === 'add' || modal.content === 'edit') && (
-            <WaterModal modal={modal} onClose={closeModal}>
-              {modal.content === 'add' && <AddWaterForm />}
-              {modal.content === 'edit' && <EditWaterForm />}
-            </WaterModal>
-          )}
-          {modal.content === 'delete' && (
-            <DeleteWaterModal onClose={closeModal} />
-          )}
-          {modal.content === 'logout' && <LogOutModal onClose={closeModal} />}
-        </Modal>
-      )}
+      <WaterMainInfo />
+      <WaterDetailedInfo openModal={openModal}/>
+      <AddWaterBtn openModal={openModal} />
+      {modal.isOpen && <Modal isMainModalOpen={modal.isOpen} onClose={closeModal} onAfterOpen={afterOpenModal}>
+        {((modal.content === "add") || (modal.content === "edit")) && (
+          <WaterModal modal={modal} onClose={closeModal}>
+            {modal.content === "add" && <AddWaterForm />}
+            {modal.content === "edit" && <EditWaterForm />}
+          </WaterModal>
+        )}
+        {modal.content === "delete" && <DeleteWaterModal onClose={closeModal} />}
+        {modal.content === "logout" && <LogOutModal onClose={closeModal} />}
+        {modal.content === "settings" && <UserSettingsModal onClose={closeModal} />}
+      </Modal>}
     </div>
   );
 }

@@ -1,13 +1,39 @@
-.form {
+.modalTitle {
+  margin-bottom: 20px;
+  font-size: 20px;
+  line-height: 1.2;
 }
 
-.inputTitle {
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 129%;
-  letter-spacing: -0.01em;
-  color: var(--main-text);
-  margin-bottom: 4px;
+.imageWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.uploadImage {
+  display: flex;
+  margin-top: 10px;
+}
+
+.button {
+  background-color: transparent;
+}
+
+.icon {
+  stroke: #2f2f2f;
+  fill: transparent;
+}
+
+.partWrap {
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.requiredAmountWrap {
+  margin-bottom: 0;
 }
 
 .inputTitleBold {
@@ -19,12 +45,26 @@
   margin-bottom: 4px;
 }
 
+.dailyTitle {
+  margin-bottom: 0;
+}
+
 .inputTitleSmall {
   margin-bottom: 8px;
 }
 
+.inputTitle {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  color: var(--main-text);
+}
+
 .genderInputWrap {
   display: flex;
+  gap: 20px;
+  align-items: center;
   margin-top: 14px;
   margin-bottom: 24px;
 }
@@ -33,29 +73,32 @@
   margin-right: 10px;
 }
 
+.genderInput::before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  background-color: var(--accent);
+  position: absolute;
+}
+
 .inputField,
 .border {
   border: 1px solid rgba(47, 47, 47, 0.15);
   border-radius: 15px;
   padding: 14px 16px 14px 16px;
-  margin-top: 8px;
   width: 100%;
+}
+
+.inputField {
+  margin-top: 8px;
+  color: var(--main-text);
 }
 
 .borderText {
   color: rgba(47, 47, 47, 0.6);
 }
 
-.partWrap {
-  margin-bottom: 24px;
-   display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-
-
-.normaForm {
+.normaFormWoman {
   margin-bottom: 14px;
 }
 
@@ -63,5 +106,88 @@
   font-weight: 700;
   letter-spacing: -0.01em;
   color: var(--accent);
+  margin-top: 4px;
   margin-bottom: 14px;
+}
+
+.accentLiter {
+  font-size: 14px;
+  margin-top: 0;
+  margin-left: 5px;
+}
+
+.submitBtn {
+  border-radius: 30px;
+  padding: 14px 40px;
+  margin-top: 40px;
+  background-color: var(--accent);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: var(--main);
+}
+
+@media screen and (min-width: 768px) {
+  .modalTitle {
+    font-size: 28px;
+    line-height: 1.4;
+  }
+
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .inputTitleBold {
+    font-size: 18px;
+    line-height: 133%;
+    margin-bottom: 8px;
+  }
+
+  .inputTitle {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .dailyTitle {
+    margin-bottom: 0;
+  }
+
+  .normaForm {
+    display: flex;
+    gap: 28px;
+  }
+
+  .requiredAmount {
+    display: flex;
+  }
+
+  .accentLiter {
+    font-size: 15px;
+  }
+
+  
+  .submitBtn {
+    padding: 16px 50px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .block {
+    display: flex;
+    gap: 40px;
+  }
+
+  .blockWrap {
+    width: 400px;
+  }
+
+    
+  .submitBtn {
+    margin-top: 16px;
+  }
 }
