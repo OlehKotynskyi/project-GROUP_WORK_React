@@ -1,27 +1,24 @@
 import UserSettingsForm from '../UserSettingsForm/UserSettingsForm';
 
-import { Modal } from '../Modal/Modal';
+import sprite from '../../img/svg/sprite.svg';
 
+
+import style from '../../pages/Base.module.css';
 import css from './UserSettingsModal.module.css';
 
-export default function UserSettingsModal() {
-  let isMainModalOpen = true;
-  const onAfterOpen = () => {
-    console.log('opened modal');
-  };
-  const onClose = () => {
-    isMainModalOpen = false;
-  };
-  return (
-    <div className={css.modalSetting}>
-      <h1 className={css.formTitle}>Setting</h1>
 
-      <Modal
-        isMainModalOpen={isMainModalOpen}
-        onClose={onClose}
-        onAfterOpen={onAfterOpen}
-      />
-      <UserSettingsForm />
+export default function UserSettingsModal({onClose}) {
+  return (
+    <div className={style.container}>
+        <div className={css.modal}>
+          <button className={css.button} onClick={onClose}>
+            <svg className={css.icon} width="14" height="14">
+              <use xlinkHref={`${sprite}#icon-exsit`}></use>
+            </svg>
+          </button>
+
+          <UserSettingsForm />
+        </div>
     </div>
   );
 }
