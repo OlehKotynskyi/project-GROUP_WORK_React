@@ -7,7 +7,7 @@ import css from './WaterMainInfo.module.css';
 import thermos1x from '../../img/thermos/thermos_desk@1x.png';
 import thermos2x from '../../img/thermos/thermos_desk@2x.png';
 
-export const WaterMainInfo = ({openWaterModal}) => {
+export const WaterMainInfo = ({openModal}) => {
   // Assuming dailyNorm is passed as props from parent component
   const dailyNorm = 1500; // Example value, replace with actual value
   return (
@@ -34,7 +34,7 @@ export const WaterMainInfo = ({openWaterModal}) => {
           </div>
           <div className={css.btn}>
             <div>
-              <AddWaterBtn openAddWaterModal={openWaterModal} theme={'dark'} />
+              <AddWaterBtn openModal={openModal} theme={'dark'} />
             </div>
           </div>
         </div>
