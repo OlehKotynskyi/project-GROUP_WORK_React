@@ -33,7 +33,6 @@ export default function UserSettingsForm() {
   const {
     register,
     handleSubmit,
-    control,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
@@ -165,10 +164,16 @@ export default function UserSettingsForm() {
                 type="text"
                 name="name"
                 id={nameId}
-                className={css.inputField}
+                className={`${css.inputField} ${
+                  errors.name && css.inputError
+                }`}
                 value={formData.name}
+                {...register('name')}
                 onChange={handleChange}
               />
+              {errors.name && (
+                <p className={css.error}>{errors.name.message}</p>
+              )}
             </div>
             <div>
               <label
