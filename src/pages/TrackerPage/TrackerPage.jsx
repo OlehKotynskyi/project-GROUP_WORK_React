@@ -11,10 +11,12 @@ import { LogOutModal } from 'components/LogOutModal/LogOutModal';
 import { AddWaterForm } from 'components/WaterForm/AddWaterForm';
 import { EditWaterForm } from 'components/WaterForm/EditWaterForm';
 import UserSettingsModal from 'components/UserSettingsModal/UserSettingsModal.jsx';
-import css from './TrackerPage.module.css'
 
-//import css from './TrakerPage.module.css'
 import style from '../Base.module.css';
+import css from './TrakerPage.module.css'
+
+
+
 ReactModal.setAppElement('#root');
 
 
@@ -37,7 +39,7 @@ function TrackerPage() {
 
   return (
 
-    <div className={`${style.container} ${css.trackerContainer}`}>
+    <div className={`${style.container} ${css.trakerPageContainer}`}>
       <div>
         <WaterMainInfo openModal={openModal}/>
         {modal.isOpen && <Modal isMainModalOpen={modal.isOpen} onClose={closeModal} onAfterOpen={afterOpenModal}>
@@ -52,7 +54,9 @@ function TrackerPage() {
         {modal.content === "settings" && <UserSettingsModal onClose={closeModal} />}
       </Modal>}
       </div>
+	
       <WaterDetailedInfo openModal={openModal} />
+		
     </div>
   );
 }
