@@ -40,8 +40,9 @@ export default function UserSettingsForm() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    gender: '',
     weight: 0,
-    sport: 0,
+    time: 0,
     water: 0,
   });
 
@@ -53,53 +54,26 @@ export default function UserSettingsForm() {
     }));
   };
 
-  // console.log(register);
-  // console.log(handleSubmit);
-  // console.log(control);
-  // console.log(errors);
-
   const nameId = useId();
   const emailId = useId();
   const [file, setFile] = useState(null);
-  const [gender, setGender] = useState('');
-  const [weight, setWeight] = useState(0);
-  const [time, setTime] = useState(0);
-  const [amount, setAmount] = useState(0);
 
   const onFileChange = e => {
     setFile(e.target.files[0]);
   };
 
-  const handleChangeGender = e => {
-    setGender(e.target.value);
-  };
-
-  const onWeightChange = e => {
-    const value = e.target.value ? Number(e.target.value) : '';
-    setWeight(value);
-  };
-
-  const onTimeChange = e => {
-    const value = e.target.value ? Number(e.target.value) : '';
-    setTime(value);
-  };
-
-  const onAmountChange = e => {
-    const value = e.target.value ? Number(e.target.value) : '';
-    setAmount(value);
-  };
-
   const calculate = () => {
-    if (gender === 'woman') {
-      return (weight * 0.03 + time * 0.04).toFixed(1);
-    } else if (gender === 'man') {
-      return (weight * 0.04 + time * 0.06).toFixed(1);
+    if (formData.gender === 'woman') {
+      return (formData.weight * 0.03 + formData.time * 0.04).toFixed(1);
+    } else if (formData.gender === 'man') {
+      return (formData.weight * 0.04 + formData.time * 0.06).toFixed(1);
     }
     return 0;
   };
 
-  const submit = data => {
-    console.log(data);
+  const submit = e => {
+    e.preventDefault();
+    console.log(formData);
   };
 
   return (
@@ -117,16 +91,11 @@ export default function UserSettingsForm() {
             accept="image/*"
             onChange={onFileChange}
             className={css.imgInput}
+            {...register('avatar')}
           />
           <svg className={css.iconUpload} width="18" height="18">
             <use xlinkHref={`${sprite}#icon-upload`}></use>
           </svg>
-          {/* <div className={css.uploadImage}>
-          <button type="button" className={css.button}>
-            <svg className={css.icon} width="18" height="18">
-              <use xlinkHref={`${sprite}#icon-upload`}></use>
-            </svg>
-          </button> */}
           <p>Upload a photo</p>
         </label>
       </div>
@@ -140,16 +109,14 @@ export default function UserSettingsForm() {
               name="gender"
               value="woman"
               className={css.genderInput}
-              //check
-              checked={gender === 'woman'}
-              onChange={handleChangeGender}
-              // onChange={handleChange}
+              // {...register('gender')}
+              onChange={handleChange}
             />
             <span className={css.iconWrap}>
               <svg className={css.iconRadio} width="20" height="20">
                 <use
                   xlinkHref={
-                    gender === 'woman'
+                    formData.gender === 'woman'
                       ? `${sprite}#icon-radio-active`
                       : `${sprite}#icon-radio`
                   }
@@ -164,16 +131,14 @@ export default function UserSettingsForm() {
               name="gender"
               value="man"
               className={css.genderInput}
-              //check
-              checked={gender === 'man'}
-              onChange={handleChangeGender}
-              // onChange={handleChange}
+              // {...register('gender')}
+              onChange={handleChange}
             />
             <span className={css.iconWrap}>
               <svg className={css.iconRadio} width="20" height="20">
                 <use
                   xlinkHref={
-                    gender === 'man'
+                    formData.gender === 'man'
                       ? `${sprite}#icon-radio-active`
                       : `${sprite}#icon-radio`
                   }
@@ -183,6 +148,7 @@ export default function UserSettingsForm() {
             Man
           </label>
         </div>
+        {/* {errors.gender && <p className={css.error}>{errors.gender.message}</p>} */}
       </div>
 
       <div className={css.block}>
@@ -261,36 +227,32 @@ export default function UserSettingsForm() {
                 Your weight in kilograms:
               </label>
               <input
-                //check
-                value={weight}
                 type="number"
                 name="weight"
                 className={css.inputField}
-                onChange={onWeightChange}
-                // type="number"
-                // name="weight"
-                // className={css.inputField}
-                // value={formData.weight}
-                // onChange={handleChange}
+                value={formData.weight}
+                onChange={handleChange}
+                // {...register('weight')}
               />
+              {/* {errors.weight && (
+                <p className={css.error}>{errors.weight.message}</p>
+              )} */}
             </div>
             <div>
               <label className={css.inputTitle}>
                 The time of active participation in sports:
               </label>
               <input
-                //check
-                value={time}
                 type="number"
-                name="sport"
+                name="time"
                 className={css.inputField}
-                onChange={onTimeChange}
-                // type="number"
-                // name="sport"
-                // className={css.inputField}
-                // value={formData.sport}
-                // onChange={handleChange}
+                value={formData.time}
+                onChange={handleChange}
+                // {...register('time')}
               />
+              {/* {errors.sport && (
+                <p className={css.error}>{errors.time.message}</p>
+              )} */}
             </div>
           </div>
 
@@ -311,17 +273,11 @@ export default function UserSettingsForm() {
                 Write down how much water you will drink:
               </label>
               <input
-                //check
-                value={amount}
                 type="number"
                 name="water"
                 className={css.inputField}
-                onChange={onAmountChange}
-                // type="number"
-                // name="water"
-                // className={css.inputField}
-                // value={formData.water}
-                // onChange={handleChange}
+                value={formData.water}
+                onChange={handleChange}
               />
             </div>
           </div>
