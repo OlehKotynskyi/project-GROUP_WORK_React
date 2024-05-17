@@ -62,15 +62,13 @@ const SignUp = () => {
             {...register('email')}
             placeholder="Enter your email"
           />
-          {errors.email && (
-            <p style={{ color: 'red' }}>{errors.email.message}</p>
-          )}
+          {errors.email && <p className={css.error}>{errors.email.message}</p>}
         </div>
         <div className={css.inputContainer}>
           <label className={css.email}>Password</label>
           <div className={css.passwordConteiner}>
             <input
-              className={css.input}
+              className={`${css.input} ${css.error && css.errorInput}`}
               type={showPassword ? 'text' : 'password'}
               placeholder="Enter your password"
               {...register('password', { required: true })}
@@ -90,7 +88,7 @@ const SignUp = () => {
             </button>
           </div>
           {errors.password && (
-            <p style={{ color: 'red' }}>{errors.password.message}</p>
+            <p className={css.error}>{errors.password.message}</p>
           )}
         </div>
         <div className={css.inputContainer}>
@@ -118,7 +116,7 @@ const SignUp = () => {
             </button>
           </div>
           {errors.repeatPassword && (
-            <p style={{ color: 'red' }}>{errors.repeatPassword.message}</p>
+            <p className={css.error}>{errors.repeatPassword.message}</p>
           )}
         </div>
 

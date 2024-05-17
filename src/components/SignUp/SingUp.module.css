@@ -31,6 +31,18 @@
   height: 50px;
   width: 100%;
 }
+.errorInput {
+  border-color: #ef5050;
+  color: #ef5050;
+}
+.error {
+  color: #ef5050;
+  font-size: 14px;
+  font-weight: 400;
+  /* position: absolute;
+  top: 580px; */
+  /* justify-content: center; */
+}
 .singUpBtn {
   border-radius: 30px;
   width: 100%;
