@@ -77,7 +77,7 @@ export default function UserSettingsForm() {
   };
 
   return (
-    <form className={css.form} onSubmit={submit}>
+    <form className={css.form} onSubmit={handleSubmit(submit)}>
       <div className={css.imageWrap}>
         <img
           src={file ? URL.createObjectURL(file) : avatar}
@@ -109,7 +109,7 @@ export default function UserSettingsForm() {
               name="gender"
               value="woman"
               className={css.genderInput}
-              // {...register('gender')}
+              {...register('gender')}
               onChange={handleChange}
             />
             <span className={css.iconWrap}>
@@ -131,7 +131,7 @@ export default function UserSettingsForm() {
               name="gender"
               value="man"
               className={css.genderInput}
-              // {...register('gender')}
+              {...register('gender')}
               onChange={handleChange}
             />
             <span className={css.iconWrap}>
@@ -148,7 +148,7 @@ export default function UserSettingsForm() {
             Man
           </label>
         </div>
-        {/* {errors.gender && <p className={css.error}>{errors.gender.message}</p>} */}
+        {errors.gender && <p className={css.error}>{errors.gender.message}</p>}
       </div>
 
       <div className={css.block}>
