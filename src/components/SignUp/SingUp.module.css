@@ -30,6 +30,7 @@
   padding: 16px;
   height: 50px;
   width: 100%;
+  color: black;
 }
 .errorInput {
   border-color: #ef5050;

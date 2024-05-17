@@ -56,8 +56,9 @@ const SignUp = () => {
       <form className={css.contact} onSubmit={handleSubmit(onSubmit)}>
         <div className={css.inputContainer}>
           <label className={css.email}>Email</label>
+
           <input
-            className={css.input}
+            className={`${css.input} ${errors.email ? css.errorInput : ''}`}
             type="text"
             {...register('email')}
             placeholder="Enter your email"
@@ -68,7 +69,9 @@ const SignUp = () => {
           <label className={css.email}>Password</label>
           <div className={css.passwordConteiner}>
             <input
-              className={`${css.input} ${css.error && css.errorInput}`}
+              className={`${css.input} ${
+                errors.password ? css.errorInput : ''
+              }`}
               type={showPassword ? 'text' : 'password'}
               placeholder="Enter your password"
               {...register('password', { required: true })}
@@ -96,7 +99,9 @@ const SignUp = () => {
 
           <div className={css.passwordConteiner}>
             <input
-              className={css.input}
+              className={`${css.input} ${
+                errors.passwordRepeat ? css.errorInput : ''
+              }`}
               type={showPasswordReset ? 'text' : 'password'}
               placeholder="Repeat password"
               {...register('repeatPassword')}
