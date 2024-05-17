@@ -1,13 +1,27 @@
+import React, { useState } from 'react';
 import { useId } from 'react';
-//import * as Yup from 'yup';
-
 import sprite from '../../img/svg/sprite.svg';
-
 import avatar from '../../img/avatars/avatar.jpg';
 
 import css from './UserSettingsForm.module.css';
 
 export default function UserSettingsForm({ onClose }) {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    weight: 0,
+    sport: 0,
+    water: 0,
+  });
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
   const nameId = useId();
   const emailId = useId();
 
@@ -19,7 +33,7 @@ export default function UserSettingsForm({ onClose }) {
         <img src={avatar} alt="user avatar" />
 
         <div className={css.uploadImage}>
-          <button className={css.button}>
+          <button type="button" className={css.button}>
             <svg className={css.icon} width="18" height="18">
               <use xlinkHref={`${sprite}#icon-upload`}></use>
             </svg>
@@ -37,6 +51,7 @@ export default function UserSettingsForm({ onClose }) {
               name="gender"
               value="woman"
               className={css.genderInput}
+              onChange={handleChange}
             />
             Woman
           </label>
@@ -46,6 +61,7 @@ export default function UserSettingsForm({ onClose }) {
               name="gender"
               value="man"
               className={css.genderInput}
+              onChange={handleChange}
             />
             Man
           </label>
@@ -67,6 +83,8 @@ export default function UserSettingsForm({ onClose }) {
                 name="name"
                 id={nameId}
                 className={css.inputField}
+                value={formData.name}
+                onChange={handleChange}
               />
             </div>
             <div>
@@ -81,6 +99,8 @@ export default function UserSettingsForm({ onClose }) {
                 name="email"
                 id={emailId}
                 className={css.inputField}
+                value={formData.email}
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -119,10 +139,11 @@ export default function UserSettingsForm({ onClose }) {
                 Your weight in kilograms:
               </label>
               <input
-                value={0}
                 type="number"
                 name="weight"
                 className={css.inputField}
+                value={formData.weight}
+                onChange={handleChange}
               />
             </div>
             <div>
@@ -130,10 +151,11 @@ export default function UserSettingsForm({ onClose }) {
                 The time of active participation in sports:
               </label>
               <input
-                value={0}
                 type="number"
                 name="sport"
                 className={css.inputField}
+                value={formData.sport}
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -153,10 +175,11 @@ export default function UserSettingsForm({ onClose }) {
                 Write down how much water you will drink:
               </label>
               <input
-                value={0}
                 type="number"
                 name="water"
                 className={css.inputField}
+                value={formData.water}
+                onChange={handleChange}
               />
             </div>
           </div>

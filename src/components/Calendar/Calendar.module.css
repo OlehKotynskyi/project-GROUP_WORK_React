@@ -1,0 +1,130 @@
+/* src/components/Calendar.module.css */
+.calendar {
+	position: relative;
+	border-radius: 5px;
+	text-transform: capitalize;
+	background-color: var(--background);
+	padding: 40px 0px;
+	border-radius: 0 0 30px 30px;
+	height: 428px;
+}
+
+.calendar__header {
+	position: relative;
+	max-width: 143px;
+	background-color: inherit;
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 1.29;
+	letter-spacing: -0.01em;
+	color: var(--main);
+	padding: 10px;
+	text-align: center;
+	margin: 0 26px 0 auto;
+	margin-bottom: 14px;
+}
+
+.calendar::before {
+	content: 'Month';
+	position: absolute;
+	left: 0px;
+	top: 11%;
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 1.2;
+	letter-spacing: -0.01em;
+	color: var(--main);
+}
+
+.calendar__header__arrow__left {
+	position: absolute;
+	top: 24%;
+	/*transform: translate(0, -50%);*/
+	left: 0;
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+	background: url('../../img/svg/arrow.svg') center no-repeat;
+	transform: rotate(-180deg);
+
+}
+
+.calendar__header__arrow__right {
+	position: absolute;
+	top: 24%;
+	right: 0;
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+	background: url('../../img/svg/arrow.svg') center no-repeat;
+	
+}
+
+.calendar__week__names {
+	height: 20px;
+	font-weight: 600;
+	font-size: 8px;
+	color: var(--color-additional);
+	text-align: center;
+	align-items: center;
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	gap: 1px 1px;
+}
+
+@media screen and (min-width: 768px){
+	.calendar__week__names {
+		grid-template-columns: repeat(8, 1fr);
+	}
+}
+
+.calendar__days {
+	font-size: 14px;
+	font-weight: 700;
+	color: var(--main);
+	text-align: center;
+	line-height: 1.29;
+	letter-spacing: -0.01em;
+	display: grid;
+	text-align: center;
+	align-items: center;
+	grid-template-columns: repeat(7, 1fr);
+	column-gap: 5px;
+	justify-content: space-between;
+	row-gap: 36px;
+}
+
+@media screen and (min-width: 768px){
+	.calendar__days {
+		grid-template-columns: repeat(8, 28px);
+	}
+}
+
+.calendar__day {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 30px;
+	padding: 5px 11px;
+	width: 28px;
+	height: 28px;
+	cursor: pointer;
+	background-color: #fff;
+	position: relative;
+	transition: all 0.3s ease;
+}
+
+.calendar__day:hover {
+	background-color: var(--background);
+}
+
+.waterPercentage {
+	position: absolute;
+	bottom: -70%;
+	left: 30%;
+	font-weight: 400;
+	font-size: 10px;
+	line-height: 100%;
+	color: rgba(47, 47, 47, 0.6);
+	pointer-events: none;
+}
