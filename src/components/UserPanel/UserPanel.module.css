@@ -19,7 +19,7 @@
 .exclamationPoint {
   font-weight: 700;
 }
-.btncontainer {
+.btnContainer {
   min-width: 137px;
   height: 50px;
 position: relative;
@@ -47,14 +47,14 @@ position: relative;
   color: var(--main-white);
 }
 
-.imgAavatar {
+.imgAvatar {
   border-radius: 50%;
   width: 38px;
   height: 38px;
   overflow: hidden;
 }
 
-.imgAavatar img {
+.imgAvatar img {
   width: 100%;
   object-fit: cover;
 }
@@ -138,7 +138,7 @@ align-items: center;
   margin-bottom: 49px;
 }
 
-.btncontainer {
+.btnContainer {
   margin-bottom: 0px;
   min-width: 157px;
   height: 56px;

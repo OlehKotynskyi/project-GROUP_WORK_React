@@ -8,8 +8,10 @@ export const WaterDetailedInfo = ({openModal}) => {
   return (
 
     <section className={css.sectionDetailed}>
-      <UserPanel username="John Doe" openModal={openModal} />
-      <DailyInfo openModal={openModal}/>
+      <div className={css.contentContainer}>
+        <UserPanel username="John Doe" openModal={openModal} />
+        <DailyInfo openModal={openModal}/>
+      </div>      
       <MonthInfo />      
     </section>
 

@@ -9,16 +9,16 @@ import { Slider } from 'components/Slider/Slider';
 export const DailyInfo = ({openModal}) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-  const handleDateChange = date => {
-    setSelectedDate(date);
-  };
+  // const handleDateChange = date => {
+  //   setSelectedDate(date);
+  // };
 
   return (
 
     <section className={css.dateInfo}>
       <div className={css.headerDailyInfo}>
         <p className={css.date}>Today</p>
-      <ChooseDate onChange={handleDateChange} />
+      {/* <ChooseDate onChange={handleDateChange} /> */}
         <AddWaterBtnDetailInfo openModal={openModal}/>
       </div>      
       <WaterList date={selectedDate} openModal={openModal}/>

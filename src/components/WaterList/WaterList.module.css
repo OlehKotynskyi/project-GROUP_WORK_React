@@ -1,12 +1,44 @@
-.sectionWaterlist {
-min-width: 303px;
-height: 74px;
-margin-bottom: 24px;
+.sectionWaterList {
+    width: 303px;
+    margin-bottom: 24px;
+}
+
+.waterList {
+display: flex;
+gap: 8px;
+align-items: center;
+justify-content: flex-start;
+}
+
+.waterItem {
+   border-radius: 15px;
+    padding: 18px 14px;
+    width: 149px;
+    height: 74px;
+    backdrop-filter: blur(33.599998474121094px);
+    background: var(--main-white);
 }
 
 @media screen and (min-width: 768px) {
-.sectionWaterlist {
-min-width: 640px;
+.sectionWaterList {
+    min-width: 640px;
+    height: 86px;
+}
+
+.waterList {
+gap: 32px;
+}
+
+.waterItem {
+padding: 20px;
+width: 192px;
 height: 86px;
+}
+
+}
+
+@media screen and (min-width: 1440) {
+.waterList {
+gap: 16px;
 }
 }
