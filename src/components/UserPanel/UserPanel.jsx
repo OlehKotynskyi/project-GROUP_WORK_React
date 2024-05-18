@@ -27,7 +27,7 @@ export const UserPanel = ({ username, openModal }) => {
             <div className={css.imgAavatar}>
               <img src={userAvatar} alt="avatar" />
             </div>
-            <svg className={css.iconUserSetting}>
+            <svg className={`${css.iconUserSetting} ${isPopoverOpen && css.iconUserSettingUp}`} >
               <use xlinkHref={`${sprite}#icon-chevron-down`}></use>
             </svg>
           </button>
@@ -36,7 +36,10 @@ export const UserPanel = ({ username, openModal }) => {
             <div className={css.popover}>
               <button
                 type="button"
-                onClick={() => openModal("settings")}
+                onClick={() => {
+                  openModal("settings");  
+                  setIsPopoverOpen(!isPopoverOpen);
+                }}
                 className={css.settingsBtn}
               >
                 <svg className={css.iconSettings} width="16" height="16">
@@ -47,7 +50,10 @@ export const UserPanel = ({ username, openModal }) => {
               </button>
               <button
                 type="button"
-                onClick={() => openModal("logout")}
+                onClick={() => {
+                  openModal("logout");
+                  setIsPopoverOpen(!isPopoverOpen);
+                }}
                 className={css.logoutBtn}
               >
                 <svg className={css.iconLogout} width="16" height="16">
