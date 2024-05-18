@@ -22,7 +22,6 @@ export const DailyInfo = ({openModal}) => {
         <AddWaterBtnDetailInfo openModal={openModal}/>
       </div>      
       <WaterList date={selectedDate} openModal={openModal}/>
-      <Slider />
     </section>
 
   );
