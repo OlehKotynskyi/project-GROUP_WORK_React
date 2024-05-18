@@ -3,34 +3,23 @@
   flex-direction: column;
 }
 
-.backdrop {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(47, 47, 47, 0.6);
-  opacity: 1;
-  visibility: visible;
-  pointer-events: initial;
-  overflow: scroll;
+.formTitle {
+  margin-bottom: 20px;
+  font-size: 20px;
+  line-height: 1.2;
 }
 
 .modal {
   position: absolute;
   top: 80px;
-  left: auto;
-  right: auto;
+  left: 50%;
+  transform: translateX(-50%);
   border-radius: 15px;
   box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
-  background: var(--main-white);
   background-color: var(--main-white);
   width: 343px;
   padding: 40px 20px;
-
+  z-index: 1000;
 }
 
 .button {
@@ -47,6 +36,11 @@
 }
 
 @media screen and (min-width: 768px) {
+  .formTitle {
+    font-size: 28px;
+    line-height: 1.4;
+  }
+
   .modal {
     top: 64px;
     width: 648px;
@@ -54,9 +48,9 @@
   }
 
   .button {
-    top: 40px;
-    right: 40px;
-  }
+  top: 40px;
+  right: 40px;
+}
 
   .icon {
     width: 28px;
