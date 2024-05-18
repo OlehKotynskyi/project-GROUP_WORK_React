@@ -31,34 +31,46 @@
 	font-weight: 700;
 	letter-spacing: -0.01em;
 	transition: 0.3s ease-in-out;
+	
 }
-
-.wrapTry {
+.wrapTry,
+.wrapSign{
 	border-radius: 30px;
+	transition: 0.3s ease-in-out;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	max-width: 169px;
+	cursor: pointer;
+}
+.wrapTry {
 	padding: 14px 19px;
 	background-color: var(--accent);
-	transition: 0.3s ease-in-out;
 }
 
-.wrapTry:hover {
-	cursor: pointer;
-	background-color: #87d28d;
+@media (hover: hover) and (pointer: fine) {
+	.wrapTry:hover {
+		background-color: #87d28d;
+	}
 }
 
 .wrapSign {
-	border-radius: 30px;
 	border: 1px solid var(--main);
 	padding: 14px 28px;
-	transition: 0.3s ease-in-out;
 }
 
-.wrapSign:hover {
-	border-color: #87d28d;
+@media (hover: hover) and (pointer: fine) {
+	.wrapSign:hover {
+		border-color: #87d28d;
+	}
 }
 
-.wrapSign:hover .wrapLink {
-	color: #87d28d;
+@media (hover: hover) and (pointer: fine){
+	.wrapSign:hover .wrapLink {
+		color: #87d28d;
+	}
 }
+
 
 @media screen and (min-width: 768px) {
 	.section {
@@ -68,6 +80,10 @@
 	.title {
 		font-size: 64px;
 		line-height: 109%;
+	}
+	.wrapTry,
+	.wrapSign {
+		padding: 18px 40px;
 	}
 }
 
