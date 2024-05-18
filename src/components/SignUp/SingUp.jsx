@@ -56,21 +56,22 @@ const SignUp = () => {
       <form className={css.contact} onSubmit={handleSubmit(onSubmit)}>
         <div className={css.inputContainer}>
           <label className={css.email}>Email</label>
+
           <input
-            className={css.input}
+            className={`${css.input} ${errors.email ? css.errorInput : ''}`}
             type="text"
             {...register('email')}
             placeholder="Enter your email"
           />
-          {errors.email && (
-            <p style={{ color: 'red' }}>{errors.email.message}</p>
-          )}
+          {errors.email && <p className={css.error}>{errors.email.message}</p>}
         </div>
         <div className={css.inputContainer}>
           <label className={css.email}>Password</label>
           <div className={css.passwordConteiner}>
             <input
-              className={css.input}
+              className={`${css.input} ${
+                errors.password ? css.errorInput : ''
+              }`}
               type={showPassword ? 'text' : 'password'}
               placeholder="Enter your password"
               {...register('password', { required: true })}
@@ -90,7 +91,7 @@ const SignUp = () => {
             </button>
           </div>
           {errors.password && (
-            <p style={{ color: 'red' }}>{errors.password.message}</p>
+            <p className={css.error}>{errors.password.message}</p>
           )}
         </div>
         <div className={css.inputContainer}>
@@ -98,7 +99,9 @@ const SignUp = () => {
 
           <div className={css.passwordConteiner}>
             <input
-              className={css.input}
+              className={`${css.input} ${
+                errors.passwordRepeat ? css.errorInput : ''
+              }`}
               type={showPasswordReset ? 'text' : 'password'}
               placeholder="Repeat password"
               {...register('repeatPassword')}
@@ -118,7 +121,7 @@ const SignUp = () => {
             </button>
           </div>
           {errors.repeatPassword && (
-            <p style={{ color: 'red' }}>{errors.repeatPassword.message}</p>
+            <p className={css.error}>{errors.repeatPassword.message}</p>
           )}
         </div>
 
