@@ -20,9 +20,7 @@ const schema = Yup.object().shape({
   weight: Yup.number()
     .required('Required')
     .positive('Weight must be a positive number'),
-  sport: Yup.number()
-    .required('Required')
-    .min(0, 'Sport time must be 0 or more'),
+  time: Yup.number().required('Required').min(0, 'Time time must be 0 or more'),
   water: Yup.number()
     .required('Required')
     .positive('Water consumption must be a positive number'),
@@ -98,75 +96,79 @@ export default function UserSettingsForm() {
           <p>Upload a photo</p>
         </label>
       </div>
-
-      <div>
-        <h2 className={css.inputTitleBold}>Your gender identity</h2>
-        <div className={css.genderInputWrap}>
-          <label className={css.radio}>
-            <input
-              type="radio"
-              name="gender"
-              value="woman"
-              className={css.genderInput}
-              {...register('gender')}
-              onChange={handleChange}
-            />
-            <span className={css.iconWrap}>
-              <svg className={css.iconRadio} width="20" height="20">
-                <use
-                  xlinkHref={
-                    formData.gender === 'woman'
-                      ? `${sprite}#icon-radio-active`
-                      : `${sprite}#icon-radio`
-                  }
-                ></use>
-              </svg>
-            </span>
-            Woman
-          </label>
-          <label className={css.radio}>
-            <input
-              type="radio"
-              name="gender"
-              value="man"
-              className={css.genderInput}
-              {...register('gender')}
-              onChange={handleChange}
-            />
-            <span className={css.iconWrap}>
-              <svg className={css.iconRadio} width="20" height="20">
-                <use
-                  xlinkHref={
-                    formData.gender === 'man'
-                      ? `${sprite}#icon-radio-active`
-                      : `${sprite}#icon-radio`
-                  }
-                ></use>
-              </svg>
-            </span>
-            Man
-          </label>
+      <div className={css.partWrap}>
+        <div
+          className={`${css.inputContainer} ${errors.name ? css.hasError : ''}`}
+        >
+          <h2 className={css.inputTitleBold}>Your gender identity</h2>
+          <div className={css.genderInputWrap}>
+            <label className={css.radio}>
+              <input
+                type="radio"
+                name="gender"
+                value="woman"
+                className={css.genderInput}
+                {...register('gender')}
+                onChange={handleChange}
+              />
+              <span className={css.iconWrap}>
+                <svg className={css.iconRadio} width="20" height="20">
+                  <use
+                    xlinkHref={
+                      formData.gender === 'woman'
+                        ? `${sprite}#icon-radio-active`
+                        : `${sprite}#icon-radio`
+                    }
+                  ></use>
+                </svg>
+              </span>
+              Woman
+            </label>
+            <label className={css.radio}>
+              <input
+                type="radio"
+                name="gender"
+                value="man"
+                className={css.genderInput}
+                {...register('gender')}
+                onChange={handleChange}
+              />
+              <span className={css.iconWrap}>
+                <svg className={css.iconRadio} width="20" height="20">
+                  <use
+                    xlinkHref={
+                      formData.gender === 'man'
+                        ? `${sprite}#icon-radio-active`
+                        : `${sprite}#icon-radio`
+                    }
+                  ></use>
+                </svg>
+              </span>
+              Man
+            </label>
+          </div>
+          {errors.gender && (
+            <p className={css.error}>{errors.gender.message}</p>
+          )}
         </div>
-        {errors.gender && <p className={css.error}>{errors.gender.message}</p>}
       </div>
 
       <div className={css.block}>
         <div className={css.blockWrap}>
           <div className={css.partWrap}>
-            <div>
-              <label
-                htmlFor={nameId}
-                className={`${css.inputTitleBold}  ${css.inputTitleSmall}`}
-              >
+            <div
+              className={`${css.inputContainer} ${
+                errors.name ? css.hasError : ''
+              }`}
+            >
+              <label htmlFor={nameId} className={css.inputTitleBold}>
                 Your name
               </label>
               <input
                 type="text"
                 name="name"
                 id={nameId}
-                className={`${css.inputField} ${
-                  errors.name && css.inputError
-                }`}
+                className={`${css.inputField} ${errors.name && css.inputError}`}
                 value={formData.name}
                 {...register('name')}
                 onChange={handleChange}
@@ -175,11 +177,12 @@ export default function UserSettingsForm() {
                 <p className={css.error}>{errors.name.message}</p>
               )}
             </div>
-            <div>
-              <label
-                htmlFor={emailId}
-                className={`${css.inputTitleBold}  ${css.inputTitleSmall}`}
-              >
+            <div
+              className={`${css.inputContainer} ${
+                errors.name ? css.hasError : ''
+              }`}
+            >
+              <label htmlFor={emailId} className={css.inputTitleBold}>
                 Email
               </label>
               <input
@@ -188,8 +191,12 @@ export default function UserSettingsForm() {
                 id={emailId}
                 className={css.inputField}
                 value={formData.email}
+                {...register('email')}
                 onChange={handleChange}
               />
+              {errors.email && (
+                <p className={css.error}>{errors.email.message}</p>
+              )}
             </div>
           </div>
 
@@ -227,7 +234,11 @@ export default function UserSettingsForm() {
 
         <div className={css.blockWrap}>
           <div className={css.partWrap}>
-            <div>
+            <div
+              className={`${css.inputContainer} ${
+                errors.name ? css.hasError : ''
+              }`}
+            >
               <label className={css.inputTitle}>
                 Your weight in kilograms:
               </label>
@@ -237,13 +248,17 @@ export default function UserSettingsForm() {
                 className={css.inputField}
                 value={formData.weight}
                 onChange={handleChange}
-                // {...register('weight')}
+                {...register('weight')}
               />
-              {/* {errors.weight && (
+              {errors.weight && (
                 <p className={css.error}>{errors.weight.message}</p>
-              )} */}
+              )}
             </div>
-            <div>
+            <div
+              className={`${css.inputContainer} ${
+                errors.name ? css.hasError : ''
+              }`}
+            >
               <label className={css.inputTitle}>
                 The time of active participation in sports:
               </label>
@@ -253,11 +268,11 @@ export default function UserSettingsForm() {
                 className={css.inputField}
                 value={formData.time}
                 onChange={handleChange}
-                // {...register('time')}
+                {...register('time')}
               />
-              {/* {errors.sport && (
+              {errors.time && (
                 <p className={css.error}>{errors.time.message}</p>
-              )} */}
+              )}
             </div>
           </div>
 
@@ -271,10 +286,12 @@ export default function UserSettingsForm() {
               </p>
             </div>
 
-            <div>
-              <label
-                className={` ${css.inputTitleBold}  ${css.inputTitleSmall}`}
-              >
+            <div
+              className={`${css.inputContainer} ${
+                errors.name ? css.hasError : ''
+              }`}
+            >
+              <label className={css.inputTitleBold}>
                 Write down how much water you will drink:
               </label>
               <input
@@ -283,7 +300,11 @@ export default function UserSettingsForm() {
                 className={css.inputField}
                 value={formData.water}
                 onChange={handleChange}
+                {...register('water')}
               />
+              {errors.water && (
+                <p className={css.error}>{errors.water.message}</p>
+              )}
             </div>
           </div>
         </div>
