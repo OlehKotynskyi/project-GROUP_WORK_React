@@ -7,14 +7,24 @@ import { WaterItem } from 'components/WaterItem/WaterItem';
 export const WaterList = ({ waterData, openModal }) => {
   return (
     <section className={css.sectionWaterList}>
-      <ul className={css.waterList}>
-        <li className={css.waterItem}>
-          <WaterItem openModal={openModal}/>
-        </li>
-        <li className={css.waterItem}>
-          <WaterItem openModal={openModal}/>
-        </li>
-      </ul>
+      <div className={css.waterListContainer}>
+        <ul className={css.waterList}>
+          <li className={css.waterItem}>
+            <WaterItem openModal={openModal}/>
+          </li>
+          <li className={css.waterItem}>
+            <WaterItem openModal={openModal}/>
+          </li>
+          {/* <li className={css.waterItem}>
+            <WaterItem openModal={openModal}/>
+          </li><li className={css.waterItem}>
+            <WaterItem openModal={openModal}/>
+          </li><li className={css.waterItem}>
+            <WaterItem openModal={openModal}/>
+          </li><li className={css.waterItem}>
+            <WaterItem openModal={openModal}/>
+          </li> */}
+        </ul>
       {/* <ul>
         {waterData.map((item, index) => (
           <li key={index}>
@@ -22,6 +32,9 @@ export const WaterList = ({ waterData, openModal }) => {
           </li>
         ))}
       </ul> */}
+      </div>
+      
+      
     </section>
   );
 };

@@ -3,6 +3,10 @@
     margin-bottom: 24px;
 }
 
+.waterListContainer {
+    width: 100%;
+    overflow-x: auto;
+}
 .waterList {
 display: flex;
 gap: 8px;
