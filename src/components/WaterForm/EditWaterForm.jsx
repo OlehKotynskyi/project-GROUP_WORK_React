@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 
 import css from "./WaterForm.module.css";
+import sprite from "../../img/svg/sprite.svg";
 import { patchWater } from "../../redux/water/operations";
 
 const schema = Yup.object().shape({
@@ -90,9 +91,17 @@ export const EditWaterForm = ({ onClose, selectedWater}) => {
         <div className={css.stepperItem}>
           <p className={css.itemTitle}>Amount of water:</p>
           <div className={css.stepper}>
-            <button className={css.stepButton} type="button" onClick={handleDecrement}>-</button>
+            <button className={css.stepButton} type="button" onClick={handleDecrement}>
+              <svg className={css.icon} width="14" height="14">
+                <use xlinkHref={`${sprite}#icon-minus`}></use>
+              </svg>
+            </button>
             <p className={css.stepperAmount}>{amount} ml</p>
-            <button className={css.stepButton} type="button" onClick={handleIncrement}>+</button>
+            <button className={css.stepButton} type="button" onClick={handleIncrement}>
+              <svg className={css.icon} width="14" height="14">
+                <use xlinkHref={`${sprite}#icon-plus`}></use>
+              </svg>
+            </button>
           </div>
         </div>
         <div className={css.inputItem}>

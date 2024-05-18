@@ -24,8 +24,9 @@ function TrackerPage() {
   const [modal, setModal] = useState({ isOpen: false, content: null });
   const [selectedWater, setSelectedWater] = useState(null);
 
-  function openModal(content) {
+  function openModal(content, water) {
     setModal({ isOpen: true, content });
+    setSelectedWater(water);
   }
 
   function afterOpenModal() {
@@ -49,7 +50,7 @@ function TrackerPage() {
             {modal.content === "edit" && <EditWaterForm onClose={closeModal} selectedWater={selectedWater} />}
           </WaterModal>
         )}
-        {modal.content === "delete" && <DeleteWaterModal onClose={closeModal} />}
+        {modal.content === "delete" && <DeleteWaterModal onClose={closeModal} selectedWater={selectedWater} />}
         {modal.content === "logout" && <LogOutModal onClose={closeModal} />}
         {modal.content === "settings" && <UserSettingsModal onClose={closeModal} />}
       </Modal>}
