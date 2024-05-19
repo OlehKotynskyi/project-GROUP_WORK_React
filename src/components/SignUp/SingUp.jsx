@@ -35,7 +35,7 @@ const SignUp = () => {
   } = useForm({
     resolver: yupResolver(userSchema),
   });
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   // const onSubmit = (data, evt) => {
   //   console.log(data);
   //   evt.target.reset();
@@ -52,30 +52,8 @@ const SignUp = () => {
     }
     setShowPasswordReset(!showPasswordReset);
   };
-  // const requestData = {
-  //   email: data.email,
-  //   password: data.password,
-  // };
-  const onSubmit = data => {
-    const requestData = {
-      email: data.email,
-      password: data.password,
-    };
 
-    dispatch(signUp(requestData))
-      .then(response => {
-        if (response.meta.requestStatus === 'fulfilled') {
-          toast.success('Реєстрація пройшла успішно');
-          reset();
-        } else {
-          toast.error('Помилка реєстрації');
-        }
-      })
-      .catch(error => {
-        toast.error('Помилка реєстрації: ' + error.message);
-      });
-  };
-
+  const dispatch = useDispatch();
   return (
     <section className={css.section}>
       <div className={css.wrapSection}>
@@ -83,18 +61,21 @@ const SignUp = () => {
         <h1 className={css.title}>Sign Up</h1>
         <form
           className={css.contact}
-          onSubmit={handleSubmit(onSubmit)}
-
-          //   (data => {
-          //   dispatch(signUp())
-          //     .then(() => {
-          //       toast.success('Registration success');
-          //     })
-          //     .catch(error => {
-          //       toast.error('Wrong registration!');
-          //     });
-          //   reset();
-          // })}
+          onSubmit={handleSubmit(data => {
+            dispatch(
+              signUp({
+                email: data.email,
+                password: data.password,
+              })
+            )
+              .then(() => {
+                toast.success('Registration success');
+              })
+              .catch(error => {
+                toast.error('Wrong registration!');
+              });
+            reset();
+          })}
         >
           <div className={css.wrap}>
             <div className={css.inputContainer}>
