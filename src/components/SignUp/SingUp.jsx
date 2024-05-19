@@ -35,6 +35,7 @@ const SignUp = () => {
   } = useForm({
     resolver: yupResolver(userSchema),
   });
+  const dispatch = useDispatch();
   // const onSubmit = (data, evt) => {
   //   console.log(data);
   //   evt.target.reset();
@@ -51,8 +52,29 @@ const SignUp = () => {
     }
     setShowPasswordReset(!showPasswordReset);
   };
+  // const requestData = {
+  //   email: data.email,
+  //   password: data.password,
+  // };
+  const onSubmit = data => {
+    const requestData = {
+      email: data.email,
+      password: data.password,
+    };
 
-  const dispatch = useDispatch();
+    dispatch(signUp(requestData))
+      .then(response => {
+        if (response.meta.requestStatus === 'fulfilled') {
+          toast.success('Реєстрація пройшла успішно');
+          reset();
+        } else {
+          toast.error('Помилка реєстрації');
+        }
+      })
+      .catch(error => {
+        toast.error('Помилка реєстрації: ' + error.message);
+      });
+  };
 
   return (
     <section className={css.section}>
@@ -61,17 +83,18 @@ const SignUp = () => {
         <h1 className={css.title}>Sign Up</h1>
         <form
           className={css.contact}
-          onSubmit={handleSubmit(data => {
-            dispatch(signUp(data))
-              .then(() => {
-                toast.success('Registration success');
-              })
-              .catch(error => {
-                toast.error('Wrong registration!');
-              });
+          onSubmit={handleSubmit(onSubmit)}
 
-            reset();
-          })}
+          //   (data => {
+          //   dispatch(signUp())
+          //     .then(() => {
+          //       toast.success('Registration success');
+          //     })
+          //     .catch(error => {
+          //       toast.error('Wrong registration!');
+          //     });
+          //   reset();
+          // })}
         >
           <div className={css.wrap}>
             <div className={css.inputContainer}>
