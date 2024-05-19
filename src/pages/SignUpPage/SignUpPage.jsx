@@ -1,9 +1,10 @@
-//src/pages/SignUpPage.jsx
+
 import SignUp from 'components/SignUp/SingUp';
 import AdvantagesSection from 'components/AdvantagesSection/AdvantagesSection';
 
 import style from '../Base.module.css';
 import css from './SignPage.module.css';
+
 
 function SignUpPage() {
   return (
@@ -12,8 +13,7 @@ function SignUpPage() {
 
       <SignUp />
       {/* </section> */}
-
-      <AdvantagesSection />
+      {/* <AdvantagesSection /> */}
     </div>
   );
 }

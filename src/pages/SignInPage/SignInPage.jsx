@@ -1,4 +1,4 @@
-//src/pages/SignInPage.jsx
+
 import React, { useState, useEffect } from 'react';
 import SignIn from 'components/SignIn/SignIn';
 import AdvantagesSection from 'components/AdvantagesSection/AdvantagesSection';
