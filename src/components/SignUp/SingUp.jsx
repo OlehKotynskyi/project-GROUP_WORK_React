@@ -13,7 +13,7 @@ const userSchema = Yup.object().shape({
     .email('Enter a valid email address')
     .required('Email field is required'),
   password: Yup.string()
-    .min(6, 'At least 6 characters')
+    .min(6, 'Password must be at least 6 characters long')
     .matches(/[A-Z]/, 'Password must contain at least one uppercase letter')
 
     .required('Password field is required'),

@@ -50,7 +50,7 @@
 
 .error {
 	color: #ef5050;
-	font-size: 12px;
+	font-size: 10px;
 	font-weight: 400;
 	position: absolute;
 	top: 102%;
@@ -116,8 +116,7 @@
 .navLink {
 	font-weight: 700;
 	font-size: 14px;
-	color: #2f2f2f;
-	
+	color: var(--main-text);
 	position: relative;
 }
 .navLink::before{
@@ -127,7 +126,7 @@
 	bottom: 4px;
 	width: 100%;
 	height: 1px;
-	background-color: #2f2f2f;
+	background-color: var(--main-text);
 	transition: 0.3s ease-in-out;
 	opacity: 1;
 }
@@ -168,14 +167,8 @@
 	.section {
 		padding: 118px 16px 67px;
 	}
-
-	.inputContainer {
-		gap: 8px;
-	}
-
 	.text {
 		font-size: 16px;
 		line-height: 1.5;
-		letter-spacing: -0.01em;
 	}
 }
