@@ -6,10 +6,10 @@ import { WaterMainInfo } from '../../components/WaterMainInfo/WaterMainInfo.jsx'
 import { WaterDetailedInfo } from '../../components/WaterDetailedInfo/WaterDetailedInfo.jsx';
 import { Modal } from 'components/Modal/Modal';
 import { WaterModal } from 'components/WaterModal/WaterModal';
-//import { DeleteWaterModal } from 'components/DeleteWaterModal/DeleteWaterModal';
+import { DeleteWaterModal } from 'components/DeleteWaterModal/DeleteWaterModal';
 import { LogOutModal } from 'components/LogOutModal/LogOutModal';
 import { AddWaterForm } from 'components/WaterForm/AddWaterForm';
-//import { EditWaterForm } from 'components/WaterForm/EditWaterForm';
+import { EditWaterForm } from 'components/WaterForm/EditWaterForm';
 import UserSettingsModal from 'components/UserSettingsModal/UserSettingsModal.jsx';
 
 import style from '../Base.module.css';
@@ -22,11 +22,11 @@ ReactModal.setAppElement('#root');
 
 function TrackerPage() {
   const [modal, setModal] = useState({ isOpen: false, content: null });
-//  const [selectedWater, setSelectedWater] = useState(null);
+  const [selectedWater, setSelectedWater] = useState(null);
 
   function openModal(content, water) {
     setModal({ isOpen: true, content });
-   // setSelectedWater(water);
+    setSelectedWater(water);
   }
 
   function afterOpenModal() {
@@ -47,10 +47,10 @@ function TrackerPage() {
         {((modal.content === "add") || (modal.content === "edit")) && (
           <WaterModal modal={modal} onClose={closeModal}>
             {modal.content === "add" && <AddWaterForm onClose={closeModal} />}
-            {/*{modal.content === "edit" && <EditWaterForm onClose={closeModal} selectedWater={selectedWater} />}*/}
+            {modal.content === "edit" && <EditWaterForm onClose={closeModal} selectedWater={selectedWater} />}
           </WaterModal>
         )}
-        {/*{modal.content === "delete" && <DeleteWaterModal onClose={closeModal} selectedWater={selectedWater} />}*/}
+        {modal.content === "delete" && <DeleteWaterModal onClose={closeModal} selectedWater={selectedWater} />}
         {modal.content === "logout" && <LogOutModal onClose={closeModal} />}
         {modal.content === "settings" && <UserSettingsModal onClose={closeModal} />}
       </Modal>}
