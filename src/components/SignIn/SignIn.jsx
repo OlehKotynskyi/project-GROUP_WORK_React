@@ -1,10 +1,11 @@
 import { useForm } from 'react-hook-form';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import toast from 'react-hot-toast';
+
 import { signIn } from '../../redux/auth/operations';
 import Logo from 'components/Logo/Logo';
 import sprite from '../../img/svg/sprite.svg';
@@ -20,24 +21,8 @@ const userSchema = Yup.object().shape({
     .required('Password field is required'),
 });
 
-const getAccessToken = () => {
-  const persistAuth = localStorage.getItem('persist:auth');
-  if (persistAuth) {
-    try {
-      const parsedAuth = JSON.parse(persistAuth);
-      const accessToken = JSON.parse(parsedAuth.accessToken);
-      return accessToken;
-    } catch (error) {
-      console.error('Failed to parse access token', error);
-      return null;
-    }
-  }
-  return null;
-};
-
 const SignIn = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [showPass, setShowPass] = useState(false);
   const {
     register,
@@ -46,29 +31,15 @@ const SignIn = () => {
     reset,
   } = useForm({ resolver: yupResolver(userSchema) });
 
-  // useEffect(() => {
-  //   const token = localStorage.getItem('accessToken');
-  //   if (token) {
-  //     navigate('/tracker');
-  //   }
-  // }, [navigate]);
-
-  useEffect(() => {
-    const token = getAccessToken();
-    if (token) {
-      navigate('/tracker');
-    }
-  }, [navigate]);
-
   const onSubmit = async data => {
-    const resultAction = await dispatch(signIn(data));
-    if (signIn.fulfilled.match(resultAction)) {
-      const { accessToken } = resultAction.payload;
-      localStorage.setItem('accessToken', accessToken);
-      navigate('/tracker');
-    } else {
-      console.error('Sign in failed', resultAction.payload);
-    }
+    dispatch(signIn(data))
+      .unwrap()
+      .then(() => {
+        toast.success('Login successful');
+      })
+      .catch(error => {
+        toast.error('Login failed');
+      });
     reset();
   };
 

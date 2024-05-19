@@ -25,7 +25,15 @@ export const App = () => {
               />
             }
           />
-          <Route path="/signin" element={<SignInPage />} />
+          <Route
+            path="/signin"
+            element={
+              <RestrictedRoute
+                redirectTo="/tracker"
+                component={<SignInPage />}
+              />
+            }
+          />
           <Route path="/tracker" element={<TrackerPage />} />
         </Route>
         <Route path="*" element={<NotFoundPage />} />
