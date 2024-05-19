@@ -1,9 +1,3 @@
-.dateInfo {
-width: 303px;
-height: 160px;
-
-}
-
 .headerDailyInfo {
 display: flex;
 align-items: center;
@@ -20,10 +14,7 @@ color: var(--main);
 }
 
 @media screen and (min-width: 768px) {
-.dateInfo {
-width: 640px;
-height: 174px;
-}
+
 .date {
 font-size: 28px;
 line-height: 114%;
@@ -31,10 +22,5 @@ line-height: 114%;
 }
 
 @media screen and (min-width: 1440px) {
-.dateInfo {
-width: 608px;
-height: 174px;
-
-}
 
 }
