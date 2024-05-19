@@ -1,9 +1,12 @@
+
 import React, { useState, useEffect } from 'react';
+
 import SignUp from 'components/SignUp/SingUp';
 import AdvantagesSection from 'components/AdvantagesSection/AdvantagesSection';
 
 import style from '../Base.module.css';
 import css from './SignPage.module.css';
+
 
 function SignUpPage() {
   const [isDesktop, setIsDesktop] = useState(false);
@@ -25,7 +28,12 @@ function SignUpPage() {
   return (
     <div className={`${css.SignUpPageContainer} ${style.container}`}>
       <SignUp />
+
+      {/* </section> */}
+      {/* <AdvantagesSection /> */}
+
       {isDesktop && <AdvantagesSection />}
+
     </div>
   );
 }
