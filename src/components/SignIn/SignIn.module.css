@@ -4,7 +4,10 @@
   border-radius: 30px;
   padding: 216px 16px;
 }
-
+.wrapSection{
+	max-width: 436px;
+	margin: 0 auto;
+}
 .title {
   font-weight: 700;
   font-size: 32px;
@@ -64,7 +67,7 @@
   letter-spacing: -0.01em;
   color: #ef5050;
   position: absolute;
-bottom: -19px;
+  bottom: -15px;
 }
 
 .icon {
@@ -80,7 +83,6 @@ bottom: -19px;
   width: 100%;
   height: 50px;
   margin-bottom: 16px;
-
   font-weight: 700;
   font-size: 14px;
   line-height: 129%;
@@ -89,9 +91,11 @@ bottom: -19px;
   transition: 0.3s ease-in-out;
 }
 
-.submitBtn:hover,
-.submitBtn:focus {
-  background-color: #87d28d;
+@media (hover: hover) and (pointer: fine){
+	.submitBtn:hover,
+	.submitBtn:focus {
+	  background-color: #87d28d;
+	}
 }
 
 .redirect {
@@ -105,22 +109,38 @@ bottom: -19px;
 
 .nav {
   font-weight: 700;
-  text-decoration: underline;
-  text-decoration-skip-ink: none;
   color: var(--main-text);
+  position: relative;
 }
 
+.nav::before{
+	content: '';
+	position: absolute;
+	left: 1px;
+	bottom: 4px;
+	width: 100%;
+	height: 1px;
+	background-color: var(--main-text);
+	transition: 0.3s ease-in-out;
+	opacity: 1;
+}
 
+@media (hover: hover) and (pointer: fine){
+	.nav:hover::before{
+		opacity: 0;
+	}
+}
 
 .visibilityBtn {
   position: absolute;
-  top: 18px;
-  right: 16px;
+  top: 15px;
+  right: 15px;
 }
 
 @media screen and (min-width: 768px) {
   .section {
-    padding: 281px 134px;
+   padding-top: 281px;
+	padding-bottom: 281px;
   }
 
   .title {
@@ -134,7 +154,6 @@ bottom: -19px;
   }
 
   .input {
-    width: 436px;
     height: 56px;
   }
 
@@ -145,13 +164,17 @@ bottom: -19px;
   .error {
     font-size: 14px;
     line-height: 129%;
+	 bottom: -19px;
+  }
+
+  .visibilityBtn {
+    top: 18px;
+    right: 16px;
   }
 
   .submitBtn {
     padding: 18px;
-    width: 436px;
     height: 60px;
-
     font-size: 16px;
     line-height: 150%;
   }
@@ -163,7 +186,7 @@ bottom: -19px;
 
 @media screen and (min-width: 1440px) {
   .section {
-    padding: 169px 118px;
+    padding: 169px 16px;
     margin-bottom: 0px;
   }
 }

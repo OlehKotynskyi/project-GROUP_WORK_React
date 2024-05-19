@@ -64,6 +64,13 @@ position: relative;
   stroke: var(--main-white);
   width: 16px;
   height: 16px;
+  transform: rotate(360deg);
+  transition: 0.3s;
+}
+
+.iconUserSettingUp {
+  composes: iconUserSetting;
+  transform: rotate(3.142rad);
 }
 
 .popover {
