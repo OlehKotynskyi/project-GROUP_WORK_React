@@ -6,7 +6,7 @@ import { WaterMainInfo } from '../../components/WaterMainInfo/WaterMainInfo.jsx'
 import { WaterDetailedInfo } from '../../components/WaterDetailedInfo/WaterDetailedInfo.jsx';
 import { Modal } from 'components/Modal/Modal';
 import { WaterModal } from 'components/WaterModal/WaterModal';
-import { DeleteWaterModal } from 'components/DeleteWaterModal/DeleteWaterModal';
+//import { DeleteWaterModal } from 'components/DeleteWaterModal/DeleteWaterModal';
 import { LogOutModal } from 'components/LogOutModal/LogOutModal';
 import { AddWaterForm } from 'components/WaterForm/AddWaterForm';
 //import { EditWaterForm } from 'components/WaterForm/EditWaterForm';
@@ -26,7 +26,7 @@ function TrackerPage() {
 
   function openModal(content, water) {
     setModal({ isOpen: true, content });
-    setSelectedWater(water);
+   // setSelectedWater(water);
   }
 
   function afterOpenModal() {
@@ -50,7 +50,7 @@ function TrackerPage() {
             {/*{modal.content === "edit" && <EditWaterForm onClose={closeModal} selectedWater={selectedWater} />}*/}
           </WaterModal>
         )}
-        {modal.content === "delete" && <DeleteWaterModal onClose={closeModal} selectedWater={selectedWater} />}
+        {/*{modal.content === "delete" && <DeleteWaterModal onClose={closeModal} selectedWater={selectedWater} />}*/}
         {modal.content === "logout" && <LogOutModal onClose={closeModal} />}
         {modal.content === "settings" && <UserSettingsModal onClose={closeModal} />}
       </Modal>}
