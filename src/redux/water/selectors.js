@@ -1,4 +1,4 @@
-export const selectWaters = state => state.water.items;
+export const selectWaters = state => state.water.list;
 
 export const selectLoading = state => state.water.loading;
 

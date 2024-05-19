@@ -1,13 +1,12 @@
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup"
 import { useForm } from "react-hook-form";
-
 //import { useDispatch } from 'react-redux';
-// import toast from 'react-hot-toast';
-// import { addWater } from "../../redux/water/operations";
+//import toast from 'react-hot-toast';
+//import { addWater } from "../../redux/water/operations";
 import sprite from "../../img/svg/sprite.svg";
 import css from "./WaterForm.module.css";
-// import toast from 'react-hot-toast';
+
 
 
 
@@ -54,42 +53,40 @@ export const AddWaterForm = ({ onClose }) => {
     }
   });
 
-  // const dispatch = useDispatch();
+//  const dispatch = useDispatch();
 
-  // const onSubmit = (values, actions) => {
-  //   dispatch(addWater({ ...values }))
-  //     .unwrap()
-  //     .then(() => {
-  //       toast.success('Water successfully added!', {
-  //         style: {
-  //           border: '1px solid #0d47a1',
-  //           padding: '16px',
-  //           color: '#9BE1A0',
-  //         },
-  //         iconTheme: {
-  //           primary: '#9BE1A0',
-  //           secondary: '#fff',
-  //         },
-  //       });
-  //       onClose();
-  //     })
-  //     .catch(() => {
-  //       toast.error('Oops, something go wrong!', {
-  //         style: {
-  //           border: '1px solid #F1041B',
-  //           padding: '16px',
-  //           color: '#323F47',
-  //         },
-  //         iconTheme: {
-  //           primary: '#F1041B',
-  //           secondary: '#fff',
-  //         },
-  //       });
-  //     })
-  // };
-  const onSubmit = (data) => {
-  console.log(data)
-}
+  const onSubmit = (values, actions) => {
+   // dispatch(addWater({ ...values }))
+   //   .unwrap()
+   //   .then(() => {
+   //     toast.success('Water successfully added!', {
+   //       style: {
+   //         border: '1px solid #0d47a1',
+   //         padding: '16px',
+   //         color: '#9BE1A0',
+   //       },
+   //       iconTheme: {
+   //         primary: '#9BE1A0',
+   //         secondary: '#fff',
+   //       },
+   //     });
+   //     onClose();
+   //   })
+   //   .catch(() => {
+   //     toast.error('Oops, something go wrong!', {
+   //       style: {
+   //         border: '1px solid #F1041B',
+   //         padding: '16px',
+   //         color: '#323F47',
+   //       },
+   //       iconTheme: {
+   //         primary: '#F1041B',
+   //         secondary: '#fff',
+   //       },
+   //     });
+   //   })
+  };
+
   const amount = watch("amount", 50);
   const time = watch("time", currentTime);
 
@@ -116,7 +113,7 @@ export const AddWaterForm = ({ onClose }) => {
           <div className={css.stepper}>
             <button className={css.stepButton} type="button" onClick={handleDecrement}>
               <svg className={css.icon} width="14" height="14">
-                <use xlinkHref={`${sprite}#icon-minus-stroke`}></use>
+                <use xlinkHref={`${sprite}#icon-minus`}></use>
               </svg>
             </button>
             <p className={css.stepperAmount}>{amount} ml</p>
