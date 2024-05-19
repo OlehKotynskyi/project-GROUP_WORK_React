@@ -1,10 +1,9 @@
 // src/components/DailyInfo.jsx
 import { useState } from 'react';
-import { ChooseDate } from '../ChooseDate/ChooseDate';
+// import { ChooseDate } from '../ChooseDate/ChooseDate';
 import { AddWaterBtnDetailInfo } from '../AddWaterBtnDetailInfo/AddWaterBtnDetailInfo';
 import { WaterList } from '../WaterList/WaterList';
 import css from './DailyInfo.module.css'
-import { Slider } from 'components/Slider/Slider';
 
 export const DailyInfo = ({openModal}) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
