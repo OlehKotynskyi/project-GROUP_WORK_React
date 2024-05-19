@@ -1,3 +1,4 @@
+import { useState } from "react";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup"
 import { useForm } from "react-hook-form";
@@ -7,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import css from "./WaterForm.module.css";
 import sprite from "../../img/svg/sprite.svg";
 import { patchWater } from "../../redux/water/operations";
+import { Loader } from "components/Loader/Loader";
 
 const schema = Yup.object().shape({
   amount: Yup.number("Must be a number")
@@ -18,7 +20,9 @@ const schema = Yup.object().shape({
   time: Yup.string().required("Required field!"),
 });
 
-export const EditWaterForm = ({ onClose, selectedWater}) => {
+export const EditWaterForm = ({ onClose, selectedWater }) => {
+  const [load, setLoad] = useState(false);
+  
   const {
     register,
     handleSubmit,
@@ -36,6 +40,7 @@ export const EditWaterForm = ({ onClose, selectedWater}) => {
   const dispatch = useDispatch();
 
   const onSubmit = (values, actions) => {
+    setLoad(true);
     dispatch(patchWater({ id: selectedWater.id, ...values }))
       .unwrap()
       .then(() => {
@@ -50,6 +55,7 @@ export const EditWaterForm = ({ onClose, selectedWater}) => {
             secondary: '#fff',
           },
         });
+        setLoad(false);
         onClose();
       })
       .catch(() => {
@@ -64,6 +70,7 @@ export const EditWaterForm = ({ onClose, selectedWater}) => {
             secondary: '#fff',
           },
         });
+        setLoad(false);
       })
   };
 
@@ -121,7 +128,7 @@ export const EditWaterForm = ({ onClose, selectedWater}) => {
             {errors.amount && (<p className={css.error}>{errors.amount.message}</p>)}
           </div>
         </div>
-        <button className={css.saveButton} type="submit">Save</button>
+        <button className={css.saveButton} type="submit">{load ? <Loader /> : "Save"}</button>
       </form>
     </div>
   );

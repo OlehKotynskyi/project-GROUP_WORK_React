@@ -1,14 +1,19 @@
+import { useState } from "react";
 import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 
 import { deleteWater } from "../../redux/water/operations";
+import { Loader } from "components/Loader/Loader";
 import sprite from "../../img/svg/sprite.svg";
 import css from "./DeleteWaterModal.module.css";
 
 export const DeleteWaterModal = ({ onClose, selectedWater }) => {
+    const [load, setLoad] = useState(false);
+
     const dispatch = useDispatch();
 
     const handleDelete = () => {
+        setLoad(true);
         dispatch(deleteWater(selectedWater))
             .unwrap()
             .then(() => {
@@ -23,6 +28,7 @@ export const DeleteWaterModal = ({ onClose, selectedWater }) => {
                         secondary: '#fff',
                     },
                 });
+                setLoad(false);
                 onClose();
             })
             .catch(() => {
@@ -37,6 +43,7 @@ export const DeleteWaterModal = ({ onClose, selectedWater }) => {
                         secondary: '#fff',
                     },
                 });
+                setLoad(false);
             })
     };
 
@@ -53,7 +60,7 @@ export const DeleteWaterModal = ({ onClose, selectedWater }) => {
                 <h2 className={css.title}>Delete entry</h2>
                 <p className={css.question}>Are you sure you want to delete the entry?</p>
                 <div className={css.buttons}>
-                    <button className={css.yesButton} type="button" onClick={handleDelete}>Delete</button>
+                    <button className={css.yesButton} type="button" onClick={handleDelete}>{load ? <Loader /> : "Delete"}</button>
                     <button className={css.noButton} type="button" onClick={onClose}>Cancel</button>
                 </div>
             </div>

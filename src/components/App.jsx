@@ -1,4 +1,3 @@
-//src/components/App.jsx
 import { lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
