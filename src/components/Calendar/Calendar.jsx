@@ -8,8 +8,6 @@ import { checkDateIsEqual, checkIsToday } from './date';
 import { useCalendar } from './hooks/useCalendar';
 import css from './Calendar.module.css';
 
-const DAILY_WATER_INTAKE = 1500; // Припустима денна норма споживання води в мл
-
 export const Calendar = ({
   locale = 'default',
   selectedDate,
@@ -21,18 +19,12 @@ export const Calendar = ({
     firstWeekDayNumber,
   });
 
-  const [waterIntake, setWaterIntake] = useState(0);
   const [waterPercentage, setWaterPercentage] = useState(0);
 
   useEffect(() => {
-    const percentage = ((waterIntake / DAILY_WATER_INTAKE) * 100).toFixed(0);
+    const percentage = 0; // Ініціалізуємо значення waterPercentage
     setWaterPercentage(Math.min(100, percentage));
-  }, [waterIntake]);
-
-  const handleAddWater = () => {
-    // Збільшуємо кількість спожитої води
-    setWaterIntake(prevIntake => prevIntake + DAILY_WATER_INTAKE);
-  };
+  }, []);
 
   return (
     <div className={css.calendar}>
@@ -90,7 +82,6 @@ export const Calendar = ({
           })}
         </div>
       </div>
-      <button onClick={handleAddWater}></button> {/* Кнопка додавання води */}
     </div>
   );
 };

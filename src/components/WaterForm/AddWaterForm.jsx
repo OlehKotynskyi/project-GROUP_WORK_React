@@ -1,14 +1,15 @@
+import { useState } from "react";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup"
 import { useForm } from "react-hook-form";
+
 //import { useDispatch } from 'react-redux';
 //import toast from 'react-hot-toast';
+
 //import { addWater } from "../../redux/water/operations";
+import { Loader } from "components/Loader/Loader";
 import sprite from "../../img/svg/sprite.svg";
 import css from "./WaterForm.module.css";
-
-
-
 
 const schema = Yup.object().shape({
   amount: Yup.number("Must be a number")
@@ -37,6 +38,8 @@ function getCurrentTime() {
 }
 
 export const AddWaterForm = ({ onClose }) => {
+  const [load, setLoad] = useState(false);
+
   const currentTime = getCurrentTime();
 
   const {
@@ -56,35 +59,38 @@ export const AddWaterForm = ({ onClose }) => {
 //  const dispatch = useDispatch();
 
   const onSubmit = (values, actions) => {
-   // dispatch(addWater({ ...values }))
-   //   .unwrap()
-   //   .then(() => {
-   //     toast.success('Water successfully added!', {
-   //       style: {
-   //         border: '1px solid #0d47a1',
-   //         padding: '16px',
-   //         color: '#9BE1A0',
-   //       },
-   //       iconTheme: {
-   //         primary: '#9BE1A0',
-   //         secondary: '#fff',
-   //       },
-   //     });
-   //     onClose();
-   //   })
-   //   .catch(() => {
-   //     toast.error('Oops, something go wrong!', {
-   //       style: {
-   //         border: '1px solid #F1041B',
-   //         padding: '16px',
-   //         color: '#323F47',
-   //       },
-   //       iconTheme: {
-   //         primary: '#F1041B',
-   //         secondary: '#fff',
-   //       },
-   //     });
-   //   })
+    setLoad(true);
+    // dispatch(addWater({ ...values }))
+    //   .unwrap()
+    //   .then(() => {
+    //     toast.success('Water successfully added!', {
+    //       style: {
+    //         border: '1px solid #0d47a1',
+    //         padding: '16px',
+    //         color: '#9BE1A0',
+    //       },
+    //       iconTheme: {
+    //         primary: '#9BE1A0',
+    //         secondary: '#fff',
+    //       },
+    //     });
+    //     setLoad(false);
+    //     onClose();
+    //   })
+    //   .catch(() => {
+    //     toast.error('Oops, something go wrong!', {
+    //       style: {
+    //         border: '1px solid #F1041B',
+    //         padding: '16px',
+    //         color: '#323F47',
+    //       },
+    //       iconTheme: {
+    //         primary: '#F1041B',
+    //         secondary: '#fff',
+    //       },
+    //     });
+    //     setLoad(false);
+    //   })
   };
 
   const amount = watch("amount", 50);
@@ -141,7 +147,7 @@ export const AddWaterForm = ({ onClose }) => {
             {errors.amount && (<p className={css.error}>{errors.amount.message}</p>)}
           </div>
         </div>
-        <button className={css.saveButton} type="submit">Save</button>
+        <button className={css.saveButton} type="submit">{load ? <Loader /> : "Save"}</button>
       </form>
     </div>
   );

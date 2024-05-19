@@ -22,7 +22,7 @@ export const WaterProgressBar = ({ currentAmount, dailyNorm }) => {
             height: '6px',
             color: 'var(--background)',
             border: 'none',
-            padding: '0px',
+            padding: '0px 0px 0px 0px',
             pointerEvents: 'none',
             '& .MuiSlider-thumb': {
               color: 'var(--main-white)',
