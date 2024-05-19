@@ -35,6 +35,7 @@ const authSlice = createSlice({
         state.user.email = action.payload.email;
         state.user.water = action.payload.water;
         state.user.avatarURL = action.payload.avatarURL;
+        state.isLoggedIn = true;
       })
       .addCase(signIn.fulfilled, (state, action) => {
         state.user = {

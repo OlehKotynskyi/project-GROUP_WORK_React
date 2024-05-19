@@ -2,11 +2,15 @@
 import Logo from 'components/Logo/Logo';
 import { useForm } from 'react-hook-form';
 import { useState, React } from 'react';
+
 import { NavLink } from 'react-router-dom';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import sprite from '../../img/svg/sprite.svg';
 import css from './SingUp.module.css';
+import { useDispatch } from 'react-redux';
+import { signUp } from '../../redux/auth/operations';
+import toast from 'react-hot-toast';
 
 const userSchema = Yup.object().shape({
   email: Yup.string()
@@ -26,15 +30,16 @@ const SignUp = () => {
   const {
     register,
     handleSubmit,
-
+    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(userSchema),
   });
-  const onSubmit = (data, evt) => {
-    console.log(data);
-    evt.target.reset();
-  };
+  const dispatch = useDispatch();
+  // const onSubmit = (data, evt) => {
+  //   console.log(data);
+  //   evt.target.reset();
+  // };
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordReset, setShowPasswordReset] = useState(false);
 
@@ -47,96 +52,135 @@ const SignUp = () => {
     }
     setShowPasswordReset(!showPasswordReset);
   };
+  // const requestData = {
+  //   email: data.email,
+  //   password: data.password,
+  // };
+  const onSubmit = data => {
+    const requestData = {
+      email: data.email,
+      password: data.password,
+    };
+
+    dispatch(signUp(requestData))
+      .then(response => {
+        if (response.meta.requestStatus === 'fulfilled') {
+          toast.success('Реєстрація пройшла успішно');
+          reset();
+        } else {
+          toast.error('Помилка реєстрації');
+        }
+      })
+      .catch(error => {
+        toast.error('Помилка реєстрації: ' + error.message);
+      });
+  };
 
   return (
     <section className={css.section}>
-		<div className={css.wrapSection}>
-      <Logo className={css.logo} />
-      <h1 className={css.title}>Sign Up</h1>
-      <form className={css.contact} onSubmit={handleSubmit(onSubmit)}>
-			<div className={css.wrap}>
-        <div className={css.inputContainer}>
-          <label className={css.email}>Email</label>
+      <div className={css.wrapSection}>
+        <Logo className={css.logo} />
+        <h1 className={css.title}>Sign Up</h1>
+        <form
+          className={css.contact}
+          onSubmit={handleSubmit(onSubmit)}
 
-          <input
-            className={`${css.input} ${errors.email ? css.errorInput : ''}`}
-            type="text"
-            {...register('email')}
-            placeholder="Enter your email"
-          />
-          {errors.email && <p className={css.error}>{errors.email.message}</p>}
-        </div>
-        <div className={css.inputContainer}>
-          <label className={css.email}>Password</label>
-          <div className={css.passwordConteiner}>
-            <input
-              className={`${css.input} ${
-                errors.password ? css.errorInput : ''
-              }`}
-              type={showPassword ? 'text' : 'password'}
-              placeholder="Enter your password"
-              {...register('password', { required: true })}
-            />
-            <button
-              type="button"
-              className={css.eyeBtn}
-              onClick={passwordVisibility}
-            >
-              <svg className={css.icon} width="20" height="20">
-                <use
-                  xlinkHref={`${sprite}#${
-                    showPassword ? 'icon-eye' : 'icon-eye-off'
-                  }`}
-                ></use>
-              </svg>
-            </button>
-          </div>
-          {errors.password && (
-            <p className={css.error}>{errors.password.message}</p>
-          )}
-        </div>
-        <div className={css.inputContainer}>
-          <label className={css.email}>Repeat Password</label>
+          //   (data => {
+          //   dispatch(signUp())
+          //     .then(() => {
+          //       toast.success('Registration success');
+          //     })
+          //     .catch(error => {
+          //       toast.error('Wrong registration!');
+          //     });
+          //   reset();
+          // })}
+        >
+          <div className={css.wrap}>
+            <div className={css.inputContainer}>
+              <label className={css.email}>Email</label>
 
-          <div className={css.passwordConteiner}>
-            <input
-              className={`${css.input} ${
-                errors.passwordRepeat ? css.errorInput : ''
-              }`}
-              type={showPasswordReset ? 'text' : 'password'}
-              placeholder="Repeat password"
-              {...register('repeatPassword')}
-            />
-            <button
-              type="button"
-              className={css.eyeBtn}
-              onClick={passwordResetVisibility}
-            >
-              <svg className={css.icon} width="20" height="20">
-                <use
-                  xlinkHref={`${sprite}#${
-                    showPasswordReset ? 'icon-eye' : 'icon-eye-off'
+              <input
+                className={`${css.input} ${errors.email ? css.errorInput : ''}`}
+                type="text"
+                {...register('email')}
+                placeholder="Enter your email"
+              />
+              {errors.email && (
+                <p className={css.error}>{errors.email.message}</p>
+              )}
+            </div>
+            <div className={css.inputContainer}>
+              <label className={css.email}>Password</label>
+              <div className={css.passwordConteiner}>
+                <input
+                  className={`${css.input} ${
+                    errors.password ? css.errorInput : ''
                   }`}
-                ></use>
-              </svg>
-            </button>
+                  type={showPassword ? 'text' : 'password'}
+                  placeholder="Enter your password"
+                  {...register('password', { required: true })}
+                />
+                <button
+                  type="button"
+                  className={css.eyeBtn}
+                  onClick={passwordVisibility}
+                >
+                  <svg className={css.icon} width="20" height="20">
+                    <use
+                      xlinkHref={`${sprite}#${
+                        showPassword ? 'icon-eye' : 'icon-eye-off'
+                      }`}
+                    ></use>
+                  </svg>
+                </button>
+              </div>
+              {errors.password && (
+                <p className={css.error}>{errors.password.message}</p>
+              )}
+            </div>
+            <div className={css.inputContainer}>
+              <label className={css.email}>Repeat Password</label>
+
+              <div className={css.passwordConteiner}>
+                <input
+                  className={`${css.input} ${
+                    errors.passwordRepeat ? css.errorInput : ''
+                  }`}
+                  type={showPasswordReset ? 'text' : 'password'}
+                  placeholder="Repeat password"
+                  {...register('repeatPassword')}
+                />
+                <button
+                  type="button"
+                  className={css.eyeBtn}
+                  onClick={passwordResetVisibility}
+                >
+                  <svg className={css.icon} width="20" height="20">
+                    <use
+                      xlinkHref={`${sprite}#${
+                        showPasswordReset ? 'icon-eye' : 'icon-eye-off'
+                      }`}
+                    ></use>
+                  </svg>
+                </button>
+              </div>
+              {errors.repeatPassword && (
+                <p className={css.error}>{errors.repeatPassword.message}</p>
+              )}
+            </div>
           </div>
-          {errors.repeatPassword && (
-            <p className={css.error}>{errors.repeatPassword.message}</p>
-          )}
-        </div>
-		  </div>
-        <button className={css.singUpBtn} type="submit">
-          Sign Up
-        </button>
-        <p className={css.text}>
-          Already have account?{' '}
-          <NavLink to="/signin" className={css.navLink}>
-            Sign In
-          </NavLink>
-        </p>
-      </form>
-		</div>
+          <button className={css.singUpBtn} type="submit">
+            Sign Up
+          </button>
+          <p className={css.text}>
+            Already have account?{' '}
+            <NavLink to="/signin" className={css.navLink}>
+              Sign In
+            </NavLink>
+          </p>
+        </form>
+      </div>
     </section>
   );
 };
