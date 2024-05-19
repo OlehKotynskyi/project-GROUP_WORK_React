@@ -4,7 +4,7 @@ import { WaterList } from '../WaterList/WaterList';
 import css from './DailyInfo.module.css';
 
 export const DailyInfo = ({ openModal }) => {
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate] = useState(new Date());
 
   // const handleDateChange = date => {
   //   setSelectedDate(date);
