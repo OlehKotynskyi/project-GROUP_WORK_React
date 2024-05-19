@@ -98,7 +98,7 @@ export default function UserSettingsForm() {
       </div>
       <div className={css.partWrap}>
         <div
-          className={`${css.inputContainer} ${errors.name ? css.hasError : ''}`}
+          className={`${css.inputContainerGender} ${errors.name ? css.hasError : ''}`}
         >
           <h2 className={css.inputTitleBold}>Your gender identity</h2>
           <div className={css.genderInputWrap}>

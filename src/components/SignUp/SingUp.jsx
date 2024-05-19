@@ -6,7 +6,6 @@ import { NavLink } from 'react-router-dom';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import sprite from '../../img/svg/sprite.svg';
-
 import css from './SingUp.module.css';
 
 const userSchema = Yup.object().shape({
@@ -51,9 +50,11 @@ const SignUp = () => {
 
   return (
     <section className={css.section}>
+		<div className={css.wrapSection}>
       <Logo className={css.logo} />
       <h1 className={css.title}>Sign Up</h1>
       <form className={css.contact} onSubmit={handleSubmit(onSubmit)}>
+			<div className={css.wrap}>
         <div className={css.inputContainer}>
           <label className={css.email}>Email</label>
 
@@ -124,7 +125,7 @@ const SignUp = () => {
             <p className={css.error}>{errors.repeatPassword.message}</p>
           )}
         </div>
-
+		  </div>
         <button className={css.singUpBtn} type="submit">
           Sign Up
         </button>
@@ -135,6 +136,7 @@ const SignUp = () => {
           </NavLink>
         </p>
       </form>
+		</div>
     </section>
   );
 };

@@ -12,7 +12,7 @@ export default function WelcomeSection() {
         <h1 className={css.title}>Water consumption tracker</h1>
         <div className={css.wrap}>
           <div className={css.wrapTry}>
-            <Link to="/signup" className={css.wrapLink}>
+            <Link to="/signup" className= {css.wrapLink}>
               Try tracker
             </Link>
           </div>

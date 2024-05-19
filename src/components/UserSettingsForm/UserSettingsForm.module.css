@@ -21,10 +21,13 @@
   margin-top: 10px;
   gap: 8px;
 }
-
+.blockWrap{
+	margin-bottom: 40px;
+}
 .iconUpload {
   stroke: #2f2f2f;
   fill: transparent;
+
 }
 
 .activeTime {
@@ -70,12 +73,6 @@
   align-items: center;
 }
 
-.partWrap {
-  margin-bottom: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
 
 .genderInput {
   display: none;
@@ -103,16 +100,20 @@
   justify-content: center;
 }
 
+.inputContainerGender,
 .inputContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  position: relative;
-}
+	display: flex;
+	flex-direction: column;
+	position: relative;
+ }
 
-.inputContainer.hasError {
-  margin-bottom: 24px;
-}
+ .inputContainerGender{
+	gap: 14px;
+ }
+
+ .inputContainer {
+	gap: 8px;
+ }
 
 .inputField,
 .border {
@@ -129,7 +130,6 @@
 .inputError {
   border-color: #ef5050;
   color: #ef5050;
-  position: relative;
 }
 
 .error {
@@ -139,7 +139,8 @@
   letter-spacing: -0.01em;
   color: #ef5050;
   position: absolute;
-  bottom: -19px;
+  bottom: -14px;
+  left: 0;
 }
 
 .borderText {
@@ -167,7 +168,6 @@
 .submitBtn {
   border-radius: 30px;
   padding: 14px 40px;
-  margin-top: 40px;
   background-color: var(--accent);
   font-weight: 700;
   font-size: 14px;
@@ -186,11 +186,7 @@
   background-color: transparent;
 }
 
-.iconUpload {
-  stroke: #2f2f2f;
-  width: 24px;
-  height: 24px;
-}
+
 
 @media screen and (min-width: 768px) {
   .iconUpload {
@@ -211,6 +207,7 @@
   .error {
     font-size: 14px;
     line-height: 129%;
+	 bottom: -19px;
   }
 
   .dailyTitle {
@@ -239,14 +236,16 @@
 
 @media screen and (min-width: 1440px) {
   .block {
-    display: flex;
-    gap: 40px;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+   gap: 40px;
   }
 
   .blockWrap {
-    width: 400px;
+	 margin-bottom: 0px;
   }
 
+ 
   .submitBtn {
     margin-top: 16px;
   }
