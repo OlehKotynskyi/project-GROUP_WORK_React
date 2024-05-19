@@ -133,8 +133,8 @@
 
 .visibilityBtn {
   position: absolute;
-  top: 18px;
-  right: 16px;
+  top: 15px;
+  right: 15px;
 }
 
 @media screen and (min-width: 768px) {
@@ -165,6 +165,11 @@
     font-size: 14px;
     line-height: 129%;
 	 bottom: -19px;
+  }
+
+  .visibilityBtn {
+    top: 18px;
+    right: 16px;
   }
 
   .submitBtn {
