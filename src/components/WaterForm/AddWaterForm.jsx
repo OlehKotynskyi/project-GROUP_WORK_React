@@ -1,19 +1,15 @@
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup"
 import { useForm } from "react-hook-form";
-<<<<<<< Updated upstream
-import { useDispatch } from 'react-redux';
-// import toast from 'react-hot-toast';
 
+//import { useDispatch } from 'react-redux';
+// import toast from 'react-hot-toast';
 // import { addWater } from "../../redux/water/operations";
 import sprite from "../../img/svg/sprite.svg";
 import css from "./WaterForm.module.css";
-=======
- import toast from 'react-hot-toast';
-import css from "./WaterForm.module.css";
- import { useDispatch } from ;
- import { addWater} from ;
->>>>>>> Stashed changes
+// import toast from 'react-hot-toast';
+
+
 
 const schema = Yup.object().shape({
   amount: Yup.number("Must be a number")
