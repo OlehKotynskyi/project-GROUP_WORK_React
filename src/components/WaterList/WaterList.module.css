@@ -1,12 +1,9 @@
 .sectionWaterlist {
-min-width: 303px;
-height: 74px;
+
+
 margin-bottom: 24px;
 }
 
 @media screen and (min-width: 768px) {
-.sectionWaterlist {
-min-width: 640px;
-height: 86px;
-}
+
 }

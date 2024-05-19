@@ -4,9 +4,7 @@
 	border-radius: 5px;
 	text-transform: capitalize;
 	background-color: var(--background);
-	padding: 40px 0px;
-	border-radius: 0 0 30px 30px;
-	height: 428px;
+	border-radius: 30px;
 }
 
 .calendar__header {
@@ -28,7 +26,7 @@
 	content: 'Month';
 	position: absolute;
 	left: 0px;
-	top: 11%;
+	top: 6px;
 	font-weight: 700;
 	font-size: 20px;
 	line-height: 1.2;
@@ -39,7 +37,6 @@
 .calendar__header__arrow__left {
 	position: absolute;
 	top: 24%;
-	/*transform: translate(0, -50%);*/
 	left: 0;
 	width: 20px;
 	height: 20px;
@@ -76,6 +73,9 @@
 	.calendar__week__names {
 		grid-template-columns: repeat(8, 1fr);
 	}
+	.calendar__header {
+		max-width: 163px;
+	}
 }
 
 .calendar__days {
@@ -88,7 +88,7 @@
 	display: grid;
 	text-align: center;
 	align-items: center;
-	grid-template-columns: repeat(7, 1fr);
+	grid-template-columns: repeat(7, auto);
 	column-gap: 5px;
 	justify-content: space-between;
 	row-gap: 36px;
@@ -96,8 +96,35 @@
 
 @media screen and (min-width: 768px){
 	.calendar__days {
-		grid-template-columns: repeat(8, 28px);
+		grid-template-columns: repeat(8, auto);
+		line-height: 1.5;
+		font-size: 16px;
+		row-gap: 42px;
 	}
+	.calendar__header {
+		font-size: 16px;
+		line-height: 1.5;
+	}
+	
+	.calendar::before {
+		content: 'Month';
+		position: absolute;
+		left: 0px;
+		top: 8px;
+		font-weight: 700;
+		font-size: 24px;
+		line-height: 114%;
+		letter-spacing: -0.01em;
+		color: var(--main);
+	}
+
+	.calendar__header__arrow__left,
+	.calendar__header__arrow__right  {
+		top: 29%;
+		width: 18px;
+		height: 18px;
+	}
+
 }
 
 .calendar__day {
@@ -117,7 +144,13 @@
 .calendar__day:hover {
 	background-color: var(--background);
 }
-
+@media screen and (min-width: 768px){
+	.calendar__day {
+		padding: 7px 15px;
+		width: 38px;
+		height: 38px;
+	}
+}
 .waterPercentage {
 	position: absolute;
 	bottom: -70%;
@@ -127,4 +160,12 @@
 	line-height: 100%;
 	color: rgba(47, 47, 47, 0.6);
 	pointer-events: none;
+}
+@media screen and (min-width: 768px){
+	.waterPercentage {
+		bottom: -70%;
+		left: 32%;
+		font-size: 12px;
+		line-height: 187%;
+	}
 }
