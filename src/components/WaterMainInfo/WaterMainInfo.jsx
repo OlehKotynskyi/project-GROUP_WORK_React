@@ -7,9 +7,8 @@ import css from './WaterMainInfo.module.css';
 import thermos1x from '../../img/thermos/thermos_desk@1x.png';
 import thermos2x from '../../img/thermos/thermos_desk@2x.png';
 
-export const WaterMainInfo = ({openModal}) => {
-  // Assuming dailyNorm is passed as props from parent component
-  const dailyNorm = 1500; // Example value, replace with actual value
+export const WaterMainInfo = ({ openModal }) => {
+  const dailyNorm = 1.5;
   return (
     <>
       <section className={css.section}>
