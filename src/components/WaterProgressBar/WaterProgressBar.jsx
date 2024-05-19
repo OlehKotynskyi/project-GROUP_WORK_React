@@ -4,7 +4,7 @@ import { Slider } from '@mui/material';
 import css from './WaterProgressBar.module.css';
 
 export const WaterProgressBar = ({ currentAmount, dailyNorm }) => {
-  const percentage =50;
+  const percentage = 50;
 
   const shouldDisplayPercentage = value => {
     return [10, 20, 30, 60, 70, 80].includes(value);
@@ -12,7 +12,7 @@ export const WaterProgressBar = ({ currentAmount, dailyNorm }) => {
   const screenWidth = document.documentElement.scrollWidth;
   const top = screenWidth <= 768 ? 32 : 36;
   const fontSize = screenWidth <= 768 ? '8px' : '10px';
-  console.log(screenWidth);
+
   return (
     <>
       <div className={css.wrapper}>
