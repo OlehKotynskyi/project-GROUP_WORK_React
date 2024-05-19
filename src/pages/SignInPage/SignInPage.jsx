@@ -2,8 +2,10 @@
 import React, { useState, useEffect } from 'react';
 import SignIn from 'components/SignIn/SignIn';
 import AdvantagesSection from 'components/AdvantagesSection/AdvantagesSection';
+
 import style from '../Base.module.css';
 import css from './SignInPage.module.css';
+
 function SignInPage() {
   const [isDesktop, setIsDesktop] = useState(false);
 

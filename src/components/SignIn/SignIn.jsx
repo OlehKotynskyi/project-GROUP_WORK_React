@@ -38,6 +38,7 @@ const SignIn = () => {
 
   return (
     <section className={css.section}>
+	 <div className={css.wrapSection}>
       <Logo />
       <h1 className={css.title}>Sign In</h1>
       <form action="" onSubmit={handleSubmit(onSubmit)} className={css.form}>
@@ -95,6 +96,7 @@ const SignIn = () => {
           </NavLink>
         </p>
       </form>
+		</div>
     </section>
   );
 };
