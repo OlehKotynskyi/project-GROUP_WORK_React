@@ -18,10 +18,10 @@ export const UserPanel = ({ username, openModal }) => {
           Hello, <span className={css.userName}>{username}</span>
           <span className={css.exclamationPoint}>!</span>
         </p>
-        <div className={css.btncontainer}>
+        <div className={css.btnContainer}>
           <button onClick={togglePopover} className={css.btnUser}>
             <span className={css.btnUserName}>{username}</span>
-            <div className={css.imgAavatar}>
+            <div className={css.imgAvatar}>
               <img src={userAvatar} alt="avatar" />
             </div>
             <svg className={`${css.iconUserSetting} ${isPopoverOpen ? css.iconUserSettingUp : ''}`}>

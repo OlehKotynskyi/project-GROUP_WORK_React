@@ -1,0 +1,134 @@
+.waterItemContainer {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+}
+.svgContainer {
+    width: 38px;
+    height: 38px;
+}
+
+.svgWaterGlass {
+    fill: var(--accent);
+    width: 100%;
+    height: 100%;
+}
+
+.infoContainer {
+    width: 49px;
+    height: 32px;
+}
+
+.infoAmount {
+    width: 49px;
+    margin-bottom: 6px;
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 100%;
+    color: var(--main);
+}
+
+.infoDate {
+    width: 46px;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 100%;
+    color: rgba(47, 47, 47, 0.6);
+}
+
+.btnContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 14px;
+    height: 36px;
+}
+
+.btnEdit {
+    background: var(--main-white);
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    
+}
+.btnSvgContainer {
+height: 14px;
+    width: 14px;
+}
+
+.svgEdit {
+    stroke-width: 1.80px;
+    stroke: var(--main);
+    fill: none;
+}
+
+.btnTrash {
+    background: var(--main-white);
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    height: 14px;
+}
+
+.svgTrash {
+    stroke-width: 1.80px;
+    stroke: var(--main);
+    fill: none;
+}
+
+@media screen and (min-width: 768px) {
+
+.waterItemContainer {
+    gap: 20px;
+}
+
+.svgContainer {
+    width: 44px;
+    height: 45px;
+}
+
+.infoContainer {
+    width: 52px;
+    height: 46px;
+}
+
+.infoAmount {
+    width: 52px;
+    margin-bottom: 0;
+    font-size: 15px;
+    line-height: 149%;
+}
+
+.infoDate {
+    width: 46px;
+    line-height: 187%;
+}
+
+.btnContainer {
+    gap: 14px;
+    width: 16px;
+    height: 46px;
+}
+
+.btnSvgContainer {
+height: 16px;
+    width: 16px;
+}
+
+.svgEdit {
+    height: 100%;
+    width: 100%;
+}
+
+.btnTrash {
+    height: 16px;
+}
+
+.svgTrash {
+    height: 100%;
+    width: 100%;
+}
+}
