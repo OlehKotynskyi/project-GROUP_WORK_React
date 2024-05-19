@@ -4,7 +4,6 @@ import ReactModal from 'react-modal';
 
 import { WaterMainInfo } from '../../components/WaterMainInfo/WaterMainInfo.jsx';
 import { WaterDetailedInfo } from '../../components/WaterDetailedInfo/WaterDetailedInfo.jsx';
-//import { AddWaterBtn } from '../../components/AddWaterBtn/AddWaterBtn';
 import { Modal } from 'components/Modal/Modal';
 import { WaterModal } from 'components/WaterModal/WaterModal';
 import { DeleteWaterModal } from 'components/DeleteWaterModal/DeleteWaterModal';
@@ -23,9 +22,11 @@ ReactModal.setAppElement('#root');
 
 function TrackerPage() {
   const [modal, setModal] = useState({ isOpen: false, content: null });
+  const [selectedWater, setSelectedWater] = useState(null);
 
-  function openModal(content) {
+  function openModal(content, water) {
     setModal({ isOpen: true, content });
+    setSelectedWater(water);
   }
 
   function afterOpenModal() {
@@ -45,11 +46,11 @@ function TrackerPage() {
         {modal.isOpen && <Modal isMainModalOpen={modal.isOpen} onClose={closeModal} onAfterOpen={afterOpenModal}>
         {((modal.content === "add") || (modal.content === "edit")) && (
           <WaterModal modal={modal} onClose={closeModal}>
-            {modal.content === "add" && <AddWaterForm />}
-            {modal.content === "edit" && <EditWaterForm />}
+            {modal.content === "add" && <AddWaterForm onClose={closeModal} />}
+            {modal.content === "edit" && <EditWaterForm onClose={closeModal} selectedWater={selectedWater} />}
           </WaterModal>
         )}
-        {modal.content === "delete" && <DeleteWaterModal onClose={closeModal} />}
+        {modal.content === "delete" && <DeleteWaterModal onClose={closeModal} selectedWater={selectedWater} />}
         {modal.content === "logout" && <LogOutModal onClose={closeModal} />}
         {modal.content === "settings" && <UserSettingsModal onClose={closeModal} />}
       </Modal>}

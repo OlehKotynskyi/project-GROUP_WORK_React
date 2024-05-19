@@ -20,14 +20,9 @@ input {
 .title {
     font-size: 16px;
     line-height: 20px;
-    font-weight: 400;
+    font-weight: 800;
 
-    @media screen and (min-width: 768px) and (max-width: 1439px) {
-        font-size: 16px;
-        line-height: 20px;
-    }
-
-    @media screen and (min-width: 1440px) {
+    @media screen and (min-width: 768px) {
         font-size: 18px;
         line-height: 24px;
     }
@@ -55,6 +50,9 @@ input {
 }
 
 .stepButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 50%;
     min-width: 40px;
     min-height: 40px;
@@ -70,15 +68,30 @@ input {
     }
 }
 
+.icon {
+    stroke: #2F2F2F;
+    width: 20px;
+    height: 20px;
+
+    @media screen and (min-width: 768px) {
+        width: 24px;
+        height: 24px;
+    }
+}
 
 .stepperAmount {
     border-radius: 30px;
     padding: 11px 20px;
+    min-width: 89px;
     background-color: #323F47;
     text-align: center;
     color: #FFFFFF;
 
     margin-right: 8px;
+
+    @media screen and (min-width: 768px) {
+        min-width: 92px;
+    }
 }
 
 .inputItem {
@@ -87,6 +100,7 @@ input {
 }
 
 .item {
+    position: relative;
     margin-bottom: 24px;
     display: flex;
     flex-direction: column;
@@ -114,6 +128,20 @@ input {
     margin-bottom: 8px;
 }
 
+.error {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    color: #ef5050;
+    position: absolute;
+    bottom: -20px;
+}
+
+.inputError {
+    border-color: #ef5050;
+    color: #ef5050;
+}
+
 .saveButton {
     border: none;
     padding: 14px 40px;
@@ -131,4 +159,10 @@ input {
         font-size: 16px;
         line-height: 24px;
     }
+}
+
+.saveButton:hover,
+.saveButton:focus {
+    cursor: pointer;
+    background-color: #87D28D;
 }

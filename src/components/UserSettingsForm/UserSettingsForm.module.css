@@ -1,9 +1,3 @@
-.modalTitle {
-  margin-bottom: 20px;
-  font-size: 20px;
-  line-height: 1.2;
-}
-
 .imageWrap {
   display: flex;
   flex-direction: column;
@@ -11,18 +5,35 @@
   margin-bottom: 40px;
 }
 
-.uploadImage {
+.avatarImg {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+}
+
+.imgInput {
+  display: none;
+}
+
+.buttonUpload {
+  background-color: transparent;
   display: flex;
   margin-top: 10px;
+  gap: 8px;
 }
-
-.button {
-  background-color: transparent;
+.blockWrap{
+	margin-bottom: 40px;
 }
-
-.icon {
+.iconUpload {
   stroke: #2f2f2f;
   fill: transparent;
+
+}
+
+.activeTime {
+  display: flex;
+  gap: 4px;
+  align-items: center;
 }
 
 .partWrap {
@@ -42,15 +53,10 @@
   line-height: 125%;
   letter-spacing: -0.01em;
   color: var(--main);
-  margin-bottom: 4px;
 }
 
 .dailyTitle {
   margin-bottom: 0;
-}
-
-.inputTitleSmall {
-  margin-bottom: 8px;
 }
 
 .inputTitle {
@@ -65,21 +71,49 @@
   display: flex;
   gap: 20px;
   align-items: center;
-  margin-top: 14px;
-  margin-bottom: 24px;
 }
+
 
 .genderInput {
-  margin-right: 10px;
+  display: none;
 }
 
-.genderInput::before {
-  content: '';
+.radio {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.iconRadio {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.iconWrap {
+  position: relative;
   width: 20px;
   height: 20px;
-  background-color: var(--accent);
-  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.inputContainerGender,
+.inputContainer {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+ }
+
+ .inputContainerGender{
+	gap: 14px;
+ }
+
+ .inputContainer {
+	gap: 8px;
+ }
 
 .inputField,
 .border {
@@ -90,8 +124,23 @@
 }
 
 .inputField {
-  margin-top: 8px;
   color: var(--main-text);
+}
+
+.inputError {
+  border-color: #ef5050;
+  color: #ef5050;
+}
+
+.error {
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 100%;
+  letter-spacing: -0.01em;
+  color: #ef5050;
+  position: absolute;
+  bottom: -14px;
+  left: 0;
 }
 
 .borderText {
@@ -119,7 +168,6 @@
 .submitBtn {
   border-radius: 30px;
   padding: 14px 40px;
-  margin-top: 40px;
   background-color: var(--accent);
   font-weight: 700;
   font-size: 14px;
@@ -129,13 +177,19 @@
   color: var(--main);
 }
 
-@media screen and (min-width: 768px) {
-  .modalTitle {
-    font-size: 28px;
-    line-height: 1.4;
-  }
+.submitBtn:hover {
+  cursor: pointer;
+  background-color: #87d28d;
+}
 
-  .icon {
+.buttonUpload {
+  background-color: transparent;
+}
+
+
+
+@media screen and (min-width: 768px) {
+  .iconUpload {
     width: 20px;
     height: 20px;
   }
@@ -143,12 +197,17 @@
   .inputTitleBold {
     font-size: 18px;
     line-height: 133%;
-    margin-bottom: 8px;
   }
 
   .inputTitle {
     font-size: 16px;
     line-height: 1.5;
+  }
+
+  .error {
+    font-size: 14px;
+    line-height: 129%;
+	 bottom: -19px;
   }
 
   .dailyTitle {
@@ -168,7 +227,6 @@
     font-size: 15px;
   }
 
-  
   .submitBtn {
     padding: 16px 50px;
     font-size: 16px;
@@ -178,15 +236,16 @@
 
 @media screen and (min-width: 1440px) {
   .block {
-    display: flex;
-    gap: 40px;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+   gap: 40px;
   }
 
   .blockWrap {
-    width: 400px;
+	 margin-bottom: 0px;
   }
 
-    
+ 
   .submitBtn {
     margin-top: 16px;
   }
