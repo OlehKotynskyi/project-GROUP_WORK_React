@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'https://project-group-8-backend.onrender.com';
+axios.defaults.baseURL = 'https://project-group-8-backend.onrender.com/api';
 
 export const fetchWaters = createAsyncThunk(
     'waters/fetch',
@@ -38,9 +38,9 @@ export const addWater = createAsyncThunk('waters/add', async (water, thunkAPI) =
 
 export const patchWater = createAsyncThunk(
     'waters/edit',
-    async ({ amountDose, timeDose, id }, thunkAPI) => {
+    async ({ amountDose, timeDose, waterId }, thunkAPI) => {
         try {
-            const response = await axios.patch(`/waters/${id}`, {
+            const response = await axios.patch(`/waters/${waterId}`, {
                 amountDose,
                 timeDose,
             });
