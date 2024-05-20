@@ -3,166 +3,194 @@ h2,
 h3,
 h4,
 p {
-    margin: 0;
-    padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 input {
-    outline: none;
-    border: none;
+	outline: none;
+	border: none;
 }
 
 .form {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 .title {
-    font-size: 16px;
-    line-height: 20px;
-    font-weight: 800;
+	font-size: 16px;
+	line-height: 20px;
+	font-weight: 800;
 
-    @media screen and (min-width: 768px) {
-        font-size: 18px;
-        line-height: 24px;
-    }
+	@media screen and (min-width: 768px) {
+		font-size: 18px;
+		line-height: 24px;
+	}
 }
 
 .stepperItem {
-    margin-top: 20px;
-    margin-bottom: 16px;
+	margin-top: 20px;
+	margin-bottom: 16px;
 }
 
 .itemTitle {
-    margin-bottom: 8px;
-    font-size: 14px;
-    line-height: 18px;
+	margin-bottom: 8px;
+	font-size: 14px;
+	line-height: 18px;
 
-    @media screen and (min-width: 768px) {
-        font-size: 16px;
-        line-height: 24px;
-    }
+	@media screen and (min-width: 768px) {
+		font-size: 16px;
+		line-height: 24px;
+	}
 }
 
 .stepper {
-    display: flex;
-    align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 .stepButton {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    min-width: 40px;
-    min-height: 40px;
-    border: 1.5px solid #323F47;
-    background-color: #FFFFFF;
-    color: #323F47;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	min-width: 40px;
+	min-height: 40px;
+	border: 1.5px solid #323F47;
+	background-color: #FFFFFF;
+	color: #323F47;
 
-    margin-right: 8px;
+	margin-right: 8px;
+	transition: 0.3s ease-in-out;
 
-    @media screen and (min-width: 768px) {
-        min-width: 43px;
-        min-height: 43px;
-    }
+	@media screen and (min-width: 768px) {
+		min-width: 43px;
+		min-height: 43px;
+	}
 }
 
-.icon {
-    stroke: #2F2F2F;
-    width: 20px;
-    height: 20px;
 
-    @media screen and (min-width: 768px) {
-        width: 24px;
-        height: 24px;
-    }
+.icon {
+	stroke: #2F2F2F;
+	width: 20px;
+	height: 20px;
+	transition: 0.3s ease-in-out;
+
+	@media screen and (min-width: 768px) {
+		width: 24px;
+		height: 24px;
+	}
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.stepButton:hover {
+		border: 1.5px solid var(--accent);
+		color: var(--accent);
+	}
+
+	.stepButton:active {
+		border: 1.5px solid #2F2F2F;
+		color: #2F2F2F;
+		background-color: var(--accent);
+	}
+
+	.stepButton:hover .icon {
+		stroke: var(--accent);
+	}
+
+	.stepButton:active .icon {
+		stroke: #2F2F2F;
+	}
+
 }
 
 .stepperAmount {
-    border-radius: 30px;
-    padding: 11px 20px;
-    min-width: 89px;
-    background-color: #323F47;
-    text-align: center;
-    color: #FFFFFF;
+	border-radius: 30px;
+	padding: 11px 20px;
+	min-width: 89px;
+	background-color: #323F47;
+	text-align: center;
+	color: #FFFFFF;
+	font-weight: 700;
+	margin-right: 8px;
 
-    margin-right: 8px;
-
-    @media screen and (min-width: 768px) {
-        min-width: 92px;
-    }
+	@media screen and (min-width: 768px) {
+		min-width: 92px;
+	}
 }
 
 .inputItem {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 .item {
-    position: relative;
-    margin-bottom: 24px;
-    display: flex;
-    flex-direction: column;
+	position: relative;
+	margin-bottom: 24px;
+	display: flex;
+	flex-direction: column;
 }
 
 .input {
-    max-width: 303px;
-    background-color: #FFFFFF;
-    border: 1.5px solid rgba(47,47,47, 0.15);
-    border-radius: 15px;
-    padding: 14px 16px;
-    font-size: 14px;
-    line-height: 18px;
+	max-width: 303px;
+	background-color: #FFFFFF;
+	border: 1.5px solid rgba(47, 47, 47, 0.15);
+	border-radius: 15px;
+	padding: 14px 16px;
+	font-size: 14px;
+	line-height: 18px;
 
-    @media screen and (min-width: 768px) {
-        padding: 16px 16px;
-        max-width: 438px;
-        font-size: 16px;
-        line-height: 24px;
-    }
+	@media screen and (min-width: 768px) {
+		padding: 16px 16px;
+		max-width: 438px;
+		font-size: 16px;
+		line-height: 24px;
+	}
 }
 
 .amountLabel {
-    composes: title;
-    margin-bottom: 8px;
+	composes: title;
+	margin-bottom: 8px;
 }
 
 .error {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 18px;
-    color: #ef5050;
-    position: absolute;
-    bottom: -20px;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 18px;
+	color: #ef5050;
+	position: absolute;
+	bottom: -20px;
 }
 
 .inputError {
-    border-color: #ef5050;
-    color: #ef5050;
+	border-color: #ef5050;
+	color: #ef5050;
 }
 
 .saveButton {
-    border: none;
-    padding: 14px 40px;
-    border-radius: 30px;
-    max-width: 116px;
-    background-color: #9BE1A0;
-    text-align: center;
-    font-size: 14px;
-    line-height: 18px;
-    font-weight: 400;
-
-    @media screen and (min-width: 768px) {
-        padding: 18px 50px;
-        max-width: 141px;
-        font-size: 16px;
-        line-height: 24px;
-    }
+	border: none;
+	padding: 14px 40px;
+	border-radius: 30px;
+	max-width: 116px;
+	background-color: #9BE1A0;
+	text-align: center;
+	font-size: 14px;
+	line-height: 18px;
+	font-weight: 700;
+	transition: 0.3s ease-in-out;
+	
+	@media screen and (min-width: 768px) {
+		padding: 18px 50px;
+		max-width: 141px;
+		font-size: 16px;
+		line-height: 24px;
+	}
 }
 
-.saveButton:hover,
-.saveButton:focus {
-    cursor: pointer;
-    background-color: #87D28D;
+@media (hover: hover) and (pointer: fine){
+	.saveButton:hover,
+	.saveButton:focus {
+		cursor: pointer;
+		background-color: #87D28D;
+	}
 }

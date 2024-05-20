@@ -21,9 +21,7 @@
 	display: grid;
 	row-gap: 16px;
 	margin-bottom: 32px;
-	
 }
-
 
 .inputContainer {
 	display: flex;
@@ -73,6 +71,7 @@
 	margin-bottom: 16px;
 	
 }
+
 @media (hover: hover) and (pointer: fine){
 	.singUpBtn:hover {
 		background-color: #87d28d;

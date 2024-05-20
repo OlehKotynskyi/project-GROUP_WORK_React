@@ -4,77 +4,98 @@
   |============================
 */
 .btnDark {
-  border-radius: 30px;
+	border-radius: 30px;
 
-  padding: 14px 20px;
-  font-weight: 700;
+	padding: 14px 20px;
+	font-weight: 700;
 
-  position: relative;
-  z-index: 1;
+	position: relative;
+	z-index: 1;
 
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background-color: var(--main);
-  color: var(--main-white);
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	background-color: var(--main);
+	color: var(--main-white);
+	transition: 0.3s ease-in-out;
 }
+
 .icon {
-  stroke: var(--main-white);
+	stroke: var(--main-white);
+	transition: 0.3s ease-in-out;
 }
-.btnDark:hover,
-.btnDark:hover .icon,
-.btnDark:focus,
-.btnDark:focus .icon {
-  stroke: var(--accent);
-  color: var(--accent);
+
+@media (hover: hover) and (pointer: fine) {
+
+	.btnDark:hover,
+	.btnDark:hover .icon,
+	.btnDark:focus,
+	.btnDark:focus .icon {
+		stroke: var(--accent);
+		color: var(--accent);
+	}
 }
+
+
 @media screen and (min-width: 768px) {
-  .btnDark {
-    padding: 18px 30px;
-    font-size: 16px;
-    line-height: 1.5;
-  }
-  .icon {
-    width: 24px;
-    height: 24px;
-  }
+	.btnDark {
+		padding: 18px 30px;
+		font-size: 16px;
+		line-height: 1.5;
+	}
+
+	.icon {
+		width: 24px;
+		height: 24px;
+	}
 }
+
 /*
   |============================
   | lite button
   |============================
 */
 .btnLite {
-  background-color: transparent;
-  font-weight: 700;
-  font-size: 16px;
-  letter-spacing: 1.5;
-  color: var(--main);
+	background-color: transparent;
+	font-weight: 700;
+	font-size: 16px;
+	letter-spacing: 1.5;
+	color: var(--main);
 
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
 
-  padding: 0;
-  gap: 10px;
+	padding: 0;
+	gap: 10px;
+	transition: 0.3s ease-in-out;
 }
+
 .btnLite .icon {
-  stroke: var(--main);
+	stroke: var(--main);
+	transition: 0.3s ease-in-out;
 }
+
 .btnLiteWrap {
-  background-color: var(--accent);
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 6px;
+	background-color: var(--accent);
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 6px;
 }
-.btnLite:hover .icon,
-.btnLite:focus .icon:hover {
-  stroke: var(--main-white);
-}
-.btnLite:hover .btnLiteWrap,
-.btnLite:focus .btnLiteWrap {
-  background-color: var(--main);
+
+@media (hover: hover) and (pointer: fine) {
+
+	.btnLite:hover .icon,
+	.btnLite:focus .icon:hover {
+		stroke: var(--main-white);
+	}
+
+	.btnLite:hover .btnLiteWrap,
+	.btnLite:focus .btnLiteWrap {
+		background-color: var(--main);
+	}
+
 }

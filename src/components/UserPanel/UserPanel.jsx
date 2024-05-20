@@ -21,7 +21,7 @@ export const UserPanel = ({ username, openModal }) => {
         <div className={css.btnContainer}>
           <button onClick={togglePopover} className={css.btnUser}>
             <span className={css.btnUserName}>{username}</span>
-            <div className={css.imgAvatar}>
+            <div className={css.imgAavatar}>
               <img src={userAvatar} alt="avatar" />
             </div>
             <svg className={`${css.iconUserSetting} ${isPopoverOpen ? css.iconUserSettingUp : ''}`}>
