@@ -28,8 +28,8 @@ export const LogOutModal = ({ onClose }) => {
                         secondary: '#fff',
                     },
                 });
-                actions.resetForm();
                 setLoad(false);
+                onClose();
             })
             .catch(setLoad(false))
     };
