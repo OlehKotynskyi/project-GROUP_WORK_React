@@ -1,12 +1,21 @@
 // src/components/UserPanel.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import sprite from '../../img/svg/sprite.svg';
-import userAvatar from '../../img/avatars/avatar.jpg';
+import { selectUserAvatar } from '../../redux/auth/selectors';
+import { currentUser } from '../../redux/auth/operations'
 import css from './UserPanel.module.css';
 
 export const UserPanel = ({ username, openModal }) => {
+ const dispatch = useDispatch();
+  const avatarURL = useSelector(selectUserAvatar);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
+   useEffect(() => {
+    dispatch(currentUser());
+   }, [dispatch]);
+  
+  
   const togglePopover = () => {
     setIsPopoverOpen(!isPopoverOpen);
   };
@@ -22,7 +31,7 @@ export const UserPanel = ({ username, openModal }) => {
           <button onClick={togglePopover} className={css.btnUser}>
             <span className={css.btnUserName}>{username}</span>
             <div className={css.imgAvatar}>
-              <img src={userAvatar} alt="avatar" />
+              <img src={avatarURL} alt="avatar" />
             </div>
             <svg className={`${css.iconUserSetting} ${isPopoverOpen ? css.iconUserSettingUp : ''}`}>
               <use xlinkHref={`${sprite}#icon-chevron-down`}></use>
