@@ -1,13 +1,13 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'https://project-group-8-backend.onrender.com/api';
+axios.defaults.baseURL = 'https://project-group-8-backend.onrender.com';
 
 export const fetchWaters = createAsyncThunk(
     'waters/fetch',
     async (_, thunkAPI) => {
         try {
-            const response = await axios.get('/waters/day');
+            const response = await axios.get('api/waters/day');
             return response.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.message);
@@ -19,7 +19,7 @@ export const deleteWater = createAsyncThunk(
     'waters/delete',
     async (waterId, thunkAPI) => {
         try {
-            const response = await axios.delete(`/waters/${waterId}`);
+            const response = await axios.delete(`api/waters/${waterId}`);
             return response.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.message);
@@ -29,7 +29,7 @@ export const deleteWater = createAsyncThunk(
 
 export const addWater = createAsyncThunk('waters/add', async (water, thunkAPI) => {
     try {
-        const response = await axios.post('/waters', water);
+        const response = await axios.post('api/waters', water);
         return response.data;
     } catch (error) {
         return thunkAPI.rejectWithValue(error.message);
@@ -40,7 +40,7 @@ export const patchWater = createAsyncThunk(
     'waters/edit',
     async ({ amountDose, timeDose, waterId }, thunkAPI) => {
         try {
-            const response = await axios.patch(`/waters/${waterId}`, {
+            const response = await axios.patch(`api/waters/${waterId}`, {
                 amountDose,
                 timeDose,
             });
