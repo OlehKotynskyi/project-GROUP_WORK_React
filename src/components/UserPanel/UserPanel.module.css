@@ -65,14 +65,14 @@
 	color: var(--main-white);
 }
 
-.imgAavatar {
+.imgAvatar {
 	border-radius: 50%;
 	width: 38px;
 	height: 38px;
 	overflow: hidden;
 }
 
-.imgAavatar img {
+.imgAvatar img {
 	width: 100%;
 	object-fit: cover;
 }

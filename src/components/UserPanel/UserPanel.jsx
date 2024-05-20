@@ -1,5 +1,5 @@
 // src/components/UserPanel.jsx
-import { useState } from 'react';
+import React, { useState } from 'react';
 import sprite from '../../img/svg/sprite.svg';
 import userAvatar from '../../img/avatars/avatar.jpg';
 import css from './UserPanel.module.css';
@@ -21,7 +21,7 @@ export const UserPanel = ({ username, openModal }) => {
         <div className={css.btnContainer}>
           <button onClick={togglePopover} className={css.btnUser}>
             <span className={css.btnUserName}>{username}</span>
-            <div className={css.imgAavatar}>
+            <div className={css.imgAvatar}>
               <img src={userAvatar} alt="avatar" />
             </div>
             <svg className={`${css.iconUserSetting} ${isPopoverOpen ? css.iconUserSettingUp : ''}`}>

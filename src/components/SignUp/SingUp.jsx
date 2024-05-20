@@ -1,4 +1,3 @@
-// import { useDispatch } from 'react-redux';
 import Logo from 'components/Logo/Logo';
 import { useForm } from 'react-hook-form';
 import { useState, React } from 'react';
@@ -35,11 +34,7 @@ const SignUp = () => {
   } = useForm({
     resolver: yupResolver(userSchema),
   });
-  // const dispatch = useDispatch();
-  // const onSubmit = (data, evt) => {
-  //   console.log(data);
-  //   evt.target.reset();
-  // };
+
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordReset, setShowPasswordReset] = useState(false);
 
@@ -68,12 +63,18 @@ const SignUp = () => {
                 password: data.password,
               })
             )
+              .unwrap()
               .then(() => {
                 toast.success('Registration success');
               })
               .catch(error => {
-                toast.error('Wrong registration!');
+                if (error === 'Request failed with status code 409') {
+                  toast.error('A user with this email already exists.');
+                } else {
+                  toast.error('Wrong registration!');
+                }
               });
+
             reset();
           })}
         >
