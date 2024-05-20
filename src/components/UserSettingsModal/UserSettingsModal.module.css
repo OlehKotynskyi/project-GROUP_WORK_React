@@ -17,7 +17,8 @@
   border-radius: 15px;
   box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
   background-color: var(--main-white);
-  width: 343px;
+  max-width: 343px;
+  width: 100%;
   padding: 40px 20px;
   z-index: 1000;
 }
@@ -43,7 +44,7 @@
 
   .modal {
     top: 64px;
-    width: 648px;
+    max-width: 648px;
     padding: 40px;
   }
 
@@ -60,6 +61,6 @@
 
 @media screen and (min-width: 1440px) {
   .modal {
-    width: 920px;
+	max-width: 920px;
   }
 }

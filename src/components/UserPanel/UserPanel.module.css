@@ -1,8 +1,8 @@
 .userInfo {
 	margin-bottom: 40px;
- }
- 
- .helloUser {
+}
+
+.helloUser {
 	font-family: "Gilroy", sans-serif;
 	font-weight: 400;
 	font-size: 32px;
@@ -10,69 +10,32 @@
 	letter-spacing: -0.01em;
 	color: var(--main);
 	margin-bottom: 20px;
- }
- 
- .userName {
+}
+
+.userName {
 	font-weight: 700;
- }
- 
- .exclamationPoint {
+}
+
+.exclamationPoint {
 	font-weight: 700;
- }
- 
- .btncontainer {
-	min-width: 137px;
-	height: 50px;
+}
+
+.btnContainer {
+	display: inline-block;
 	position: relative;
- }
- 
- .btnUser {
+}
+
+.btnUser {
 	display: flex;
 	gap: 10px;
 	align-items: center;
 	border-radius: 30px;
 	padding: 6px 12px;
-	min-width: 137px;
-	height: 50px;
 	background: var(--main);
- }
- 
- .btnUserName {
-	font-family: var(--font-family);
-	font-weight: 700;
-	font-size: 14px;
-	line-height: 129%;
-	letter-spacing: -0.01em;
-	text-align: center;
-	color: var(--main-white);
- }
- 
- .imgAavatar {
-	border-radius: 50%;
-	width: 38px;
-	height: 38px;
-	overflow: hidden;
- }
- 
- .imgAavatar img {
-	width: 100%;
-	object-fit: cover;
- }
- 
- .iconUserSetting {
-	stroke-width: 1.50px;
-	stroke: var(--main-white);
-	width: 16px;
-	height: 16px;
-	transform: rotate(360deg);
-	transition: transform 0.3s ease-in-out;
- }
- 
- .iconUserSettingUp {
-	transform: rotate(3.142rad);
- }
- 
- .popover {
+
+}
+
+.popover {
 	position: absolute;
 	border-radius: 15px;
 	padding: 14px 20px;
@@ -84,20 +47,57 @@
 	transform: translateY(-10px);
 	transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 	pointer-events: none;
- }
- 
- .popover.visible {
+}
+
+.popover.visible {
 	opacity: 1;
 	transform: translateY(0);
 	pointer-events: auto;
- }
- 
- .iconSettings {
+}
+
+.btnUserName {
+	font-family: var(--font-family);
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 129%;
+	letter-spacing: -0.01em;
+	text-align: center;
+	color: var(--main-white);
+}
+
+.imgAavatar {
+	border-radius: 50%;
+	width: 38px;
+	height: 38px;
+	overflow: hidden;
+}
+
+.imgAavatar img {
+	width: 100%;
+	object-fit: cover;
+}
+
+.iconUserSetting {
+	stroke-width: 1.50px;
+	stroke: var(--main-white);
+	width: 16px;
+	height: 16px;
+	transform: rotate(360deg);
+	transition: transform 0.3s ease-in-out;
+}
+
+.iconUserSettingUp {
+	transform: rotate(3.142rad);
+}
+
+
+.iconSettings {
 	fill: none;
 	stroke: var(--main);
- }
- 
- .settingsBtn {
+	transition: 0.3s ease-in-out;
+}
+
+.settingsBtn {
 	font-weight: 700;
 	font-size: 15px;
 	line-height: 149%;
@@ -108,22 +108,27 @@
 	gap: 8px;
 	align-items: center;
 	margin-bottom: 8px;
- }
- 
- .settingsBtn:hover {
-	color: var(--accent);
- }
- 
- .settingsBtn:hover .iconSettings {
-	stroke: var(--accent);
- }
- 
- .iconLogout {
+	transition: 0.3s ease-in-out;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.settingsBtn:hover {
+		color: var(--accent);
+	}
+
+	.settingsBtn:hover .iconSettings {
+		stroke: var(--accent);
+	}
+
+}
+
+.iconLogout {
 	fill: none;
 	stroke: rgba(50, 63, 71, 0.4);
- }
- 
- .logoutBtn {
+	transition: 0.3s ease-in-out;
+}
+
+.logoutBtn {
 	font-weight: 700;
 	font-size: 15px;
 	line-height: 149%;
@@ -133,45 +138,40 @@
 	display: flex;
 	gap: 8px;
 	align-items: center;
- }
- 
- .logoutBtn:hover {
-	color: var(--main);
- }
- 
- .logoutBtn:hover .iconLogout {
-	stroke: var(--main);
- }
- 
- @media screen and (min-width: 768px) {
-	.userInfo {
-	  display: flex;
-	  justify-content: space-between;
-	  align-items: center;
-	  margin-bottom: 49px;
-	}
- 
-	.btncontainer {
-	  margin-bottom: 0px;
-	  min-width: 157px;
-	  height: 56px;
-	}
- 
-	.helloUser {
-	  font-size: 36px;
-	  line-height: 106%;
-	  margin-bottom: 0px;
-	}
- 
-	.btnUser {
-	  min-width: 157px;
-	  height: 56px;
-	}
- 
-	.btnUserName {
-	  font-size: 16px;
-	  line-height: 150%;
-	}
- }
- 
+	transition: 0.3s ease-in-out;
+}
 
+@media (hover: hover) and (pointer: fine) {
+	.logoutBtn:hover {
+		color: var(--main);
+	}
+
+	.logoutBtn:hover .iconLogout {
+		stroke: var(--main);
+	}
+
+}
+
+@media screen and (min-width: 768px) {
+	.userInfo {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 49px;
+	}
+
+	.btnContainer {
+		margin-bottom: 0px;
+	}
+
+	.helloUser {
+		font-size: 36px;
+		line-height: 106%;
+		margin-bottom: 0px;
+	}
+
+	.btnUserName {
+		font-size: 16px;
+		line-height: 150%;
+	}
+}

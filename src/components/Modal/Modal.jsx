@@ -1,7 +1,7 @@
 // src/components/Modal.jsx
 import ReactModal from 'react-modal';
 
-import sprite from "../../img/svg/sprite.svg";
+//import sprite from "../../img/svg/sprite.svg";
 import css from "./Modal.module.css";
 
 export const Modal = ({ isMainModalOpen, children, onClose, onAfterOpen }) => {
@@ -16,11 +16,11 @@ export const Modal = ({ isMainModalOpen, children, onClose, onAfterOpen }) => {
         contentLabel="Example Modal"
       >
         <div>
-          <button className={css.button} onClick={onClose}>
+          {/*<button className={css.button} onClick={onClose}>
             <svg className={css.icon} width="14" height="14">
               <use xlinkHref={`${sprite}#icon-exsit`}></use>
             </svg>
-          </button>
+          </button>*/}
           <div>{children}</div>
         </div>
       </ReactModal>

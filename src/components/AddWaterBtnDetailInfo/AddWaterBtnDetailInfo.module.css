@@ -8,28 +8,32 @@
 }
 
 .addBtnContainer {
-display: flex;
-align-items: center;
-justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: var(--accent);
   width: 30px;
   height: 30px;
   border-radius: 30px;
   padding: 6px;
+  transition: 0.3s ease-in-out;
 }
 
 .iconPlus {
   stroke: var(--main);
   display: block;
-  stroke-width: 1.50px;
+  stroke-width: 1.5px;
+  transition: 0.3s ease-in-out;
 }
 
-.btnAddWater:hover .addBtnContainer {
-  background-color: var(--main);
-}
+@media (hover: hover) and (pointer: fine) {
+  .btnAddWater:hover .addBtnContainer {
+    background-color: var(--main);
+  }
 
-.btnAddWater:hover .iconPlus {
-  stroke: var(--main-white);
+  .btnAddWater:hover .iconPlus {
+    stroke: var(--main-white);
+  }
 }
 
 .addWaterText {

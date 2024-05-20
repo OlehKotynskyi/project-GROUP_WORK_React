@@ -1,70 +1,71 @@
 .sectionWaterList {
-  width: 303px;
-  overflow-x: auto;
-  overflow-y: hidden;
+	max-width: 303px;
+	overflow-x: auto;
+	overflow-y: hidden;
 }
 
 .sectionWaterList::after {
-  content: '';
-  display: block;
-  height: 24px;
+	content: '';
+	display: block;
+	height: 24px;
 }
 
 .sectionWaterList::-webkit-scrollbar {
-  height: 8px;
-  width: 303px;
-  border-radius: 9px;
+	height: 8px;
+	max-width: 303px;
+	border-radius: 9px;
 }
 
 .sectionWaterList::-webkit-scrollbar-track {
-  background: var(--main-white);
+	background: var(--main-white);
 }
 
 .sectionWaterList::-webkit-scrollbar-thumb {
-  background: var(--main);
-  border-radius: 9px;
+	background: var(--main);
+	border-radius: 9px;
 }
+
 .waterList {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  justify-content: flex-start;
-  /* width: 100%; */
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	justify-content: flex-start;
+	/* width: 100%; */
 }
 
 .waterItem {
-  border-radius: 15px;
-  padding: 18px 14px;
-  width: 149px;
-  height: 74px;
-  background: var(--main-white);
+	border-radius: 15px;
+	padding: 18px 14px;
+	max-width: 149px;
+
+	background: var(--main-white);
 }
 
 @media screen and (min-width: 768px) {
-  .sectionWaterList {
-    width: 640px;
-  }
-  .sectionWaterList::-webkit-scrollbar {
-    width: 640px;
-  }
+	.sectionWaterList {
+		max-width: 640px;
+	}
 
-  .waterList {
-    gap: 32px;
-  }
+	.sectionWaterList::-webkit-scrollbar {
+		max-width: 640px;
+	}
 
-  .waterItem {
-    padding: 20px;
-    width: 192px;
-    height: 86px;
-  }
+	.waterList {
+		gap: 32px;
+	}
+
+	.waterItem {
+		padding: 20px;
+		max-width: 192px;
+	}
 }
 
 @media screen and (min-width: 1440px) {
-  .sectionWaterList {
-    max-width: 608px;
-  }
+	.sectionWaterList {
+		max-width: 608px;
+	}
 
-  .waterList {
-    gap: 16px;
-  }
+	.waterList {
+		gap: 16px;
+	}
 }
