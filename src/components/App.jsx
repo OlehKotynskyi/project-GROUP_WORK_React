@@ -4,7 +4,10 @@ import { Toaster } from 'react-hot-toast';
 
 import { SharedLayout } from '../components/SharedLayout/SharedLayout';
 import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
+
 import { RestrictedRoute } from './RestrictedRoute';
+import { PrivateRoute } from './PrivateRoute';
+
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
 const SignUpPage = lazy(() => import('../pages/SignUpPage/SignUpPage'));
 const SignInPage = lazy(() => import('../pages/SignInPage/SignInPage'));
@@ -34,7 +37,15 @@ export const App = () => {
               />
             }
           />
-          <Route path="/tracker" element={<TrackerPage />} />
+           <Route
+              path="/tracker"
+              element={
+                <PrivateRoute
+                  redirectTo="/signin"
+                  component={<TrackerPage />}
+                />
+              }
+            />
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
