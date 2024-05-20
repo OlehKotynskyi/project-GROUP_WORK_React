@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { AddWaterBtnDetailInfo } from '../AddWaterBtnDetailInfo/AddWaterBtnDetailInfo';
 import { WaterList } from '../WaterList/WaterList';
 import css from './DailyInfo.module.css';
