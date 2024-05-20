@@ -24,8 +24,8 @@ export const WaterDetailedInfo = ({ openModal }) => {
 
     <section className={css.sectionDetailed}>
       <div className={css.contentContainer}>
-        <DailyInfo openModal={openModal} selectedDate={selectedDate}/>
-        <UserPanel username={user.name} openModal={openModal} />
+         <UserPanel username={user.name} openModal={openModal} />
+        <DailyInfo openModal={openModal} selectedDate={selectedDate}/>       
       </div>      
       <MonthInfo selectedDate={selectedDate} onDateChange={handleDateChange} />      
     </section>
