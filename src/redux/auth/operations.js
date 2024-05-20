@@ -22,6 +22,8 @@ export const signUp = createAsyncThunk(
         signal: controller.signal,
       });
 
+      thunkAPI.dispatch(signIn(credentials));
+
       return res.data;
     } catch (error) {
       if (axios.isCancel(error)) {

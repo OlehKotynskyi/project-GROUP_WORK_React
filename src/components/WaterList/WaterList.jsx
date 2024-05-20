@@ -1,9 +1,12 @@
 // src/components/WaterList/WaterList.jsx
 import React, { useRef } from 'react';
+import { useSelector } from "react-redux";
 import { WaterItem } from '../WaterItem/WaterItem';
+
+import { selectWaters } from '../../redux/water/selectors';
 import css from './WaterList.module.css'
 
-export const WaterList = ({ waterData, openModal }) => {
+export const WaterList = ({ openModal }) => {
   const sectionRef = useRef(null);
 
   const handleScroll = (event) => {
@@ -12,32 +15,18 @@ export const WaterList = ({ waterData, openModal }) => {
 
     sectionRef.current.scrollLeft += delta * scrollAmount;
   }
+
+  const waterData = useSelector(selectWaters);
+
   return (
     <section className={css.sectionWaterList} ref={sectionRef} onWheel={handleScroll}>
-        <ul className={css.waterList}>
-          <li className={css.waterItem}>
-            <WaterItem openModal={openModal}/>
-          </li>
-          <li className={css.waterItem}>
-            <WaterItem openModal={openModal}/>
-          </li>
-          <li className={css.waterItem}>
-            <WaterItem openModal={openModal}/>
-          </li><li className={css.waterItem}>
-            <WaterItem openModal={openModal}/>
-          </li><li className={css.waterItem}>
-            <WaterItem openModal={openModal}/>
-          </li><li className={css.waterItem}>
-            <WaterItem openModal={openModal}/>
-          </li>
-        </ul>
-      {/* <ul>
-        {waterData.map((item, index) => (
+      <ul>
+        {waterData && waterData.map((item, index) => (
           <li key={index}>
-            <WaterItem date={item.date} amount={item.amount} openModal={openModal} />
+            <WaterItem time={item.time} amount={item.amount} openModal={openModal} />
           </li>
         ))}
-      </ul> */}
+      </ul>
       
       
     </section>

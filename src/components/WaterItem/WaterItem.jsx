@@ -2,7 +2,7 @@
 import sprite from '../../img/svg/sprite.svg'
 import css from './WaterItem.module.css'
 
-export const WaterItem = ({ date, amount, openModal }) => {
+export const WaterItem = ({ time, amount, openModal }) => {
   return (
     <div className={css.waterItemContainer}>
       <div className={css.svgContainer}>
@@ -11,8 +11,8 @@ export const WaterItem = ({ date, amount, openModal }) => {
         </svg>
       </div>      
       <div className={css.infoContainer}>
-        <div className={css.infoAmount}>250 ml{amount}</div>
-        <div className={css.infoDate}>7:00 AM{date}</div>
+        <div className={css.infoAmount}>{amount} ml</div>
+        <div className={css.infoDate}>{time}</div>
       </div>
       <div className={css.btnContainer} >
         <button className={css.btnEdit} onClick={() => openModal("edit")}>
