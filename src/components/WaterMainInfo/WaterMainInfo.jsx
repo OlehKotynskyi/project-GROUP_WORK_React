@@ -10,7 +10,7 @@ import thermos2x from '../../img/thermos/thermos_desk@2x.png';
 export const WaterMainInfo = ({ openModal }) => {
   const dailyNorm = 1.5;
   return (
-    <>
+    
       <section className={css.section}>
         <Logo className={css.logo} />
         <img
@@ -38,6 +38,6 @@ export const WaterMainInfo = ({ openModal }) => {
           </div>
         </div>
       </section>
-    </>
+    
   );
 };

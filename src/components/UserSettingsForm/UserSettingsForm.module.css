@@ -20,7 +20,28 @@
   display: flex;
   margin-top: 10px;
   gap: 8px;
+  cursor: pointer;
+  position: relative;
 }
+
+.buttonUpload::before{
+	content: '';
+	position: absolute;
+	left: 1px;
+	bottom: 4px;
+	width: 100%;
+	height: 1px;
+	background-color: var(--main-text);
+	transition: 0.3s ease-in-out;
+	opacity: 0;
+}
+
+@media (hover: hover) and (pointer: fine){
+	.buttonUpload:hover::before{
+		opacity: 1;
+	}
+}
+
 .blockWrap{
 	margin-bottom: 40px;
 }
@@ -175,12 +196,16 @@
   letter-spacing: -0.01em;
   text-align: center;
   color: var(--main);
+  transition: 0.3s ease-in-out;
 }
 
-.submitBtn:hover {
-  cursor: pointer;
-  background-color: #87d28d;
+@media (hover: hover) and (pointer: fine){
+	.submitBtn:hover {
+		cursor: pointer;
+		background-color: #87d28d;
+	 }
 }
+
 
 .buttonUpload {
   background-color: transparent;

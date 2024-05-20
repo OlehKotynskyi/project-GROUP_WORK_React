@@ -9,11 +9,11 @@
     box-shadow: 0 1px 4px rgb(47 47 47 / 40%);
     outline: none;
     border: none;
-    min-width: 343px;
+    max-width: 343px;
     min-height: 490px;
-
+    width: 100%;
     @media screen and (min-width: 768px) {
-        min-width: 518px;
+        max-width: 518px;
         min-height: 587px;
     }
 }
