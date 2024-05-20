@@ -12,6 +12,7 @@ export const Calendar = ({
   locale = 'default',
   selectedDate,
   firstWeekDayNumber = 2,
+  onDateChange
 }) => {
   const { functions, state } = useCalendar({
     locale,
@@ -25,7 +26,9 @@ export const Calendar = ({
     const percentage = 0; // Ініціалізуємо значення waterPercentage
     setWaterPercentage(Math.min(100, percentage));
   }, []);
-
+  const handleDateChange = date => {
+    onDateChange(date);
+  }
   return (
     <div className={css.calendar}>
       <div className={css.calendar__header}>
@@ -61,6 +64,7 @@ export const Calendar = ({
                 aria-hidden
                 onClick={() => {
                   functions.setSelectedDay(day);
+                  handleDateChange(day.date);
                   // selectDate(day.date);
                 }}
                 className={[
