@@ -36,11 +36,11 @@ const SignIn = () => {
       .unwrap()
       .then(() => {
         toast.success('Login successful');
+        reset();
       })
       .catch(error => {
         toast.error('Login failed');
       });
-    reset();
   };
 
   const togglePasswordVisibility = () => {

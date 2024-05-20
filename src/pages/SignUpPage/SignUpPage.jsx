@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet';
 
 import SignUp from 'components/SignUp/SingUp';
 import AdvantagesSection from 'components/AdvantagesSection/AdvantagesSection';
@@ -25,6 +26,9 @@ function SignUpPage() {
 
   return (
     <div className={`${css.SignUpPageContainer} ${style.container}`}>
+      <Helmet>
+        <title>SignUp</title>
+      </Helmet>
       <SignUp />
 
       {isDesktop && <AdvantagesSection />}

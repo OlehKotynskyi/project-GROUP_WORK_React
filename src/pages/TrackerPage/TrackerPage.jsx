@@ -1,6 +1,7 @@
 // src/pages/TrackerPage/TrackerPage.jsx
 import { useState } from 'react';
 import ReactModal from 'react-modal';
+import { Helmet } from 'react-helmet';
 
 import { WaterMainInfo } from '../../components/WaterMainInfo/WaterMainInfo.jsx';
 import { WaterDetailedInfo } from '../../components/WaterDetailedInfo/WaterDetailedInfo.jsx';
@@ -41,6 +42,9 @@ function TrackerPage() {
   return (
 
     <div className={`${style.container} ${css.trakerPageContainer}`}>
+      <Helmet>
+        <title>Tracker</title>
+      </Helmet>
       <div>
         <WaterMainInfo openModal={openModal}/>
         {modal.isOpen && <Modal isMainModalOpen={modal.isOpen} onClose={closeModal} onAfterOpen={afterOpenModal}>

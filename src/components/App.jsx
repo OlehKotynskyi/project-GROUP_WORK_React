@@ -14,6 +14,13 @@ const SignInPage = lazy(() => import('../pages/SignInPage/SignInPage'));
 const TrackerPage = lazy(() => import('../pages/TrackerPage/TrackerPage'));
 
 export const App = () => {
+  // const dispatch = useDispatch();
+  // const { isRefreshing } = useAuth();
+
+  // useEffect(() => {
+  //   dispatch(refreshUser());
+  // }, [dispatch]);
+
   return (
     <>
       <Routes>
@@ -37,15 +44,12 @@ export const App = () => {
               />
             }
           />
-           <Route
-              path="/tracker"
-              element={
-                <PrivateRoute
-                  redirectTo="/signin"
-                  component={<TrackerPage />}
-                />
-              }
-            />
+          <Route
+            path="/tracker"
+            element={
+              <PrivateRoute redirectTo="/signin" component={<TrackerPage />} />
+            }
+          />
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
