@@ -41,7 +41,7 @@ export const EditWaterForm = ({ onClose, selectedWater }) => {
 
   const onSubmit = (values, actions) => {
     setLoad(true);
-    dispatch(patchWater({ id: selectedWater.id, timeDose: time, amountDose: amount }))
+    dispatch(patchWater({ _id: selectedWater._id, timeDose: time, amountDose: amount }))
       .unwrap()
       .then(() => {
         toast.success('Water successfully edited!', {

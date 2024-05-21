@@ -27,7 +27,6 @@ function TrackerPage() {
 
   function openModal(content, water) {
     setModal({ isOpen: true, content });
-    setSelectedWater(water);
   }
 
   function afterOpenModal() {
@@ -37,6 +36,10 @@ function TrackerPage() {
   function closeModal() {
     setModal({ isOpen: false, content: null });
     document.body.style.overflow = 'scroll';
+  }
+
+    function hendleSelectWater(water) {
+    setSelectedWater(water);
   }
 
   return (
@@ -60,7 +63,7 @@ function TrackerPage() {
       </Modal>}
       </div>
 	
-      <WaterDetailedInfo openModal={openModal} />
+      <WaterDetailedInfo openModal={openModal} selectWater={hendleSelectWater} />
 		
     </div>
   );
