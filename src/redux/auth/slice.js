@@ -20,10 +20,10 @@ const authSlice = createSlice({
       email: null,
 
       avatarURL: null,
-      dailyWaterNorma: null,
-      activeSportTime: null,
+      dailyWaterNorma: 0,
+      activeSportTime: 0,
       gender: null,
-      weight: null,
+      weight: 0,
     },
     token: null,
     accessToken: null,
@@ -74,8 +74,14 @@ const authSlice = createSlice({
       .addCase(currentUser.fulfilled, (state, action) => {
         state.user = action.payload;
       })
+      //
+      // .addCase(updateUserInfo.fulfilled, (state, action) => {
+      //   state.user = action.payload;
+      // })
+      //
       .addCase(updateUserInfo.fulfilled, (state, action) => {
-        state.user = action.payload;
+        const { name, value } = action.payload;
+        state.formData[name] = value;
       })
       .addCase(googleAuthenticateUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
