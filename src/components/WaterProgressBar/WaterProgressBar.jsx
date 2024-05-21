@@ -4,13 +4,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchWaters } from '../../redux/water/operations';
 import { selectWaters } from '../../redux/water/selectors';
-import { selectDailyWaterNorma } from '../../redux/auth/selectors';
 import css from './WaterProgressBar.module.css';
 
-export const WaterProgressBar = () => {
+export const WaterProgressBar = ({ dailyNorm }) => {
   const dispatch = useDispatch();
   const waters = useSelector(selectWaters);
-  const dailyNorm = useSelector(selectDailyWaterNorma);
 
   useEffect(() => {
     dispatch(fetchWaters());
