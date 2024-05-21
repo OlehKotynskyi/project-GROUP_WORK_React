@@ -32,8 +32,8 @@ export const EditWaterForm = ({ onClose, selectedWater }) => {
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      time: selectedWater.time,
-      amount: selectedWater.amount,
+      time: selectedWater.timeDose,
+      amount: selectedWater.amountDose,
     }
   });
 
@@ -41,7 +41,7 @@ export const EditWaterForm = ({ onClose, selectedWater }) => {
 
   const onSubmit = (values, actions) => {
     setLoad(true);
-    dispatch(patchWater({ id: selectedWater.id, ...values }))
+    dispatch(patchWater({ id: selectedWater.id, timeDose: time, amountDose: amount }))
       .unwrap()
       .then(() => {
         toast.success('Water successfully edited!', {
@@ -74,8 +74,8 @@ export const EditWaterForm = ({ onClose, selectedWater }) => {
       })
   };
 
-  const amount = watch("amount", selectedWater.amount);
-  const time = watch("time", selectedWater.time);
+  const amount = watch("amount", selectedWater.amountDose);
+  const time = watch("time", selectedWater.timeDose);
 
   const handleIncrement = () => {
     if (amount >= 999) {

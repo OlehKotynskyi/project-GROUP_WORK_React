@@ -1,9 +1,11 @@
 // src/components/WaterList/WaterList.jsx
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useSelector } from "react-redux";
 import { WaterItem } from '../WaterItem/WaterItem';
+import { useDispatch } from 'react-redux';
 
 import { selectWaters } from '../../redux/water/selectors';
+import { fetchWaters } from '../../redux/water/operations';
 import css from './WaterList.module.css'
 
 export const WaterList = ({ openModal }) => {
@@ -18,12 +20,18 @@ export const WaterList = ({ openModal }) => {
 
   const waterData = useSelector(selectWaters);
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchWaters());
+  }, [dispatch]);
+
   return (
     <section className={css.sectionWaterList} ref={sectionRef} onWheel={handleScroll}>
       <ul>
         {waterData && waterData.map((item, index) => (
           <li key={index}>
-            <WaterItem time={item.time} amount={item.amount} openModal={openModal} />
+            <WaterItem time={item.timeDose} amount={item.amountDose} openModal={openModal} />
           </li>
         ))}
       </ul>
