@@ -66,6 +66,7 @@ const SignUp = () => {
               .unwrap()
               .then(() => {
                 toast.success('Registration success');
+                reset();
               })
               .catch(error => {
                 if (error === 'Request failed with status code 409') {
@@ -74,8 +75,6 @@ const SignUp = () => {
                   toast.error('Wrong registration!');
                 }
               });
-
-            reset();
           })}
         >
           <div className={css.wrap}>
