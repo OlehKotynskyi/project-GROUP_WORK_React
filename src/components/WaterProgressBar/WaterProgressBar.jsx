@@ -1,10 +1,23 @@
 // src/components/WaterProgressBar.jsx
 import { Slider } from '@mui/material';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchWaters } from '../../redux/water/operations';
+import { selectWaters } from '../../redux/water/selectors';
 import css from './WaterProgressBar.module.css';
 
-export const WaterProgressBar = ({ currentAmount, dailyNorm }) => {
-  const percentage = 50;
+export const WaterProgressBar = ({ dailyNorm }) => {
+  const dispatch = useDispatch();
+  const waters = useSelector(selectWaters);
+
+  useEffect(() => {
+    dispatch(fetchWaters());
+  }, [dispatch]);
+
+  console.log("Fetched Waters:", waters);
+
+  const currentAmount = waters.reduce((total, water) => total + water.amountDose, 0);
+  const percentage = dailyNorm ? Math.min((currentAmount / dailyNorm) * 100, 100) : 0;
 
   const shouldDisplayPercentage = value => {
     return [10, 20, 30, 60, 70, 80].includes(value);
@@ -41,7 +54,6 @@ export const WaterProgressBar = ({ currentAmount, dailyNorm }) => {
             '& .MuiSlider-rail ': {
               opacity: '100%',
             },
-
             '& .MuiSlider-valueLabel': {
               background: 'transparent',
               top: { top },
@@ -68,15 +80,15 @@ export const WaterProgressBar = ({ currentAmount, dailyNorm }) => {
             <p>0%</p>
           </li>
           <li className={css.percentageItem}>
-            {percentage === 40 ? (
-              <p className={css.percentageCurrent}>40%</p>
+            {percentage === 50 ? (
+              <p className={css.percentageCurrent}>50%</p>
             ) : (
-              <p className={css.fifty}>50%</p>
+              <p>50%</p>
             )}
           </li>
           <li className={css.percentageItem}>
-            {percentage === 90 ? (
-              <p className={css.percentageCurrent}>90%</p>
+            {percentage === 100 ? (
+              <p className={css.percentageCurrent}>100%</p>
             ) : (
               <p>100%</p>
             )}
