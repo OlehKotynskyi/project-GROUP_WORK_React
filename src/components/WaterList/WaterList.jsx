@@ -28,15 +28,13 @@ export const WaterList = ({ openModal }) => {
 
   return (
     <section className={css.sectionWaterList} ref={sectionRef} onWheel={handleScroll}>
-      <ul>
-        {waterData && waterData.map((item, index) => (
-          <li key={index}>
-            <WaterItem time={item.timeDose} amount={item.amountDose} openModal={openModal} />
-          </li>
-        ))}
+        <ul className={css.waterList}>
+          {waterData && waterData.map((item, index) => (
+            <li className={css.waterItem} key={index}>
+              <WaterItem time={item.timeDose} amount={item.amountDose} openModal={openModal} />
+            </li>
+          ))}
       </ul>
-      
-      
     </section>
   );
 };
