@@ -14,7 +14,7 @@ export const DeleteWaterModal = ({ onClose, selectedWater }) => {
 
     const handleDelete = () => {
         setLoad(true);
-        dispatch(deleteWater(selectedWater))
+        dispatch(deleteWater(selectedWater._id))
             .unwrap()
             .then(() => {
                 toast.success('Water successfully delete!', {

@@ -42,7 +42,7 @@ const waterSlice = createSlice({
             .addCase(deleteWater.fulfilled, (state, action) => {
                 state.loading = false;
                 state.error = null;
-                state.list = state.list.filter(item => item.id !== action.payload.id);
+                state.list = state.list.filter(item => item._id !== action.payload._id);
             })
             .addCase(deleteWater.rejected, handleRejected)
             .addCase(patchWater.pending, handlePending)
@@ -50,7 +50,7 @@ const waterSlice = createSlice({
                 state.loading = false;
                 state.error = null;
                 state.list = state.list.map(item =>
-                    item.id === action.payload.id ? action.payload : item
+                    item._id === action.payload._id ? action.payload : item
                 );
             })
             .addCase(patchWater.rejected, handleRejected);
