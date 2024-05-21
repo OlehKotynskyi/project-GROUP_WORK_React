@@ -8,7 +8,7 @@ export const fetchWaters = createAsyncThunk(
     async (_, thunkAPI) => {
         try {
             const response = await axios.get('api/waters/day');
-            return response.data;
+            return response.data.list;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.message);
         }
@@ -17,9 +17,9 @@ export const fetchWaters = createAsyncThunk(
 
 export const deleteWater = createAsyncThunk(
     'waters/delete',
-    async (waterId, thunkAPI) => {
+    async (id, thunkAPI) => {
         try {
-            const response = await axios.delete(`api/waters/${waterId}`);
+            const response = await axios.delete(`api/waters/${id}`);
             return response.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.message);
@@ -29,7 +29,7 @@ export const deleteWater = createAsyncThunk(
 
 export const addWater = createAsyncThunk('waters/add', async (water, thunkAPI) => {
     try {
-        const response = await axios.post('api/waters', water);
+        const response = await axios.post('api/waters/add', water);
         return response.data;
     } catch (error) {
         return thunkAPI.rejectWithValue(error.message);
@@ -38,12 +38,24 @@ export const addWater = createAsyncThunk('waters/add', async (water, thunkAPI) =
 
 export const patchWater = createAsyncThunk(
     'waters/edit',
-    async ({ amountDose, timeDose, waterId }, thunkAPI) => {
+    async ({ amountDose, timeDose, id }, thunkAPI) => {
         try {
-            const response = await axios.patch(`api/waters/${waterId}`, {
+            const response = await axios.patch(`api/waters/${id}`, {
                 amountDose,
                 timeDose,
             });
+            return response.data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.message);
+        }
+    }
+);
+
+export const fetchWatersMonth = createAsyncThunk(
+    'waters/fetch',
+    async (dateDose, thunkAPI) => {
+        try {
+            const response = await axios.get('api/waters/month', dateDose);
             return response.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.message);

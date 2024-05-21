@@ -60,7 +60,7 @@ export const AddWaterForm = ({ onClose }) => {
 
   const onSubmit = (values, actions) => {
     setLoad(true);
-    dispatch(addWater({ ...values }))
+    dispatch(addWater({ timeDose: time, amountDose: amount }))
       .unwrap()
       .then(() => {
         toast.success('Water successfully added!', {
