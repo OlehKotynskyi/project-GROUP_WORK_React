@@ -31,30 +31,62 @@ const schema = Yup.object().shape({
 });
 
 export default function UserSettingsForm() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
-
   const user = useSelector(selectUser);
+  console.log(user);
 
-  const dispatch = useDispatch()
-  useEffect(() =>{
-    dispatch(currentUser())
-    // console.log(user)
-  }, [dispatch])
+  const dispatch = useDispatch();
 
+ 
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   formState: { errors },
+  // } = useForm({ resolver: yupResolver(schema) });
 
+  
 
-  const handleChange = event => {
-    const { name, value } = event.target;
-    dispatch(updateUserInfo({ name, value }));
-    // setFormData(prevData => ({
-    //   ...prevData,
-    //   [name]: value,
-    // }));
-  };
+  // useEffect(() =>{
+  //   dispatch(currentUser())
+  // }, [dispatch])
+
+  // const handleChange = event => {
+  //   const { name, value } = event.target;
+  //   dispatch(updateUserInfo({ [name]: value }));
+  // };
+  
+//
+   const {
+     register,
+     handleSubmit,
+     setValue,
+     formState: { errors },
+   } = useForm({
+     resolver: yupResolver(schema),
+     defaultValues: {
+       name: user.name || '',
+       email: user.email || '',
+       weight: user.weight || 0,
+       time: user.activeSportTime || 0,
+       water: user.dailyWaterNorma || 0,
+       gender: user.gender || 'woman',
+     },
+   });
+
+   useEffect(() => {
+     dispatch(currentUser());
+   }, [dispatch]);
+
+   useEffect(() => {
+     if (user) {
+       setValue('name', user.name);
+       setValue('email', user.email);
+       setValue('weight', user.weight);
+       setValue('time', user.activeSportTime);
+       setValue('water', user.dailyWaterNorma);
+       setValue('gender', user.gender);
+     }
+   }, [user, setValue]);
+  //
 
   const nameId = useId();
   const emailId = useId();
@@ -66,16 +98,17 @@ export default function UserSettingsForm() {
 
   const calculate = () => {
     if (user.gender === 'woman') {
-      return (user.weight * 0.03 + user.time * 0.04).toFixed(1);
+      return (user.weight * 0.03 + user.activeSportTime * 0.04).toFixed(1);
     } else if (user.gender === 'man') {
-      return (user.weight * 0.04 + user.time * 0.06).toFixed(1);
+      return (user.weight * 0.04 + user.activeSportTime * 0.06).toFixed(1);
     }
     return 0;
   };
 
-  const submit = e => {
-    e.preventDefault();
-    console.log(user);
+  const submit = data => {
+    // e.preventDefault();
+    dispatch(updateUserInfo(data));
+    console.log(data);
   };
 
   return (
@@ -116,7 +149,7 @@ export default function UserSettingsForm() {
                 value="woman"
                 className={css.genderInput}
                 {...register('gender')}
-                onChange={handleChange}
+                // onChange={handleChange}
               />
               <span className={css.iconWrap}>
                 <svg className={css.iconRadio} width="20" height="20">
@@ -138,7 +171,7 @@ export default function UserSettingsForm() {
                 value="man"
                 className={css.genderInput}
                 {...register('gender')}
-                onChange={handleChange}
+                // onChange={handleChange}
               />
               <span className={css.iconWrap}>
                 <svg className={css.iconRadio} width="20" height="20">
@@ -176,10 +209,9 @@ export default function UserSettingsForm() {
                 name="name"
                 id={nameId}
                 className={`${css.inputField} ${errors.name && css.inputError}`}
-                value={user.name}
+                defaultValue={user.name}
                 {...register('name')}
-                onChange={handleChange}
-                // onChange={e => dispatch(currentUser(e.target.value))}
+                // onChange={handleChange}
               />
               {errors.name && (
                 <p className={css.error}>{errors.name.message}</p>
@@ -200,7 +232,7 @@ export default function UserSettingsForm() {
                 className={css.inputField}
                 value={user.email}
                 {...register('email')}
-                onChange={handleChange}
+                // onChange={handleChange}
               />
               {errors.email && (
                 <p className={css.error}>{errors.email.message}</p>
@@ -255,7 +287,7 @@ export default function UserSettingsForm() {
                 name="weight"
                 className={css.inputField}
                 value={user.weight}
-                onChange={handleChange}
+                // onChange={handleChange}
                 {...register('weight')}
               />
               {errors.weight && (
@@ -274,8 +306,8 @@ export default function UserSettingsForm() {
                 type="number"
                 name="time"
                 className={css.inputField}
-                value={user.time}
-                onChange={handleChange}
+                value={user.activeSportTime}
+                // onChange={handleChange}
                 {...register('time')}
               />
               {errors.time && (
@@ -306,8 +338,8 @@ export default function UserSettingsForm() {
                 type="number"
                 name="water"
                 className={css.inputField}
-                value={user.water}
-                onChange={handleChange}
+                value={user.dailyWaterNorma}
+                // onChange={handleChange}
                 {...register('water')}
               />
               {errors.water && (
