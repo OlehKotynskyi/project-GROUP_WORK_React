@@ -2,7 +2,7 @@ import { AddWaterBtnDetailInfo } from '../AddWaterBtnDetailInfo/AddWaterBtnDetai
 import { WaterList } from '../WaterList/WaterList';
 import css from './DailyInfo.module.css';
 
-export const DailyInfo = ({ openModal, selectedDate}) => {
+export const DailyInfo = ({ openModal, selectedDate, selectWater}) => {
   const formatDate = date => {
     return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
   };
@@ -23,7 +23,7 @@ export const DailyInfo = ({ openModal, selectedDate}) => {
         <p className={css.date}>{isToday(selectedDate) ? 'Today' : formatDate(selectedDate)}</p>
         <AddWaterBtnDetailInfo openModal={openModal} />
       </div>
-      <WaterList date={selectedDate} openModal={openModal} />
+      <WaterList date={selectedDate} openModal={openModal} selectWater={selectWater}/>
       
     </section>
   );

@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import toast from 'react-hot-toast';
-
+import { Loader } from 'components/Loader/Loader';
 import { signIn } from '../../redux/auth/operations';
 import Logo from 'components/Logo/Logo';
 import sprite from '../../img/svg/sprite.svg';
@@ -24,6 +24,7 @@ const userSchema = Yup.object().shape({
 const SignIn = () => {
   const dispatch = useDispatch();
   const [showPass, setShowPass] = useState(false);
+  const [isloding, setIsLoding] = useState(false);
   const {
     register,
     handleSubmit,
@@ -32,6 +33,7 @@ const SignIn = () => {
   } = useForm({ resolver: yupResolver(userSchema) });
 
   const onSubmit = async data => {
+    setIsLoding(true);
     dispatch(signIn(data))
       .unwrap()
       .then(() => {
@@ -40,6 +42,9 @@ const SignIn = () => {
       })
       .catch(error => {
         toast.error('Login failed');
+      })
+      .finally(() => {
+        setIsLoding(false);
       });
   };
 
@@ -99,6 +104,7 @@ const SignIn = () => {
             )}
           </div>
 
+          {isloding && <Loader />}
           <button type="submit" className={css.submitBtn}>
             Sign In
           </button>

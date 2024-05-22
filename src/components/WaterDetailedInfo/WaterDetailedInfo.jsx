@@ -10,7 +10,7 @@ import { MonthInfo } from '../MonthInfo/MonthInfo';
 import css from './WaterDetailedInfo.module.css'
 
  
-export const WaterDetailedInfo = ({ openModal }) => {
+export const WaterDetailedInfo = ({ openModal, selectWater }) => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -25,7 +25,7 @@ export const WaterDetailedInfo = ({ openModal }) => {
     <section className={css.sectionDetailed}>
       <div className={css.contentContainer}>
          <UserPanel username={user.name} openModal={openModal} />
-        <DailyInfo openModal={openModal} selectedDate={selectedDate}/>       
+        <DailyInfo openModal={openModal} selectedDate={selectedDate} selectWater={selectWater} />       
       </div>      
       <MonthInfo selectedDate={selectedDate} onDateChange={handleDateChange} />      
     </section>

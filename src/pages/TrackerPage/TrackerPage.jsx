@@ -27,7 +27,6 @@ function TrackerPage() {
 
   function openModal(content, water) {
     setModal({ isOpen: true, content });
-    setSelectedWater(water);
   }
 
   function afterOpenModal() {
@@ -43,6 +42,10 @@ function TrackerPage() {
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
+
+  function hendleSelectWater(water) {
+    setSelectedWater(water);
+  }
 
   return (
     <div className={`${style.container} ${css.trakerPageContainer}`}>
@@ -84,7 +87,10 @@ function TrackerPage() {
         )}
       </div>
 
-      <WaterDetailedInfo openModal={openModal} />
+      <WaterDetailedInfo
+        openModal={openModal}
+        selectWater={hendleSelectWater}
+      />
     </div>
   );
 }

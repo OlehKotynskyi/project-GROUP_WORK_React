@@ -17,9 +17,9 @@ export const fetchWaters = createAsyncThunk(
 
 export const deleteWater = createAsyncThunk(
     'waters/delete',
-    async (id, thunkAPI) => {
+    async (_id, thunkAPI) => {
         try {
-            const response = await axios.delete(`api/waters/${id}`);
+            const response = await axios.delete(`api/waters/${_id}`);
             return response.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.message);
@@ -38,9 +38,9 @@ export const addWater = createAsyncThunk('waters/add', async (water, thunkAPI) =
 
 export const patchWater = createAsyncThunk(
     'waters/edit',
-    async ({ amountDose, timeDose, id }, thunkAPI) => {
+    async ({ amountDose, timeDose, _id }, thunkAPI) => {
         try {
-            const response = await axios.patch(`api/waters/${id}`, {
+            const response = await axios.patch(`api/waters/${_id}`, {
                 amountDose,
                 timeDose,
             });

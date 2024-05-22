@@ -8,7 +8,7 @@ import { selectWaters } from '../../redux/water/selectors';
 import { fetchWaters } from '../../redux/water/operations';
 import css from './WaterList.module.css'
 
-export const WaterList = ({ openModal }) => {
+export const WaterList = ({ openModal, selectWater }) => {
   const sectionRef = useRef(null);
 
   const handleScroll = (event) => {
@@ -28,15 +28,13 @@ export const WaterList = ({ openModal }) => {
 
   return (
     <section className={css.sectionWaterList} ref={sectionRef} onWheel={handleScroll}>
-      <ul>
-        {waterData && waterData.map((item, index) => (
-          <li key={index}>
-            <WaterItem time={item.timeDose} amount={item.amountDose} openModal={openModal} />
-          </li>
-        ))}
+        <ul className={css.waterList}>
+          {waterData && waterData.map((item) => (
+            <li className={css.waterItem} key={item._id} onClick={() => selectWater(item)}>
+              <WaterItem time={item.timeDose} amount={item.amountDose} openModal={openModal} />
+            </li>
+          ))}
       </ul>
-      
-      
     </section>
   );
 };
