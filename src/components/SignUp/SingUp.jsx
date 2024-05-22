@@ -10,6 +10,7 @@ import css from './SingUp.module.css';
 import { useDispatch } from 'react-redux';
 import { signUp } from '../../redux/auth/operations';
 import toast from 'react-hot-toast';
+import { Loader } from 'components/Loader/Loader';
 
 const userSchema = Yup.object().shape({
   email: Yup.string()
@@ -37,6 +38,7 @@ const SignUp = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordReset, setShowPasswordReset] = useState(false);
+  const [isloding, setIsLoding] = useState(false);
 
   const passwordVisibility = () => {
     setShowPassword(!showPassword);
@@ -57,6 +59,7 @@ const SignUp = () => {
         <form
           className={css.contact}
           onSubmit={handleSubmit(data => {
+            setIsLoding(true);
             dispatch(
               signUp({
                 email: data.email,
@@ -66,6 +69,8 @@ const SignUp = () => {
               .unwrap()
               .then(() => {
                 toast.success('Registration success');
+
+                reset();
               })
               .catch(error => {
                 if (error === 'Request failed with status code 409') {
@@ -73,9 +78,8 @@ const SignUp = () => {
                 } else {
                   toast.error('Wrong registration!');
                 }
+                setIsLoding(false);
               });
-
-            reset();
           })}
         >
           <div className={css.wrap}>
@@ -153,7 +157,7 @@ const SignUp = () => {
             </div>
           </div>
           <button className={css.singUpBtn} type="submit">
-            Sign Up
+            {isloding ? <Loader /> : 'Sign Up'}
           </button>
           <p className={css.text}>
             Already have account?{' '}

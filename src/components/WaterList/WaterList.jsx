@@ -1,34 +1,54 @@
-// src/components/WaterList/WaterList.jsx
-import React, { useRef } from 'react';
-import { useSelector } from "react-redux";
+import React, { useRef, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { WaterItem } from '../WaterItem/WaterItem';
+import { useDispatch } from 'react-redux';
 
 import { selectWaters } from '../../redux/water/selectors';
-import css from './WaterList.module.css'
+import { fetchWaters } from '../../redux/water/operations';
+import css from './WaterList.module.css';
 
-export const WaterList = ({ openModal }) => {
+export const WaterList = ({ openModal, selectWater, date }) => {
   const sectionRef = useRef(null);
+  const waterData = useSelector(selectWaters);
+  const dispatch = useDispatch();
 
-  const handleScroll = (event) => {
+  useEffect(() => {
+    dispatch(fetchWaters());
+  }, [dispatch]);
+
+  const filteredData = waterData.filter(item => {
+    const itemDate = new Date(`${item.dateDose}T${item.timeDose}`);
+    return itemDate.toDateString() === date.toDateString();
+  });
+
+  const handleScroll = event => {
     const delta = Math.sign(event.deltaY);
     const scrollAmount = 40;
-
     sectionRef.current.scrollLeft += delta * scrollAmount;
-  }
-
-  const waterData = useSelector(selectWaters);
+  };
 
   return (
-    <section className={css.sectionWaterList} ref={sectionRef} onWheel={handleScroll}>
-      <ul>
-        {waterData && waterData.map((item, index) => (
-          <li key={index}>
-            <WaterItem time={item.time} amount={item.amount} openModal={openModal} />
-          </li>
-        ))}
+    <section
+      className={css.sectionWaterList}
+      ref={sectionRef}
+      onWheel={handleScroll}
+    >
+      <ul className={css.waterList}>
+        {filteredData &&
+          filteredData.map(item => (
+            <li
+              className={css.waterItem}
+              key={item._id}
+              onClick={() => selectWater(item)}
+            >
+              <WaterItem
+                time={item.timeDose}
+                amount={item.amountDose}
+                openModal={openModal}
+              />
+            </li>
+          ))}
       </ul>
-      
-      
     </section>
   );
 };

@@ -3,6 +3,8 @@ import { useState } from 'react';
 import ReactModal from 'react-modal';
 import { Helmet } from 'react-helmet';
 
+
+
 import { WaterMainInfo } from '../../components/WaterMainInfo/WaterMainInfo.jsx';
 import { WaterDetailedInfo } from '../../components/WaterDetailedInfo/WaterDetailedInfo.jsx';
 import { Modal } from 'components/Modal/Modal';
@@ -14,12 +16,9 @@ import { EditWaterForm } from 'components/WaterForm/EditWaterForm';
 import UserSettingsModal from 'components/UserSettingsModal/UserSettingsModal.jsx';
 
 import style from '../Base.module.css';
-import css from './TrakerPage.module.css'
-
-
+import css from './TrakerPage.module.css';
 
 ReactModal.setAppElement('#root');
-
 
 function TrackerPage() {
   const [modal, setModal] = useState({ isOpen: false, content: null });
@@ -27,7 +26,6 @@ function TrackerPage() {
 
   function openModal(content, water) {
     setModal({ isOpen: true, content });
-    setSelectedWater(water);
   }
 
   function afterOpenModal() {
@@ -38,30 +36,55 @@ function TrackerPage() {
     setModal({ isOpen: false, content: null });
     document.body.style.overflow = 'scroll';
   }
+  
+  function hendleSelectWater(water) {
+    setSelectedWater(water);
+  }
 
   return (
-
     <div className={`${style.container} ${css.trakerPageContainer}`}>
       <Helmet>
         <title>Tracker</title>
       </Helmet>
       <div>
-        <WaterMainInfo openModal={openModal}/>
-        {modal.isOpen && <Modal isMainModalOpen={modal.isOpen} onClose={closeModal} onAfterOpen={afterOpenModal}>
-        {((modal.content === "add") || (modal.content === "edit")) && (
-          <WaterModal modal={modal} onClose={closeModal}>
-            {modal.content === "add" && <AddWaterForm onClose={closeModal} />}
-            {modal.content === "edit" && <EditWaterForm onClose={closeModal} selectedWater={selectedWater} />}
-          </WaterModal>
+        <WaterMainInfo openModal={openModal} />
+        {modal.isOpen && (
+          <Modal
+            isMainModalOpen={modal.isOpen}
+            onClose={closeModal}
+            onAfterOpen={afterOpenModal}
+          >
+            {(modal.content === 'add' || modal.content === 'edit') && (
+              <WaterModal modal={modal} onClose={closeModal}>
+                {modal.content === 'add' && (
+                  <AddWaterForm onClose={closeModal} />
+                )}
+                {modal.content === 'edit' && (
+                  <EditWaterForm
+                    onClose={closeModal}
+                    selectedWater={selectedWater}
+                  />
+                )}
+              </WaterModal>
+            )}
+            {modal.content === 'delete' && (
+              <DeleteWaterModal
+                onClose={closeModal}
+                selectedWater={selectedWater}
+              />
+            )}
+            {modal.content === 'logout' && <LogOutModal onClose={closeModal} />}
+            {modal.content === 'settings' && (
+              <UserSettingsModal onClose={closeModal} />
+            )}
+          </Modal>
         )}
-        {modal.content === "delete" && <DeleteWaterModal onClose={closeModal} selectedWater={selectedWater} />}
-        {modal.content === "logout" && <LogOutModal onClose={closeModal} />}
-        {modal.content === "settings" && <UserSettingsModal onClose={closeModal} />}
-      </Modal>}
       </div>
-	
-      <WaterDetailedInfo openModal={openModal} />
-		
+
+      <WaterDetailedInfo
+        openModal={openModal}
+        selectWater={hendleSelectWater}
+      />
     </div>
   );
 }
