@@ -7,15 +7,12 @@ export const DailyInfo = ({ openModal, selectedDate, selectWater}) => {
     return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
   };
 
-   const isToday = date => {
+  const isToday = date => {
     const today = new Date();
     return date.getDate() === today.getDate() &&
            date.getMonth() === today.getMonth() &&
            date.getFullYear() === today.getFullYear();
   };
-  // const handleDateChange = date => {
-  //   setSelectedDate(date);
-  // };
 
   return (
     <section className={css.dateInfo}>
@@ -24,7 +21,6 @@ export const DailyInfo = ({ openModal, selectedDate, selectWater}) => {
         <AddWaterBtnDetailInfo openModal={openModal} />
       </div>
       <WaterList date={selectedDate} openModal={openModal} selectWater={selectWater}/>
-      
     </section>
   );
 };
