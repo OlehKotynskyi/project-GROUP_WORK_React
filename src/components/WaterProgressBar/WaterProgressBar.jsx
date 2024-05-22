@@ -14,8 +14,13 @@ export const WaterProgressBar = ({ dailyNorm }) => {
     dispatch(fetchWaters());
   }, [dispatch]);
 
-  const currentAmount = waters.reduce((total, water) => total + water.amountDose, 0);
-  const percentage = dailyNorm ? Math.min((currentAmount / dailyNorm) * 100, 100) : 0;
+  const currentAmount = waters.reduce(
+    (total, water) => total + water.amountDose,
+    0
+  );
+  const percentage = dailyNorm
+    ? Math.min((currentAmount / dailyNorm) * 100, 100)
+    : 0;
 
   const shouldDisplayPercentage = value => {
     return [10, 20, 30, 60, 70, 80].includes(value);

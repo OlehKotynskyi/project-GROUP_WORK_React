@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 import { WaterItem } from '../WaterItem/WaterItem';
 import { useDispatch } from 'react-redux';
 
@@ -21,20 +21,33 @@ export const WaterList = ({ openModal, selectWater, date }) => {
     return itemDate.toDateString() === date.toDateString();
   });
 
-  const handleScroll = (event) => {
+  const handleScroll = event => {
     const delta = Math.sign(event.deltaY);
     const scrollAmount = 40;
     sectionRef.current.scrollLeft += delta * scrollAmount;
-  }
+  };
 
   return (
-    <section className={css.sectionWaterList} ref={sectionRef} onWheel={handleScroll}>
+    <section
+      className={css.sectionWaterList}
+      ref={sectionRef}
+      onWheel={handleScroll}
+    >
       <ul className={css.waterList}>
-        {filteredData && filteredData.map((item) => (
-          <li className={css.waterItem} key={item._id} onClick={() => selectWater(item)}>
-            <WaterItem time={item.timeDose} amount={item.amountDose} openModal={openModal} />
-          </li>
-        ))}
+        {filteredData &&
+          filteredData.map(item => (
+            <li
+              className={css.waterItem}
+              key={item._id}
+              onClick={() => selectWater(item)}
+            >
+              <WaterItem
+                time={item.timeDose}
+                amount={item.amountDose}
+                openModal={openModal}
+              />
+            </li>
+          ))}
       </ul>
     </section>
   );
