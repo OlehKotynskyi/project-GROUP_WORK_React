@@ -2,9 +2,8 @@
 import { useState } from 'react';
 import ReactModal from 'react-modal';
 import { Helmet } from 'react-helmet';
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { refreshUser } from '../../redux/auth/operations.js';
+
+
 
 import { WaterMainInfo } from '../../components/WaterMainInfo/WaterMainInfo.jsx';
 import { WaterDetailedInfo } from '../../components/WaterDetailedInfo/WaterDetailedInfo.jsx';
@@ -37,12 +36,7 @@ function TrackerPage() {
     setModal({ isOpen: false, content: null });
     document.body.style.overflow = 'scroll';
   }
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
-
+  
   function hendleSelectWater(water) {
     setSelectedWater(water);
   }
