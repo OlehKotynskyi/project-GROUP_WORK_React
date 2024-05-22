@@ -1,127 +1,113 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'https://project-group-8-backend.onrender.com';
+const instance = axios.create({
+  baseURL: 'https://project-group-8-backend.onrender.com',
+});
 
-const setAuthHeader = token => {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+const setToken = token => {
+  if (token) {
+    return (instance.defaults.headers.common.authorization = `Bearer ${token}`);
+  }
+  instance.defaults.headers.common.authorization = '';
 };
 
-const clearAuthHeader = () => {
-  axios.defaults.headers.common.Authorization = '';
-};
+instance.interceptors.response.use(
+  response => response,
+  async error => {
+    if (error.response.status === 401) {
+      const refreshToken = localStorage.getItem('refreshToken');
+      try {
+        const { data } = await instance.post('api/users/refresh', {
+          refreshToken,
+        });
+        setToken(data.accessToken);
+        localStorage.setItem('refreshToken', data.refreshToken);
+        return instance(error.config);
+      } catch (error) {
+        return Promise.reject(error);
+      }
+    }
+    return Promise.reject(error);
+  }
+);
 
 export const signUp = createAsyncThunk(
-  'api/users/signUp',
+  'auth/signUp',
   async (credentials, thunkAPI) => {
-    const controller = new AbortController();
-    thunkAPI.signal.addEventListener('abort', () => controller.abort());
-
     try {
-      const res = await axios.post('api/users/signUp', credentials, {
-        signal: controller.signal,
-      });
+      const { data } = await instance.post('api/users/signUp', credentials);
 
-      thunkAPI.dispatch(signIn(credentials));
+      localStorage.setItem('accessToken', data.accessToken);
+      localStorage.setItem('refreshToken', data.refreshToken);
+      setToken(data.accessToken);
 
-      return res.data;
+      return data;
     } catch (error) {
       if (axios.isCancel(error)) {
-      } else {
-        return thunkAPI.rejectWithValue(error.message);
+        return thunkAPI.rejectWithValue('Request canceled');
       }
+      return thunkAPI.rejectWithValue(error.response.data);
     }
   }
 );
 
 export const signIn = createAsyncThunk(
-  'api/users/signIn',
+  'auth/signIn',
   async (credentials, thunkAPI) => {
-    const controller = new AbortController();
-    thunkAPI.signal.addEventListener('abort', () => controller.abort());
-
     try {
-      const res = await axios.post('api/users/signIn', credentials, {
-        signal: controller.signal,
-      });
-      const { accessToken } = res.data;
-      setAuthHeader(accessToken);
+      const { data } = await instance.post('api/users/signIn', credentials);
 
-      return res.data;
+      localStorage.setItem('accessToken', data.accessToken);
+      localStorage.setItem('refreshToken', data.refreshToken);
+      setToken(data.accessToken);
+
+      return data;
     } catch (error) {
       if (axios.isCancel(error)) {
-      } else {
-        return thunkAPI.rejectWithValue(error.message);
+        return thunkAPI.rejectWithValue('Request canceled');
       }
+      return thunkAPI.rejectWithValue(error.response.data);
     }
   }
 );
-
-export const signOut = createAsyncThunk(
-  'api/users/signOut',
-  async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const accessToken = state.auth.accessToken;
-    const controller = new AbortController();
-    thunkAPI.signal.addEventListener('abort', () => controller.abort());
-
-    if (!accessToken) {
-      return thunkAPI.rejectWithValue('No access token available');
-    }
-    setAuthHeader(accessToken);
-    try {
-      await axios.post('api/users/signOut', null, {
-        signal: controller.signal,
-      });
-      clearAuthHeader();
-    } catch (error) {
-      if (axios.isCancel(error)) {
-      } else {
-        return thunkAPI.rejectWithValue(error.message);
-      }
-    }
-  }
-);
-
-const refreshAccessToken = async (refreshToken, signal) => {
+export const signOut = createAsyncThunk('auth/signOut', async (_, thunkAPI) => {
   try {
-    const response = await axios.post(
-      'api/users/refresh',
-      { token: refreshToken },
-      { signal }
-    );
-    const { accessToken, refreshToken: newRefreshToken } = response.data;
-    setAuthHeader(accessToken);
-    return { accessToken, newRefreshToken };
+    await instance.post('api/users/signOut');
+
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    setToken(null);
+
+    return;
   } catch (error) {
     if (axios.isCancel(error)) {
-    } else {
-      throw new Error('Unable to refresh access token');
+      return thunkAPI.rejectWithValue('Request canceled');
     }
+    return thunkAPI.rejectWithValue(error.response.data);
   }
-};
+});
 
 export const refreshUser = createAsyncThunk(
-  'api/users/refresh',
+  'auth/refresh',
   async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const refreshToken = state.auth.refreshToken;
-    const controller = new AbortController();
-    thunkAPI.signal.addEventListener('abort', () => controller.abort());
-    if (!refreshToken) {
-      return thunkAPI.rejectWithValue('Unable to refresh user');
+    const persistedToken = localStorage.getItem('refreshToken');
+
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue('Unable to fetch user');
     }
+
     try {
-      const { accessToken, newRefreshToken } = await refreshAccessToken(
-        refreshToken,
-        controller.signal
-      );
-      return { accessToken, refreshToken: newRefreshToken };
-    } catch (error) {
-      if (axios.isCancel(error)) {
-      } else {
-        return thunkAPI.rejectWithValue(error.message);
-      }
+      const res = await axios.post('api/users/refresh', {
+        refreshToken: persistedToken,
+      });
+
+      setToken(res.data.accessToken);
+
+      return res.data;
+    } catch (e) {
+      localStorage.setItem('refreshToken', '');
+      return thunkAPI.rejectWithValue(e.message);
     }
   }
 );
@@ -146,100 +132,78 @@ export const updateUserAvatar = createAsyncThunk(
 );
 
 export const currentUser = createAsyncThunk(
-  'api/users/current',
+  'auth/currentUser',
   async (_, thunkAPI) => {
-    const controller = new AbortController();
-    thunkAPI.signal.addEventListener('abort', () => controller.abort());
     try {
-      const res = await axios.get('api/users/current', {
-        signal: controller.signal,
-      });
+      const res = await instance.get('api/users/current');
       return res.data;
     } catch (error) {
       if (axios.isCancel(error)) {
-      } else {
-        return thunkAPI.rejectWithValue(error.message);
+        return thunkAPI.rejectWithValue('Request canceled');
       }
+      return thunkAPI.rejectWithValue(error.response.data);
     }
   }
 );
 
 export const updateUserInfo = createAsyncThunk(
-  'api/users/updateInfo',
+  'auth/updateUserInfo',
   async (userInfo, thunkAPI) => {
-    const controller = new AbortController();
-    thunkAPI.signal.addEventListener('abort', () => controller.abort());
+    const formData = new FormData();
+
+    Object.entries(userInfo).forEach(([key, value]) => {
+      if (key === 'avatar') {
+        formData.append(key, value, value.name);
+      } else {
+        formData.append(key, value);
+      }
+    });
+
     try {
-      const res = await axios.patch('api/users/update', userInfo, {
-        signal: controller.signal,
+      const res = await instance.post('api/users/update', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       });
       return res.data;
     } catch (error) {
-      if (axios.isCancel(error)) {
-      } else {
-        return thunkAPI.rejectWithValue(error.message);
-      }
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
 export const googleAuthenticateUser = createAsyncThunk(
-  'api/users/googleAuthenticate',
+  'auth/googleAuthenticate',
   async (token, thunkAPI) => {
-    const controller = new AbortController();
-    thunkAPI.signal.addEventListener('abort', () => controller.abort());
     try {
-      const res = await axios.post(
-        'api/users/google',
-        { token },
-        { signal: controller.signal }
-      );
+      const res = await instance.post('api/users/google', { token });
       return res.data;
     } catch (error) {
-      if (axios.isCancel(error)) {
-      } else {
-        return thunkAPI.rejectWithValue(error.message);
-      }
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
 export const verifyEmail = createAsyncThunk(
-  'api/users/verifyEmail',
+  'auth/verifyEmail',
   async (verificationToken, thunkAPI) => {
-    const controller = new AbortController();
-    thunkAPI.signal.addEventListener('abort', () => controller.abort());
     try {
-      const res = await axios.get(`api/users/verify/${verificationToken}`, {
-        signal: controller.signal,
-      });
+      const res = await instance.get(`api/users/verify/${verificationToken}`);
       return res.data;
     } catch (error) {
-      if (axios.isCancel(error)) {
-      } else {
-        return thunkAPI.rejectWithValue(error.message);
-      }
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
 export const resendVerificationToken = createAsyncThunk(
-  'users/resendVerificationToken',
+  'auth/resendVerificationToken',
   async (email, thunkAPI) => {
-    const controller = new AbortController();
-    thunkAPI.signal.addEventListener('abort', () => controller.abort());
     try {
-      const res = await axios.post(
-        'api/users/verify',
-        { email },
-        { signal: controller.signal }
-      );
+      const res = await instance.post('api/users/verify', { email });
       return res.data;
     } catch (error) {
-      if (axios.isCancel(error)) {
-      } else {
-        return thunkAPI.rejectWithValue(error.message);
-      }
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
