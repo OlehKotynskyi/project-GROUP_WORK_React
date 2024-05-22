@@ -7,6 +7,13 @@
 	padding: 209px 16px 32px;
 }
 
+@media only screen and (-webkit-min-device-pixel-ratio: 2),
+       only screen and (min-resolution: 192dpi) {
+    .section {
+        background-image: url('../../img/girlish/girl_mob@2x.jpg');
+    }
+}
+
 .customersWrapper {
 	display: flex;
 	gap: 4px;
@@ -104,6 +111,13 @@
 	}
 }
 
+@media only screen and (min-width: 768px) and (-webkit-min-device-pixel-ratio: 2),
+       only screen and (min-width: 768px) and (min-resolution: 192dpi) {
+    .section {
+        background-image: url('../../img/girlish/girl_tab@2x.jpg');
+    }
+}
+
 @media screen and (min-width: 1440px) {
 	.section {
 		flex-grow: 1;
@@ -117,4 +131,11 @@
 		font-size: 80px;
 		line-height: 95%;
 	}
+}
+
+@media only screen and (min-width: 1440px) and (-webkit-min-device-pixel-ratio: 2),
+       only screen and (min-width: 1440px) and (min-resolution: 192dpi) {
+    .section {
+        background-image: url('../../img/girlish/girl_desk@2x.jpg');
+    }
 }
