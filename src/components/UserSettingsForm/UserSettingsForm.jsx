@@ -1,7 +1,10 @@
-import React, { useId, useState } from 'react';
+import React, { useId, useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
+import { selectUser } from '../../redux/auth/selectors';
+import { currentUser, updateUserInfo } from '../../redux/auth/operations';
 
 import sprite from '../../img/svg/sprite.svg';
 import avatar from '../../img/avatars/avatar.jpg';
@@ -28,28 +31,43 @@ const schema = Yup.object().shape({
 });
 
 export default function UserSettingsForm() {
+  const user = useSelector(selectUser);
+  console.log(user);
+
+  const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
-
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    gender: '',
-    weight: 0,
-    time: 0,
-    water: 0,
+  } = useForm({
+    resolver: yupResolver(schema),
+    defaultValues: {
+      name: user.name || '',
+      email: user.email || '',
+      weight: user.weight || 0,
+      time: user.activeSportTime || 0,
+      water: user.dailyWaterNorma || 0,
+      gender: user.gender || 'woman',
+    },
   });
 
-  const handleChange = event => {
-    const { name, value } = event.target;
-    setFormData(prevData => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
+  useEffect(() => {
+    dispatch(currentUser());
+    console.log(currentUser)
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (user) {
+      setValue('name', user.name);
+      setValue('email', user.email);
+      setValue('weight', user.weight);
+      setValue('time', user.activeSportTime);
+      setValue('water', user.dailyWaterNorma);
+      setValue('gender', user.gender);
+    }
+  }, [user, setValue]);
 
   const nameId = useId();
   const emailId = useId();
@@ -60,17 +78,32 @@ export default function UserSettingsForm() {
   };
 
   const calculate = () => {
-    if (formData.gender === 'woman') {
-      return (formData.weight * 0.03 + formData.time * 0.04).toFixed(1);
-    } else if (formData.gender === 'man') {
-      return (formData.weight * 0.04 + formData.time * 0.06).toFixed(1);
+    if (user.gender === 'woman') {
+      return (user.weight * 0.03 + user.activeSportTime * 0.04).toFixed(1);
+    } else if (user.gender === 'man') {
+      return (user.weight * 0.04 + user.activeSportTime * 0.06).toFixed(1);
     }
     return 0;
   };
 
-  const submit = e => {
-    e.preventDefault();
-    console.log(formData);
+  const submit = async data => {
+    const formData = new FormData();
+    formData.append('name', data.name);
+    formData.append('email', data.email);
+    formData.append('weight', data.weight);
+    formData.append('time', data.time);
+    formData.append('water', data.water);
+    formData.append('gender', data.gender);
+    if (file) {
+      formData.append('avatar', file);
+    }
+
+    try {
+      await dispatch(updateUserInfo(formData)).unwrap();
+      alert('Updated successfully');
+    } catch (error) {
+      alert(`Error ${error.message}`);
+    }
   };
 
   return (
@@ -98,7 +131,9 @@ export default function UserSettingsForm() {
       </div>
       <div className={css.partWrap}>
         <div
-          className={`${css.inputContainerGender} ${errors.name ? css.hasError : ''}`}
+          className={`${css.inputContainerGender} ${
+            errors.name ? css.hasError : ''
+          }`}
         >
           <h2 className={css.inputTitleBold}>Your gender identity</h2>
           <div className={css.genderInputWrap}>
@@ -109,13 +144,12 @@ export default function UserSettingsForm() {
                 value="woman"
                 className={css.genderInput}
                 {...register('gender')}
-                onChange={handleChange}
               />
               <span className={css.iconWrap}>
                 <svg className={css.iconRadio} width="20" height="20">
                   <use
                     xlinkHref={
-                      formData.gender === 'woman'
+                      user.gender === 'woman'
                         ? `${sprite}#icon-radio-active`
                         : `${sprite}#icon-radio`
                     }
@@ -131,13 +165,12 @@ export default function UserSettingsForm() {
                 value="man"
                 className={css.genderInput}
                 {...register('gender')}
-                onChange={handleChange}
               />
               <span className={css.iconWrap}>
                 <svg className={css.iconRadio} width="20" height="20">
                   <use
                     xlinkHref={
-                      formData.gender === 'man'
+                      user.gender === 'man'
                         ? `${sprite}#icon-radio-active`
                         : `${sprite}#icon-radio`
                     }
@@ -169,9 +202,8 @@ export default function UserSettingsForm() {
                 name="name"
                 id={nameId}
                 className={`${css.inputField} ${errors.name && css.inputError}`}
-                value={formData.name}
+                defaultValue={user.name}
                 {...register('name')}
-                onChange={handleChange}
               />
               {errors.name && (
                 <p className={css.error}>{errors.name.message}</p>
@@ -190,9 +222,8 @@ export default function UserSettingsForm() {
                 name="email"
                 id={emailId}
                 className={css.inputField}
-                value={formData.email}
+                value={user.email}
                 {...register('email')}
-                onChange={handleChange}
               />
               {errors.email && (
                 <p className={css.error}>{errors.email.message}</p>
@@ -246,8 +277,7 @@ export default function UserSettingsForm() {
                 type="number"
                 name="weight"
                 className={css.inputField}
-                value={formData.weight}
-                onChange={handleChange}
+                value={user.weight}
                 {...register('weight')}
               />
               {errors.weight && (
@@ -266,8 +296,7 @@ export default function UserSettingsForm() {
                 type="number"
                 name="time"
                 className={css.inputField}
-                value={formData.time}
-                onChange={handleChange}
+                value={user.activeSportTime}
                 {...register('time')}
               />
               {errors.time && (
@@ -298,8 +327,7 @@ export default function UserSettingsForm() {
                 type="number"
                 name="water"
                 className={css.inputField}
-                value={formData.water}
-                onChange={handleChange}
+                value={user.dailyWaterNorma}
                 {...register('water')}
               />
               {errors.water && (
