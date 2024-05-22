@@ -18,7 +18,6 @@ const authSlice = createSlice({
     user: {
       name: null,
       email: null,
-
       avatarURL: null,
       dailyWaterNorma: null,
       activeSportTime: null,
@@ -39,6 +38,7 @@ const authSlice = createSlice({
         state.user.water = action.payload.water;
         state.user.avatarURL = action.payload.avatarURL;
         state.isLoggedIn = true;
+        
       })
       .addCase(signIn.fulfilled, (state, action) => {
         state.user = {
@@ -50,6 +50,7 @@ const authSlice = createSlice({
         state.accessToken = action.payload.accessToken;
         state.refreshToken = action.payload.refreshToken;
         state.isLoggedIn = true;
+        
       })
       .addCase(signOut.fulfilled, state => {
         state.user = {};

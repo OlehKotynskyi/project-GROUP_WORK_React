@@ -83,48 +83,33 @@ export const signOut = createAsyncThunk(
   }
 );
 
-const refreshAccessToken = async (refreshToken, signal) => {
-  try {
-    const response = await axios.post(
-      'api/users/refresh',
-      { token: refreshToken },
-      { signal }
-    );
-    const { accessToken, refreshToken: newRefreshToken } = response.data;
-    setAuthHeader(accessToken);
-    return { accessToken, newRefreshToken };
-  } catch (error) {
-    if (axios.isCancel(error)) {
-    } else {
-      throw new Error('Unable to refresh access token');
-    }
-  }
-};
-
 export const refreshUser = createAsyncThunk(
   'api/users/refresh',
   async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const refreshToken = state.auth.refreshToken;
-    const controller = new AbortController();
-    thunkAPI.signal.addEventListener('abort', () => controller.abort());
+    const refreshToken = thunkAPI.getState().auth.refreshToken;
+
     if (!refreshToken) {
       return thunkAPI.rejectWithValue('Unable to refresh user');
     }
+
     try {
-      const { accessToken, newRefreshToken } = await refreshAccessToken(
-        refreshToken,
-        controller.signal
+      const response = await axios.post(
+        'api/users/refresh',
+        { token: refreshToken },
       );
+      const { accessToken, refreshToken: newRefreshToken } = response.data;
+      setAuthHeader(accessToken);
       return { accessToken, refreshToken: newRefreshToken };
     } catch (error) {
       if (axios.isCancel(error)) {
+       
       } else {
         return thunkAPI.rejectWithValue(error.message);
       }
     }
   }
 );
+
 
 export const updateUserAvatar = createAsyncThunk(
   'api/users/avatars',
