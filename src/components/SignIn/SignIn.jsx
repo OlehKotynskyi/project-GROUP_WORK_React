@@ -104,9 +104,8 @@ const SignIn = () => {
             )}
           </div>
 
-          {isloding && <Loader />}
           <button type="submit" className={css.submitBtn}>
-            Sign In
+            {isloding ? <Loader /> : 'Sign In'}
           </button>
           <p className={css.redirect}>
             Don’t have an account?{' '}
