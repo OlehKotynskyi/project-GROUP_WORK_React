@@ -38,7 +38,7 @@ export const signIn = createAsyncThunk(
       const res = await axios.post('api/users/signIn', credentials, {
         signal: controller.signal,
       });
-      const { accessToken } = res.data;
+      const { accessToken, } = res.data;
       setAuthHeader(accessToken);
 
       return res.data;
@@ -77,8 +77,9 @@ export const refreshUser = createAsyncThunk(
     }
     try {
       const response = await axios.post('api/users/refresh', {
-        refreshToken: refreshToken,
+      refreshToken,
       });
+     
       const { accessToken, refreshToken: newRefreshToken } = response.data;
       setAuthHeader(accessToken);
       return { accessToken, refreshToken: newRefreshToken };
@@ -107,8 +108,17 @@ export const updateUserAvatar = createAsyncThunk(
 export const currentUser = createAsyncThunk(
   'auth/current',
   async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const accessToken = state.auth.accessToken;
     const controller = new AbortController();
     thunkAPI.signal.addEventListener('abort', () => controller.abort());
+
+    if (!accessToken) {
+      return thunkAPI.rejectWithValue('No access token available');
+    }
+
+    setAuthHeader(accessToken);
+
     try {
       const res = await axios.get('api/users/current', {
         signal: controller.signal,
@@ -116,6 +126,8 @@ export const currentUser = createAsyncThunk(
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
+    } finally {
+      clearAuthHeader();
     }
   }
 );
