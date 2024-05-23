@@ -1,7 +1,7 @@
 // src/components/Calendar.jsx
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchWaters } from '../../redux/water/operations';
+import { fetchWaters, fetchWatersMonth } from '../../redux/water/operations';
 import { selectWaters } from '../../redux/water/selectors';
 import { selectDailyWaterNorma } from '../../redux/auth/selectors';
 import { checkDateIsEqual, checkIsToday } from './date';
@@ -13,6 +13,7 @@ export const Calendar = ({
   selectedDate,
   firstWeekDayNumber = 2,
   onDateChange,
+  onMonthChangeProp,
 }) => {
   const dispatch = useDispatch();
   const waters = useSelector(selectWaters);
@@ -24,7 +25,6 @@ export const Calendar = ({
     firstWeekDayNumber,
   });
 
-  //  const [waterPercentage, setWaterPercentage] = useState(0);
   const [waterForSelectedDate, setWaterForSelectedDate] = useState(0);
 
   useEffect(() => {
@@ -32,6 +32,10 @@ export const Calendar = ({
       dispatch(fetchWaters(state.selectedDay.date));
     }
   }, [dispatch, state.selectedDay.date]);
+
+  useEffect(() => {
+    dispatch(fetchWatersMonth(state.selectedMonth));
+  }, [dispatch, state.selectedMonth]);
 
   useEffect(() => {
     if (waters && dailyWaterNorma && checkIsToday(state.selectedDay.date)) {
@@ -47,9 +51,9 @@ export const Calendar = ({
         (totalAmountForSelectedDate / dailyWaterNorma) * 100,
         100
       );
-      setWaterForSelectedDate(Math.floor(percentage)); // Відсотки без десяткових знаків
+      setWaterForSelectedDate(Math.floor(percentage));
     } else {
-      setWaterForSelectedDate(0); // Якщо вода не була додана на цю дату, встановлюємо відсоток на 0%
+      setWaterForSelectedDate(0);
     }
   }, [waters, dailyWaterNorma, state.selectedDay.date]);
 
@@ -58,13 +62,20 @@ export const Calendar = ({
     onDateChange(date);
   };
 
+  const handleMonthChange = month => {
+    onMonthChangeProp(month);
+  };
+
   return (
     <div className={css.calendar}>
       <div className={css.calendar__header}>
         <div
           aria-hidden
           className={css.calendar__header__arrow__left}
-          onClick={() => functions.onClickArrow('left')}
+          onClick={() => {
+            functions.onClickArrow('left');
+            handleMonthChange(state.selectedMonth);
+          }}
         ></div>
         <div aria-hidden>
           {state.monthesNames[state.selectedMonth.monthIndex].month}{' '}
@@ -73,7 +84,10 @@ export const Calendar = ({
         <div
           aria-hidden
           className={css.calendar__header__arrow__right}
-          onClick={() => functions.onClickArrow('right')}
+          onClick={() => {
+            functions.onClickArrow('right');
+            handleMonthChange(state.selectedMonth);
+          }}
         ></div>
       </div>
       <div className={css.calendar__body}>

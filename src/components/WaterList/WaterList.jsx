@@ -16,10 +16,12 @@ export const WaterList = ({ openModal, selectWater, date }) => {
     dispatch(fetchWaters());
   }, [dispatch]);
 
-  const filteredData = waterData.filter(item => {
-    const itemDate = new Date(`${item.dateDose}T${item.timeDose}`);
-    return itemDate.toDateString() === date.toDateString();
-  });
+  const filteredData = waterData
+    ? waterData.filter(item => {
+        const itemDate = new Date(`${item.dateDose}T${item.timeDose}`);
+        return itemDate.toDateString() === date.toDateString();
+      })
+    : [];
 
   const handleScroll = event => {
     const delta = Math.sign(event.deltaY);
