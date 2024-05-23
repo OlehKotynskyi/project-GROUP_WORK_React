@@ -4,7 +4,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 axios.defaults.baseURL = 'https://project-group-8-backend.onrender.com';
 
 const setAuthHeader = token => {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  axios.defaults.headers.common.Authorization = ` Bearer ${token}`;
 };
 
 const clearAuthHeader = () => {
@@ -38,7 +38,7 @@ export const signIn = createAsyncThunk(
       const res = await axios.post('api/users/signIn', credentials, {
         signal: controller.signal,
       });
-      const { accessToken, } = res.data;
+      const { accessToken } = res.data;
       setAuthHeader(accessToken);
 
       return res.data;
@@ -77,9 +77,9 @@ export const refreshUser = createAsyncThunk(
     }
     try {
       const response = await axios.post('api/users/refresh', {
-      refreshToken,
+        refreshToken,
       });
-     
+
       const { accessToken, refreshToken: newRefreshToken } = response.data;
       setAuthHeader(accessToken);
       return { accessToken, refreshToken: newRefreshToken };
@@ -126,8 +126,6 @@ export const currentUser = createAsyncThunk(
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
-    } finally {
-      clearAuthHeader();
     }
   }
 );
@@ -135,8 +133,16 @@ export const currentUser = createAsyncThunk(
 export const updateUserInfo = createAsyncThunk(
   'auth/updateInfo',
   async (userInfo, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const accessToken = state.auth.accessToken;
     const controller = new AbortController();
     thunkAPI.signal.addEventListener('abort', () => controller.abort());
+
+    if (!accessToken) {
+      return thunkAPI.rejectWithValue('No access token available');
+    }
+
+    setAuthHeader(accessToken);
 
     try {
       const formData = new FormData();
@@ -198,9 +204,11 @@ export const resendVerificationToken = createAsyncThunk(
     thunkAPI.signal.addEventListener('abort', () => controller.abort());
     try {
       const res = await axios.post(
-        'api/users/verify',
+        'api/users/resendVerificationToken',
         { email },
-        { signal: controller.signal }
+        {
+          signal: controller.signal,
+        }
       );
       return res.data;
     } catch (error) {

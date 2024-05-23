@@ -4,9 +4,11 @@ import { Toaster } from 'react-hot-toast';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { refreshUser } from '../redux/auth/operations.js';
-import { useSelector } from 'react-redux';
-import { selectAccessToken } from '../redux/auth/selectors.js';
+
+// import { useSelector } from 'react-redux';
+// import { selectAccessToken } from '../redux/auth/selectors.js';
 //import { fetchWatersMonth } from '../redux/water/operations';
+
 import { SharedLayout } from '../components/SharedLayout/SharedLayout';
 import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
 
@@ -22,10 +24,13 @@ export const App = () => {
   const dispatch = useDispatch();
   const token = useSelector(selectAccessToken);
 
+
   useEffect(() => {
-    if (token) return;
+
+
+    
     dispatch(refreshUser());
-  }, [dispatch, token]);
+  }, [dispatch]);
 
   // const handleMonthChange = month => {
   //   dispatch(fetchWatersMonth(month));
