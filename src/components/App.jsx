@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { refreshUser } from '../redux/auth/operations.js';
 import { useSelector } from 'react-redux';
 import { selectAccessToken } from '../redux/auth/selectors.js';
-
+import { fetchWatersMonth } from '../redux/water/operations';
 import { SharedLayout } from '../components/SharedLayout/SharedLayout';
 import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
 
@@ -26,6 +26,10 @@ console.log(token);
     if (token) return;
     dispatch(refreshUser());
   }, [dispatch, token]);
+
+  const handleMonthChange = month => {
+    dispatch(fetchWatersMonth(month));
+  };
 
   return (
     <>
@@ -59,7 +63,6 @@ console.log(token);
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-
       <Toaster />
     </>
   );

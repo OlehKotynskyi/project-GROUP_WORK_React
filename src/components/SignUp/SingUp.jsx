@@ -156,9 +156,8 @@ const SignUp = () => {
               )}
             </div>
           </div>
-          {isloding && <Loader />}
           <button className={css.singUpBtn} type="submit">
-            Sign Up
+            {isloding ? <Loader /> : 'Sign Up'}
           </button>
           <p className={css.text}>
             Already have account?{' '}
