@@ -24,7 +24,7 @@ export const App = () => {
   const token = useSelector(selectAccessToken);
 
   useEffect(() => {
-    if (!token) return;
+    if (token) return;
     dispatch(refreshUser());
   }, [dispatch, token]);
 
