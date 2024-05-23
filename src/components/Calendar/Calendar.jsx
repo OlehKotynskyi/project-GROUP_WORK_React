@@ -1,7 +1,7 @@
 // src/components/Calendar.jsx
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchWaters, fetchWatersMonth } from '../../redux/water/operations';
+import { fetchWatersMonth } from '../../redux/water/operations';
 import { selectWaters } from '../../redux/water/selectors';
 import { selectDailyWaterNorma } from '../../redux/auth/selectors';
 import { checkDateIsEqual, checkIsToday } from './date';
@@ -14,10 +14,14 @@ export const Calendar = ({
   firstWeekDayNumber = 2,
   onDateChange,
   onMonthChangeProp,
+  selectedDay,
+  selectDay,
+  currentMonth
 }) => {
   const dispatch = useDispatch();
   const waters = useSelector(selectWaters);
   const dailyWaterNorma = useSelector(selectDailyWaterNorma);
+  const [selectedMonth, setSelectedMonth] = useState(null);
 
   const { functions, state } = useCalendar({
     locale,
@@ -27,15 +31,26 @@ export const Calendar = ({
 
   const [waterForSelectedDate, setWaterForSelectedDate] = useState(0);
 
-  useEffect(() => {
-    if (state.selectedDay.date) {
-      dispatch(fetchWaters(state.selectedDay.date));
-    }
-  }, [dispatch, state.selectedDay.date]);
+  // useEffect(() => {
+  //   if (state.selectedDay.date) {
+  //     dispatch(fetchWaters(state.selectedDay.date));
+  //   }
+  // }, [dispatch, state.selectedDay.date]);
+
+  // useEffect(() => {
+  //   dispatch(fetchWatersMonth(state.selectedMonth));
+  // }, [dispatch, state.selectedMonth]);
 
   useEffect(() => {
-    dispatch(fetchWatersMonth(state.selectedMonth));
-  }, [dispatch, state.selectedMonth]);
+    const dateToFetch =!selectedMonth ? currentMonth : selectedMonth;
+    if (dateToFetch) {
+      dispatch(fetchWatersMonth(dateToFetch));
+    }
+  }, [dispatch, currentMonth, selectedMonth]);
+  
+    function handleSelectMonth(selectedMonth) {
+    setSelectedMonth(selectedMonth);
+  }
 
   useEffect(() => {
     if (waters && dailyWaterNorma && checkIsToday(state.selectedDay.date)) {
@@ -57,14 +72,14 @@ export const Calendar = ({
     }
   }, [waters, dailyWaterNorma, state.selectedDay.date]);
 
-  const handleDateChange = date => {
-    setWaterForSelectedDate(0);
-    onDateChange(date);
-  };
+  // const handleDateChange = date => {
+  //   setWaterForSelectedDate(0);
+  //   onDateChange(date);
+  // };
 
-  const handleMonthChange = month => {
-    onMonthChangeProp(month);
-  };
+  // const handleMonthChange = month => {
+  //   onMonthChangeProp(month);
+  // };
 
   return (
     <div className={css.calendar}>
@@ -74,7 +89,13 @@ export const Calendar = ({
           className={css.calendar__header__arrow__left}
           onClick={() => {
             functions.onClickArrow('left');
-            handleMonthChange(state.selectedMonth);
+            // handleMonthChange(state.selectedMonth);
+            handleSelectMonth(() => {
+              const month = state.selectedMonth;
+              const monthIndex = month.monthIndex +2;
+              const formattedMonthIndex = monthIndex < 10 ? `0${monthIndex}` : month.monthIndex;
+              return `${state.selectedYear}-${formattedMonthIndex}`
+            })
           }}
         ></div>
         <div aria-hidden>
@@ -86,7 +107,13 @@ export const Calendar = ({
           className={css.calendar__header__arrow__right}
           onClick={() => {
             functions.onClickArrow('right');
-            handleMonthChange(state.selectedMonth);
+            // handleMonthChange(state.selectedMonth);
+            handleSelectMonth(() => {
+              const month = state.selectedMonth;
+              const monthIndex = month.monthIndex + 2;
+              const formattedMonthIndex = monthIndex < 10 ? `0${monthIndex}` : month.monthIndex;
+              return `${state.selectedYear}-${formattedMonthIndex}`
+            })
           }}
         ></div>
       </div>
@@ -107,7 +134,12 @@ export const Calendar = ({
                 aria-hidden
                 onClick={() => {
                   functions.setSelectedDay(day);
-                  handleDateChange(day.date);
+                  // handleDateChange(day.date);
+                  selectDay(() => {
+                    const monthIndex = day.monthIndex + 1;
+                    const formattedMonthIndex = monthIndex < 10 ? `0${monthIndex}` : day.monthIndex;
+                    return `${day.year}-${formattedMonthIndex}-${day.dayNumber}`;
+                  });
                 }}
                 className={[
                   css.calendar__day,

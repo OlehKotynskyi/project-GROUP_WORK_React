@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import ReactModal from 'react-modal';
 import { Helmet } from 'react-helmet';
-
+import dayjs from 'dayjs';
 
 
 import { WaterMainInfo } from '../../components/WaterMainInfo/WaterMainInfo.jsx';
@@ -23,6 +23,10 @@ ReactModal.setAppElement('#root');
 function TrackerPage() {
   const [modal, setModal] = useState({ isOpen: false, content: null });
   const [selectedWater, setSelectedWater] = useState(null);
+  const [selectedDateDose, setSelectedDateDose] = useState(null);
+
+  const currentDay = dayjs().format('YYYY-MM-DD');
+  const currentMonth = dayjs().format('YYYY-MM');
 
   function openModal(content, water) {
     setModal({ isOpen: true, content });
@@ -39,6 +43,10 @@ function TrackerPage() {
   
   function hendleSelectWater(water) {
     setSelectedWater(water);
+  }
+
+    function handleSelectDate(dateDose) {
+    setSelectedDateDose(dateDose);
   }
 
   return (
@@ -84,6 +92,10 @@ function TrackerPage() {
       <WaterDetailedInfo
         openModal={openModal}
         selectWater={hendleSelectWater}
+        selectDate={handleSelectDate}
+        selectedDate={selectedDateDose}
+        currentDay={currentDay}
+        currentMonth={currentMonth}
       />
     </div>
   );
