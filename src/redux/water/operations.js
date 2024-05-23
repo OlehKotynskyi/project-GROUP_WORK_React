@@ -55,7 +55,7 @@ export const patchWater = createAsyncThunk(
 );
 
 export const fetchWatersMonth = createAsyncThunk(
-  'waters/fetch',
+  'waters/fetchMonth',
   async (dateDose, thunkAPI) => {
     try {
       const response = await axios.get('api/waters/month', dateDose);

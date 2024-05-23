@@ -1,5 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchWaters, deleteWater, patchWater, addWater } from './operations';
+import {
+  fetchWaters,
+  deleteWater,
+  patchWater,
+  addWater,
+  fetchWatersMonth,
+} from './operations';
 
 const handlePending = state => {
   state.loading = true;
@@ -16,6 +22,7 @@ const waterSlice = createSlice({
     list: [],
     loading: false,
     error: null,
+    monthlyList: [], // Для обробки місячних даних
   },
   extraReducers: builder => {
     builder
@@ -48,7 +55,16 @@ const waterSlice = createSlice({
           item._id === action.payload._id ? action.payload : item
         );
       })
-      .addCase(patchWater.rejected, handleRejected);
+      .addCase(patchWater.rejected, handleRejected)
+      .addCase(fetchWatersMonth.pending, state => {
+        state.loading = true;
+      })
+      .addCase(fetchWatersMonth.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.monthlyList = action.payload;
+      })
+      .addCase(fetchWatersMonth.rejected, handleRejected);
   },
 });
 

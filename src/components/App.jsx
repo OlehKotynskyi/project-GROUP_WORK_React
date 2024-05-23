@@ -6,8 +6,7 @@ import { useDispatch } from 'react-redux';
 import { refreshUser } from '../redux/auth/operations.js';
 import { useSelector } from 'react-redux';
 import { selectAccessToken } from '../redux/auth/selectors.js';
-
-
+import { fetchWatersMonth } from '../redux/water/operations';
 
 import { SharedLayout } from '../components/SharedLayout/SharedLayout';
 import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
@@ -25,9 +24,13 @@ export const App = () => {
   const token = useSelector(selectAccessToken);
 
   useEffect(() => {
-    if (!token) return;
+    if (token) return;
     dispatch(refreshUser());
   }, [dispatch, token]);
+
+  const handleMonthChange = month => {
+    dispatch(fetchWatersMonth(month));
+  };
 
   return (
     <>
@@ -58,7 +61,7 @@ export const App = () => {
               element={
                 <PrivateRoute
                   redirectTo="/signin"
-                  component={<TrackerPage />}
+                  component={<TrackerPage onMonthChange={handleMonthChange} />}
                 />
               }
             />
