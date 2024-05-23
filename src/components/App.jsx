@@ -4,9 +4,9 @@ import { Toaster } from 'react-hot-toast';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { refreshUser } from '../redux/auth/operations.js';
-import { useSelector } from 'react-redux';
-import { selectAccessToken } from '../redux/auth/selectors.js';
-import { fetchWatersMonth } from '../redux/water/operations';
+// import { useSelector } from 'react-redux';
+// import { selectAccessToken } from '../redux/auth/selectors.js';
+// import { fetchWatersMonth } from '../redux/water/operations';
 import { SharedLayout } from '../components/SharedLayout/SharedLayout';
 import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
 
@@ -20,16 +20,17 @@ const TrackerPage = lazy(() => import('../pages/TrackerPage/TrackerPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
-  const token = useSelector(selectAccessToken);
-console.log(token);
-  useEffect(() => {
-    if (token) return;
-    dispatch(refreshUser());
-  }, [dispatch, token]);
 
-  const handleMonthChange = month => {
-    dispatch(fetchWatersMonth(month));
-  };
+  useEffect(() => {
+
+
+    
+    dispatch(refreshUser());
+  }, [dispatch]);
+
+  // const handleMonthChange = month => {
+  //   dispatch(fetchWatersMonth(month));
+  // };
 
   return (
     <>

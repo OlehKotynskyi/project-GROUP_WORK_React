@@ -1,7 +1,7 @@
 // src/components/Calendar.jsx
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchWaters, fetchWatersMonth } from '../../redux/water/operations';
+import { fetchWaters } from '../../redux/water/operations';
 import { selectWaters } from '../../redux/water/selectors';
 import { selectDailyWaterNorma } from '../../redux/auth/selectors';
 import { checkDateIsEqual, checkIsToday } from './date';
@@ -25,7 +25,7 @@ export const Calendar = ({
     firstWeekDayNumber,
   });
 
-  const [waterForSelectedDate, setWaterForSelectedDate] = useState(0);
+  // const [waterForSelectedDate, setWaterForSelectedDate] = useState(0);
 
   useEffect(() => {
     if (state.selectedDay.date) {
@@ -33,34 +33,34 @@ export const Calendar = ({
     }
   }, [dispatch, state.selectedDay.date]);
 
-  useEffect(() => {
-    dispatch(fetchWatersMonth(state.selectedMonth));
-  }, [dispatch, state.selectedMonth]);
+  // useEffect(() => {
+  //   dispatch(fetchWatersMonth(state.selectedMonth));
+  // }, [dispatch, state.selectedMonth]);
 
-  useEffect(() => {
-    if (waters && dailyWaterNorma && checkIsToday(state.selectedDay.date)) {
-      const totalAmountForSelectedDate = waters.reduce((total, water) => {
-        const waterDate = new Date(water.dateDose);
-        if (checkDateIsEqual(waterDate, state.selectedDay.date)) {
-          return total + water.amountDose;
-        }
-        return total;
-      }, 0);
+  // useEffect(() => {
+  //   if (waters && dailyWaterNorma && checkIsToday(state.selectedDay.date)) {
+  //     const totalAmountForSelectedDate = waters.reduce((total, water) => {
+  //       const waterDate = new Date(water.dateDose);
+  //       if (checkDateIsEqual(waterDate, state.selectedDay.date)) {
+  //         return total + water.amountDose;
+  //       }
+  //       return total;
+  //     }, 0);
 
-      const percentage = Math.min(
-        (totalAmountForSelectedDate / dailyWaterNorma) * 100,
-        100
-      );
-      setWaterForSelectedDate(Math.floor(percentage));
-    } else {
-      setWaterForSelectedDate(0);
-    }
-  }, [waters, dailyWaterNorma, state.selectedDay.date]);
+  //     const percentage = Math.min(
+  //       (totalAmountForSelectedDate / dailyWaterNorma) * 100,
+  //       100
+  //     );
+  //     setWaterForSelectedDate(Math.floor(percentage));
+  //   } else {
+  //     setWaterForSelectedDate(0);
+  //   }
+  // }, [waters, dailyWaterNorma, state.selectedDay.date]);
 
-  const handleDateChange = date => {
-    setWaterForSelectedDate(0);
-    onDateChange(date);
-  };
+  // const handleDateChange = date => {
+  //   setWaterForSelectedDate(0);
+  //   onDateChange(date);
+  // };
 
   const handleMonthChange = month => {
     onMonthChangeProp(month);
@@ -107,7 +107,7 @@ export const Calendar = ({
                 aria-hidden
                 onClick={() => {
                   functions.setSelectedDay(day);
-                  handleDateChange(day.date);
+                  // handleDateChange(day.date);
                 }}
                 className={[
                   css.calendar__day,
@@ -121,10 +121,10 @@ export const Calendar = ({
                   <div
                     className={`${css.waterPercentage} my-custom-water-percentage`}
                     style={{
-                      width: `${waterForSelectedDate}%`,
+                      // width: `${waterForSelectedDate}%`,
                     }}
                   >
-                    {waterForSelectedDate}%
+                    {/* {waterForSelectedDate}% */}
                   </div>
                 )}
                 {!isSelectedDay && (
