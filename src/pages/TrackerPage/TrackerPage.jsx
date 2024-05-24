@@ -55,7 +55,7 @@ function TrackerPage() {
         <title>Tracker</title>
       </Helmet>
       <div>
-        <WaterMainInfo openModal={openModal} />
+        <WaterMainInfo openModal={openModal} selectedDate={selectedDateDose} currentDay={currentDay}/>
         {modal.isOpen && (
           <Modal
             isMainModalOpen={modal.isOpen}
