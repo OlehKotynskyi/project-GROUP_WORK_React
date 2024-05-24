@@ -6,7 +6,7 @@ axios.defaults.baseURL = 'https://project-group-8-backend.onrender.com';
 export const fetchWaters = createAsyncThunk('waters/fetch', async (date, thunkAPI) => {
   try {
     const response = await axios.get(`api/waters/${date}`);
-    return response.data.list;
+    return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
