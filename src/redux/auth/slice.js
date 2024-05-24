@@ -65,9 +65,11 @@ const authSlice = createSlice({
         state.accessToken = action.payload.accessToken;
         state.refreshToken = action.payload.refreshToken;
         state.isRefreshing = false;
+        state.isLoggedIn = true;
       })
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
+        state.isLoggedIn = false;
       })
       .addCase(updateUserAvatar.fulfilled, (state, action) => {
         state.user.avatarURL = action.payload.avatarURL;
