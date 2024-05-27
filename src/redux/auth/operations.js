@@ -71,17 +71,18 @@ export const signOut = createAsyncThunk('auth/signOut', async (_, thunkAPI) => {
 export const refreshUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
-    const refreshToken = thunkAPI.getState().auth.refreshToken;
-    if (!refreshToken) {
-      return thunkAPI.rejectWithValue('Unable to refresh user');
+    const currentRefreshToken = thunkAPI.getState().auth.refreshToken;
+    console.log('RefreshToken:', currentRefreshToken);
+    if (!currentRefreshToken) {
+      return thunkAPI.rejectWithValue('No refresh token available');
     }
     try {
-      const response = await axios.post('api/users/refresh', {
-        refreshToken,
+      const response = await axios.post('/api/users/refresh', {
+        refreshToken: currentRefreshToken,
       });
-
-      const { accessToken, refreshToken: newRefreshToken } = response.data;
-      setAuthHeader(accessToken);
+      const { accessToken,  newRefreshToken } = response.data;
+      setAuthHeader(accessToken, newRefreshToken);
+      console.log({ accessToken,  newRefreshToken });
       return { accessToken, refreshToken: newRefreshToken };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -108,8 +109,7 @@ export const updateUserAvatar = createAsyncThunk(
 export const currentUser = createAsyncThunk(
   'auth/current',
   async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const accessToken = state.auth.accessToken;
+    const accessToken = thunkAPI.getState().auth.accessToken;
     const controller = new AbortController();
     thunkAPI.signal.addEventListener('abort', () => controller.abort());
 
@@ -119,6 +119,7 @@ export const currentUser = createAsyncThunk(
 
     setAuthHeader(accessToken);
 
+    console.log(accessToken);
     try {
       const res = await axios.get('api/users/current', {
         signal: controller.signal,

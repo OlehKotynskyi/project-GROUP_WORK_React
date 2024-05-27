@@ -37,8 +37,9 @@ const authSlice = createSlice({
         state.token = action.payload.token;
         state.user.water = action.payload.water;
         state.user.avatarURL = action.payload.avatarURL;
+        state.accessToken = action.payload.accessToken;
+        state.refreshToken = action.payload.refreshToken;
         state.isLoggedIn = true;
-        
       })
       .addCase(signIn.fulfilled, (state, action) => {
         state.user = {
@@ -50,10 +51,17 @@ const authSlice = createSlice({
         state.accessToken = action.payload.accessToken;
         state.refreshToken = action.payload.refreshToken;
         state.isLoggedIn = true;
-        
       })
       .addCase(signOut.fulfilled, state => {
-        state.user = {};
+        state.user = {
+          name: null,
+          email: null,
+          avatarURL: null,
+          dailyWaterNorma: 0,
+          activeSportTime: 0,
+          gender: null,
+          weight: 0,
+        };
         state.accessToken = null;
         state.refreshToken = null;
         state.isLoggedIn = false;
@@ -62,24 +70,24 @@ const authSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        state.accessToken = action.payload.accessToken;
         state.refreshToken = action.payload.refreshToken;
+        state.accessToken = action.payload.accessToken;
         state.isRefreshing = false;
+        state.isLoggedIn = true;
       })
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
+        state.isLoggedIn = false;
       })
       .addCase(updateUserAvatar.fulfilled, (state, action) => {
         state.user.avatarURL = action.payload.avatarURL;
       })
       .addCase(currentUser.fulfilled, (state, action) => {
-        state.user = action.payload;     
+        state.accessToken = action.payload.accessToken;
+        state.user = action.payload;
+        state.isLoggedIn = true;
       })
-      //
-      // .addCase(updateUserInfo.fulfilled, (state, action) => {
-      //   state.user = action.payload;
-      // })
-      //
+
       .addCase(updateUserInfo.fulfilled, (state, action) => {
         const { name, value } = action.payload;
         state.formData[name] = value;
