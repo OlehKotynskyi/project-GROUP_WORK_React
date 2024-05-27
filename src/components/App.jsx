@@ -1,9 +1,10 @@
-import { lazy, useEffect } from 'react';
+
+import { lazy, useEffect, useRef } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 import { refreshUser } from '../redux/auth/operations';
-import { selectIsRefreshing } from '../redux/auth/selectors';
+import { selectIsRefreshing, selectAccessToken } from '../redux/auth/selectors';
 
 import { SharedLayout } from '../components/SharedLayout/SharedLayout';
 import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
@@ -19,11 +20,24 @@ const TrackerPage = lazy(() => import('../pages/TrackerPage/TrackerPage'));
 export const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
+  const accessToken = useSelector(selectAccessToken);
+  const isRequestingRef = useRef(false); 
 
   useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
+    if (accessToken && !isRequestingRef.current) {
+      isRequestingRef.current = true;
 
+      dispatch(refreshUser())
+        .unwrap()
+        .then(() => {
+          isRequestingRef.current = false;
+        })
+        .catch(error => {
+          isRequestingRef.current = false;
+        });
+    }
+  }, [dispatch, accessToken]);
+  
   return (
     <>
       {isRefreshing ? (

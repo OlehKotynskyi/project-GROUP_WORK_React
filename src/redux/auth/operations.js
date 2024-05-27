@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'https://project-group-8-backend.onrender.com';
+axios.defaults.baseURL = 'http://localhost:3000';
 
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = ` Bearer ${token}`;
@@ -71,17 +71,18 @@ export const signOut = createAsyncThunk('auth/signOut', async (_, thunkAPI) => {
 export const refreshUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
-    const refreshToken = thunkAPI.getState().auth.refreshToken;
-    if (!refreshToken) {
-      return thunkAPI.rejectWithValue('Unable to refresh user');
+    const currentRefreshToken = thunkAPI.getState().auth.refreshToken;
+
+    if (!currentRefreshToken) {
+      return thunkAPI.rejectWithValue('No refresh token available');
     }
     try {
-      const response = await axios.post('api/users/refresh', {
-        refreshToken,
+      const response = await axios.post('/api/users/refresh', {
+        refreshToken: currentRefreshToken,
       });
-
-      const { accessToken, refreshToken: newRefreshToken } = response.data;
+      const { accessToken, newRefreshToken } = response.data;
       setAuthHeader(accessToken);
+
       return { accessToken, refreshToken: newRefreshToken };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -108,17 +109,13 @@ export const updateUserAvatar = createAsyncThunk(
 export const currentUser = createAsyncThunk(
   'auth/current',
   async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const accessToken = state.auth.accessToken;
+    const accessToken = thunkAPI.getState().auth.accessToken;
     const controller = new AbortController();
     thunkAPI.signal.addEventListener('abort', () => controller.abort());
-
     if (!accessToken) {
       return thunkAPI.rejectWithValue('No access token available');
     }
-
     setAuthHeader(accessToken);
-
     try {
       const res = await axios.get('api/users/current', {
         signal: controller.signal,
