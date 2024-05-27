@@ -9,7 +9,7 @@ import thermos1x from '../../img/thermos/thermos_desk@1x.png';
 import thermos2x from '../../img/thermos/thermos_desk@2x.png';
 import { selectDailyWaterNorma } from '../../redux/auth/selectors.js';
 
-export const WaterMainInfo = ({ openModal }) => {
+export const WaterMainInfo = ({ openModal, selectedDate, currentDay }) => {
   const dailyNorm = useSelector(selectDailyWaterNorma);
 
   return (    
@@ -30,7 +30,7 @@ export const WaterMainInfo = ({ openModal }) => {
           </div>
           <div className={css.waterBar}>
             <div>
-              <WaterProgressBar dailyNorm={dailyNorm} />
+              <WaterProgressBar dailyNorm={dailyNorm} selectedDate={selectedDate} currentDay={currentDay} />
             </div>
           </div>
           <div className={css.btn}>

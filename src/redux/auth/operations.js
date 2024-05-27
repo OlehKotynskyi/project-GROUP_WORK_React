@@ -129,7 +129,7 @@ export const currentUser = createAsyncThunk(
 
 export const updateUserInfo = createAsyncThunk(
   'auth/updateInfo',
-  async (userInfo, thunkAPI) => {
+  async (userData, thunkAPI) => {
     const state = thunkAPI.getState();
     const accessToken = state.auth.accessToken;
     const controller = new AbortController();
@@ -142,15 +142,10 @@ export const updateUserInfo = createAsyncThunk(
     setAuthHeader(accessToken);
 
     try {
-      const formData = new FormData();
-      Object.keys(userInfo).forEach(key => {
-        formData.append(key, userInfo[key]);
-      });
-
-      const res = await axios.patch('api/users/update', formData, {
+      const res = await axios.patch('api/users/update', userData, {
         signal: controller.signal,
         headers: {
-          'Content-Type': 'multipart/form-data',
+          'Content-Type': 'application/json', 
         },
       });
       return res.data;

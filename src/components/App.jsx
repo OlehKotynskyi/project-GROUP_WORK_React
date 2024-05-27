@@ -1,3 +1,4 @@
+
 import { lazy, useEffect, useRef } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
@@ -23,7 +24,6 @@ export const App = () => {
   const isRequestingRef = useRef(false); 
 
   useEffect(() => {
-     
     if (accessToken && !isRequestingRef.current) {
       isRequestingRef.current = true;
 
@@ -37,7 +37,7 @@ export const App = () => {
         });
     }
   }, [dispatch, accessToken]);
-
+  
   return (
     <>
       {isRefreshing ? (

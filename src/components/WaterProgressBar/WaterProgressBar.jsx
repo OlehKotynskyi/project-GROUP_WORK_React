@@ -6,13 +6,16 @@ import { fetchWaters } from '../../redux/water/operations';
 import { selectWaters } from '../../redux/water/selectors';
 import css from './WaterProgressBar.module.css';
 
-export const WaterProgressBar = ({ dailyNorm }) => {
+export const WaterProgressBar = ({ dailyNorm, selectedDate, currentDay }) => {
   const dispatch = useDispatch();
   const waters = useSelector(selectWaters);
 
   useEffect(() => {
-    dispatch(fetchWaters());
-  }, [dispatch]);
+    const dateToFetch =!selectedDate ? currentDay : selectedDate;
+    if (dateToFetch) {
+      dispatch(fetchWaters(dateToFetch));
+    }
+  }, [dispatch, currentDay, selectedDate]);
 
   const currentAmount = waters
     ? waters.reduce((total, water) => total + water.amountDose, 0)

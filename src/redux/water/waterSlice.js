@@ -20,9 +20,9 @@ const waterSlice = createSlice({
   name: 'water',
   initialState: {
     list: [],
+    monthlyList: [],
     loading: false,
     error: null,
-    monthlyList: [], // Для обробки місячних даних
   },
   extraReducers: builder => {
     builder

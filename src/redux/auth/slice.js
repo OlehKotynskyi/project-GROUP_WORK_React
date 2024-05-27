@@ -86,11 +86,15 @@ const authSlice = createSlice({
         state.user = action.payload;
         state.isLoggedIn = true;
       })
-
       .addCase(updateUserInfo.fulfilled, (state, action) => {
-        const { name, value } = action.payload;
-        state.formData[name] = value;
-      })
+  const updatedFields = action.payload;
+  for (let key in updatedFields) {
+    if (updatedFields.hasOwnProperty(key)) {
+      state.user[key] = updatedFields[key];
+    }
+  }
+})
+
       .addCase(googleAuthenticateUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.accessToken = action.payload.accessToken;
