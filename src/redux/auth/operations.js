@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'https://project-group-8-backend.onrender.com';
+axios.defaults.baseURL = 'http://localhost:3000';
 
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = ` Bearer ${token}`;
@@ -72,7 +72,7 @@ export const refreshUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
     const currentRefreshToken = thunkAPI.getState().auth.refreshToken;
-    console.log('RefreshToken:', currentRefreshToken);
+
     if (!currentRefreshToken) {
       return thunkAPI.rejectWithValue('No refresh token available');
     }
@@ -80,9 +80,9 @@ export const refreshUser = createAsyncThunk(
       const response = await axios.post('/api/users/refresh', {
         refreshToken: currentRefreshToken,
       });
-      const { accessToken,  newRefreshToken } = response.data;
-      setAuthHeader(accessToken, newRefreshToken);
-      console.log({ accessToken,  newRefreshToken });
+      const { accessToken, newRefreshToken } = response.data;
+      setAuthHeader(accessToken);
+
       return { accessToken, refreshToken: newRefreshToken };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -112,14 +112,10 @@ export const currentUser = createAsyncThunk(
     const accessToken = thunkAPI.getState().auth.accessToken;
     const controller = new AbortController();
     thunkAPI.signal.addEventListener('abort', () => controller.abort());
-
     if (!accessToken) {
       return thunkAPI.rejectWithValue('No access token available');
     }
-
     setAuthHeader(accessToken);
-
-    console.log(accessToken);
     try {
       const res = await axios.get('api/users/current', {
         signal: controller.signal,
