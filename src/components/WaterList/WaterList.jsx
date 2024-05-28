@@ -7,13 +7,18 @@ import { selectWaters } from '../../redux/water/selectors';
 import { fetchWaters } from '../../redux/water/operations';
 import css from './WaterList.module.css';
 
-export const WaterList = ({ openModal, selectWater, selectedDate, currentDay }) => {
+export const WaterList = ({
+  openModal,
+  selectWater,
+  selectedDate,
+  currentDay,
+}) => {
   const sectionRef = useRef(null);
   const waterData = useSelector(selectWaters);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const dateToFetch =!selectedDate ? currentDay : selectedDate;
+    const dateToFetch = !selectedDate ? currentDay : selectedDate;
     if (dateToFetch) {
       dispatch(fetchWaters(dateToFetch));
     }
@@ -32,7 +37,7 @@ export const WaterList = ({ openModal, selectWater, selectedDate, currentDay }) 
       onWheel={handleScroll}
     >
       <ul className={css.waterList}>
-        {waterData &&
+        {waterData && waterData.length > 0 ? (
           waterData.map(item => (
             <li
               className={css.waterItem}
@@ -45,7 +50,12 @@ export const WaterList = ({ openModal, selectWater, selectedDate, currentDay }) 
                 openModal={openModal}
               />
             </li>
-          ))}
+          ))
+        ) : (
+          <li className={css.noDataText}>
+            Oops it seems you haven't drunk water yet...
+          </li>
+        )}
       </ul>
     </section>
   );
