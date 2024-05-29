@@ -1,46 +1,40 @@
-import { useState } from "react";
-import * as Yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup"
-import { useForm } from "react-hook-form";
+import { useState } from 'react';
+import * as Yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
 
 import { useDispatch } from 'react-redux';
 import toast from 'react-hot-toast';
 
-import { addWater } from "../../redux/water/operations";
-import { Loader } from "components/Loader/Loader";
-import sprite from "../../img/svg/sprite.svg";
-import css from "./WaterForm.module.css";
+import { addWater } from '../../redux/water/operations';
+import { Loader } from 'components/Loader/Loader';
+import sprite from '../../img/svg/sprite.svg';
+import css from './WaterForm.module.css';
 
 const schema = Yup.object().shape({
-  amount: Yup.number("Must be a number")
-    .typeError("Must be a number")
-    .lessThan(1001, "Too much")
-    .positive("The data is not entered correctly")
-    .integer("Must be more than 0")
-    .required("Required field!"),
-  time: Yup.string().required("Required field!"),
+  amount: Yup.number('Must be a number')
+    .typeError('Must be a number')
+    .lessThan(1001, 'Too much')
+    .positive('The data is not entered correctly')
+    .integer('Must be more than 0')
+    .required('Required field!'),
+  time: Yup.string().required('Required field!'),
 });
 
 function getCurrentTime() {
   const now = new Date();
-  let hours = now.getHours().toString();
-  let minutes = now.getMinutes().toString();
+  let hours = String(now.getHours()).padStart(2, '0');
+  let minutes = String(now.getMinutes()).padStart(2, '0');
+  let seconds = String(now.getSeconds()).padStart(2, '0');
 
-  if (hours.length < 2) {
-    hours = '0' + hours;
-  }
-
-  if (minutes.length < 2) {
-    minutes = '0' + minutes;
-  }
-
-  return `${hours}:${minutes}`;
+  return `${hours}:${minutes}:${seconds}`;
 }
 
 export const AddWaterForm = ({ onClose }) => {
   const [load, setLoad] = useState(false);
+  const [timeWithSeconds, setTimeWithSeconds] = useState(getCurrentTime());
 
-  const currentTime = getCurrentTime();
+  const currentTime = timeWithSeconds.slice(0, 5);
 
   const {
     register,
@@ -53,14 +47,16 @@ export const AddWaterForm = ({ onClose }) => {
     defaultValues: {
       time: currentTime,
       amount: 50,
-    }
+    },
   });
 
   const dispatch = useDispatch();
 
   const onSubmit = (values, actions) => {
     setLoad(true);
-    dispatch(addWater({ timeDose: time, amountDose: amount }))
+    const timeToSend = getCurrentTime();
+    setTimeWithSeconds(timeToSend);
+    dispatch(addWater({ timeDose: timeToSend, amountDose: values.amount }))
       .unwrap()
       .then(() => {
         toast.success('Water successfully added!', {
@@ -90,24 +86,29 @@ export const AddWaterForm = ({ onClose }) => {
           },
         });
         setLoad(false);
-      })
+      });
   };
 
-  const amount = watch("amount", 50);
-  const time = watch("time", currentTime);
+  const amount = watch('amount', 50);
+  const time = watch('time', currentTime);
 
   const handleIncrement = () => {
     if (amount >= 999) {
       return;
     }
-    setValue("amount", Math.floor(parseInt(amount) / 50) * 50 + 50);
+    setValue('amount', Math.floor(parseInt(amount) / 50) * 50 + 50);
   };
 
   const handleDecrement = () => {
     if (amount <= 50) {
       return;
     }
-    setValue("amount", Math.floor(parseInt(amount) / 50) * 50 - 50);
+    setValue('amount', Math.floor(parseInt(amount) / 50) * 50 - 50);
+  };
+  const handleKeyDown = event => {
+    if (!/[0-9]/.test(event.key) && event.key !== 'Backspace') {
+      event.preventDefault();
+    }
   };
 
   return (
@@ -117,13 +118,21 @@ export const AddWaterForm = ({ onClose }) => {
         <div className={css.stepperItem}>
           <p className={css.itemTitle}>Amount of water:</p>
           <div className={css.stepper}>
-            <button className={css.stepButton} type="button" onClick={handleDecrement}>
+            <button
+              className={css.stepButton}
+              type="button"
+              onClick={handleDecrement}
+            >
               <svg className={css.icon} width="14" height="14">
                 <use xlinkHref={`${sprite}#icon-minus`}></use>
               </svg>
             </button>
             <p className={css.stepperAmount}>{amount} ml</p>
-            <button className={css.stepButton} type="button" onClick={handleIncrement}>
+            <button
+              className={css.stepButton}
+              type="button"
+              onClick={handleIncrement}
+            >
               <svg className={css.icon} width="14" height="14">
                 <use xlinkHref={`${sprite}#icon-plus`}></use>
               </svg>
@@ -132,22 +141,37 @@ export const AddWaterForm = ({ onClose }) => {
         </div>
         <div className={css.inputItem}>
           <div className={css.item}>
-            <label className={css.itemTitle} htmlFor="time">Recording time:</label>
-            <input className={`${css.input} ${errors.time && css.inputError}`}
+            <label className={css.itemTitle} htmlFor="time">
+              Recording time:
+            </label>
+            <input
+              className={`${css.input} ${errors.time && css.inputError}`}
               id="time"
               type="time"
               value={time}
-              onChange={(e) => setValue("time", e.target.value)}
+              onChange={e => setValue('time', e.target.value)}
             />
-            {errors.time && (<p className={css.error}>{errors.time.message}</p>)}
+            {errors.time && <p className={css.error}>{errors.time.message}</p>}
           </div>
           <div className={css.item}>
-            <label className={css.amountLabel} htmlFor="amount">Enter the value of the water used:</label>
-            <input className={`${css.input} ${errors.amount && css.inputError}`} type="number" name="amount" {...register("amount")} />
-            {errors.amount && (<p className={css.error}>{errors.amount.message}</p>)}
+            <label className={css.amountLabel} htmlFor="amount">
+              Enter the value of the water used:
+            </label>
+            <input
+              className={`${css.input} ${errors.amount && css.inputError}`}
+              type="number"
+              name="amount"
+              {...register('amount')}
+              onKeyDown={handleKeyDown}
+            />
+            {errors.amount && (
+              <p className={css.error}>{errors.amount.message}</p>
+            )}
           </div>
         </div>
-        <button className={css.saveButton} type="submit">{load ? <Loader /> : "Save"}</button>
+        <button className={css.saveButton} type="submit" disabled={load}>
+          {load ? <Loader /> : 'Save'}
+        </button>
       </form>
     </div>
   );

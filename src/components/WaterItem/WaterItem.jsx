@@ -3,6 +3,8 @@ import sprite from '../../img/svg/sprite.svg';
 import css from './WaterItem.module.css';
 
 export const WaterItem = ({ time, amount, openModal }) => {
+  const [hours, minutes] = time.split(':');
+
   return (
     <div className={css.waterItemContainer}>
       <div className={css.svgContainer}>
@@ -12,7 +14,7 @@ export const WaterItem = ({ time, amount, openModal }) => {
       </div>
       <div className={css.infoContainer}>
         <div className={css.infoAmount}>{amount} ml</div>
-        <div className={css.infoDate}>{time}</div>
+        <div className={css.infoDate}>{`${hours}:${minutes}`}</div>{' '}
       </div>
       <div className={css.btnContainer}>
         <button className={css.btnEdit} onClick={() => openModal('edit')}>
