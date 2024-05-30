@@ -1,15 +1,46 @@
-export const selectIsLoggedIn = state => state.auth.isLoggedIn;
+import { createSelector } from 'reselect';
 
-export const selectUser = state => state.auth.user;
+// Основні селектори
+const getIsLoggedIn = state => state.auth.isLoggedIn;
+const getUser = state => state.auth.user;
+const getIsRefreshing = state => state.auth.isRefreshing;
+const getAccessToken = state => state.auth.accessToken;
+const getRefreshToken = state => state.auth.refreshToken;
+const getUserEmail = state => state.auth.user.email;
+const getUserAvatar = state => state.auth.user.avatarURL;
+const getDailyWaterNorma = state => state.auth.user.dailyWaterNorma;
 
-export const selectIsRefreshing = state => state.auth.isRefreshing;
+// Мемоізовані селектори
+export const selectIsLoggedIn = createSelector(
+  [getIsLoggedIn],
+  isLoggedIn => isLoggedIn
+);
 
-export const selectAccessToken = state => state.auth.accessToken;
+export const selectUser = createSelector([getUser], user => user);
 
-export const selectRefreshToken = state => state.auth.refreshToken;
+export const selectIsRefreshing = createSelector(
+  [getIsRefreshing],
+  isRefreshing => isRefreshing
+);
 
-export const selectUserEmail = state => state.auth.user.email;
+export const selectAccessToken = createSelector(
+  [getAccessToken],
+  accessToken => accessToken
+);
 
-export const selectUserAvatar = state => state.auth.user.avatarURL;
+export const selectRefreshToken = createSelector(
+  [getRefreshToken],
+  refreshToken => refreshToken
+);
 
-export const selectDailyWaterNorma = state => state.auth.user.dailyWaterNorma;
+export const selectUserEmail = createSelector([getUserEmail], email => email);
+
+export const selectUserAvatar = createSelector(
+  [getUserAvatar],
+  avatarURL => avatarURL
+);
+
+export const selectDailyWaterNorma = createSelector(
+  [getDailyWaterNorma],
+  dailyWaterNorma => dailyWaterNorma
+);
