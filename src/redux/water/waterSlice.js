@@ -16,6 +16,7 @@ const handleRejected = (state, action) => {
   state.error = action.payload;
 };
 
+
 const waterSlice = createSlice({
   name: 'water',
   initialState: {
@@ -23,6 +24,12 @@ const waterSlice = createSlice({
     monthlyList: [],
     loading: false,
     error: null,
+    selectedDate: "",
+  },
+  reducers: {
+    setSelectedDate: (state, action) => {
+      state.selectedDate = action.payload;
+    },
   },
   extraReducers: builder => {
     builder
@@ -68,4 +75,5 @@ const waterSlice = createSlice({
   },
 });
 
+export const { setSelectedDate } = waterSlice.actions;
 export const waterReducer = waterSlice.reducer;

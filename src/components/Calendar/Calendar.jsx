@@ -1,11 +1,19 @@
-// src/components/Calendar.jsx
 import { useState, useEffect, useMemo, useRef, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchWatersMonth } from '../../redux/water/operations';
-
+import { selectMonthlyWaters } from '../../redux/water/selectors';
 import { checkDateIsEqual, checkIsToday } from './date';
 import { useCalendar } from './hooks/useCalendar';
+import { setSelectedDate } from '../../redux/water/waterSlice';
 import css from './Calendar.module.css';
+
+const calculateWaterPercentages = waters => {
+  return waters.reduce((acc, water) => {
+    const dateString = new Date(water.dateDose).toISOString().split('T')[0];
+    acc[dateString] = (acc[dateString] || 0) + water.percentage;
+    return acc;
+  }, {});
+};
 
 export const Calendar = ({
   locale = 'default',
@@ -18,6 +26,7 @@ export const Calendar = ({
   currentMonth,
 }) => {
   const dispatch = useDispatch();
+  const monthlyWaters = useSelector(selectMonthlyWaters);
   const [selectedMonth, setSelectedMonth] = useState(null);
   const [waterPercentages, setWaterPercentages] = useState({});
   const [selectedDayIndex, setSelectedDayIndex] = useState(null);
@@ -29,6 +38,10 @@ export const Calendar = ({
   });
 
   const abortControllerRef = useRef(null);
+
+  const updateWaterPercentages = useCallback(waters => {
+    setWaterPercentages(calculateWaterPercentages(waters));
+  }, []);
 
   useEffect(() => {
     const dateToFetch = selectedMonth || currentMonth;
@@ -42,17 +55,7 @@ export const Calendar = ({
       dispatch(fetchWatersMonth(dateToFetch, { signal: controller.signal }))
         .then(response => {
           if (response.payload) {
-            const newWaterPercentages = response.payload.reduce(
-              (acc, water) => {
-                const dateString = new Date(water.dateDose)
-                  .toISOString()
-                  .split('T')[0];
-                acc[dateString] = (acc[dateString] || 0) + water.percentage;
-                return acc;
-              },
-              {}
-            );
-            setWaterPercentages(newWaterPercentages);
+            updateWaterPercentages(response.payload);
           }
         })
         .catch(error => {
@@ -61,16 +64,66 @@ export const Calendar = ({
           }
         });
     }
-  }, [dispatch, currentMonth, selectedMonth]);
+  }, [dispatch, currentMonth, selectedMonth, updateWaterPercentages]);
+
+  useEffect(() => {
+    if (monthlyWaters) {
+      updateWaterPercentages(monthlyWaters);
+    }
+  }, [monthlyWaters, updateWaterPercentages]);
 
   const handleSelectMonth = useCallback(newSelectedMonth => {
     setSelectedMonth(newSelectedMonth);
   }, []);
 
+  const handleSelectDate = useCallback(
+    (day, index) => {
+      const monthIndex = day.monthIndex + 1;
+      const formattedMonthIndex =
+        monthIndex < 10 ? `0${monthIndex}` : day.monthIndex;
+      const selectedDate = `${day.year}-${formattedMonthIndex}-${String(
+        day.dayNumber
+      ).padStart(2, '0')}`;
+
+      functions.setSelectedDay(day);
+      dispatch(setSelectedDate(selectedDate));
+      selectDay(selectedDate);
+      setSelectedDayIndex(index);
+    },
+    [functions, dispatch, selectDay]
+  );
+
   const calendarDaysMemo = useMemo(
     () => state.calendarDays,
     [state.calendarDays]
   );
+
+  const getClassNames = (isToday, isSelectedDay, isAdditionalDay, index, selectedDayIndex, waterPercentage) => {
+    let classNames = [css.calendar__day];
+
+    switch (true) {
+      case isToday:
+        classNames.push(css.calendar__today__item);
+        break;
+      case isSelectedDay:
+        classNames.push(css.calendar__selected__item);
+        break;
+      case isAdditionalDay:
+        classNames.push(css.calendar__additional__day);
+        break;
+      default:
+        break;
+    }
+
+    if (index === selectedDayIndex) {
+      classNames.push(css.calendar__day__selected);
+    }
+    if (waterPercentage < 100) {
+      classNames.push(css.calendar__day__incomplete);
+    }
+
+    return classNames.join(' ');
+  };
 
   return (
     <div className={css.calendar}>
@@ -82,10 +135,15 @@ export const Calendar = ({
             functions.onClickArrow('left');
             handleSelectMonth(() => {
               const month = state.selectedMonth;
-              const monthIndex = month.monthIndex + 2;
+              const newMonthIndex =
+                month.monthIndex === 0 ? 11 : month.monthIndex - 1;
+              const newYear =
+                month.monthIndex === 0
+                  ? state.selectedYear - 1
+                  : state.selectedYear;
               const formattedMonthIndex =
-                monthIndex < 10 ? `0${monthIndex}` : month.monthIndex;
-              return `${state.selectedYear}-${formattedMonthIndex}`;
+                newMonthIndex < 9 ? `0${newMonthIndex + 1}` : newMonthIndex + 1;
+              return `${newYear}-${formattedMonthIndex}`;
             });
           }}
         ></div>
@@ -100,10 +158,14 @@ export const Calendar = ({
             functions.onClickArrow('right');
             handleSelectMonth(() => {
               const month = state.selectedMonth;
-              const monthIndex = month.monthIndex + 2;
+              const newMonthIndex = (month.monthIndex + 1) % 12;
+              const newYear =
+                month.monthIndex === 11
+                  ? state.selectedYear + 1
+                  : state.selectedYear;
               const formattedMonthIndex =
-                monthIndex < 10 ? `0${monthIndex}` : month.monthIndex;
-              return `${state.selectedYear}-${formattedMonthIndex}`;
+                newMonthIndex < 9 ? `0${newMonthIndex + 1}` : newMonthIndex + 1;
+              return `${newYear}-${formattedMonthIndex}`;
             });
           }}
         ></div>
@@ -128,30 +190,22 @@ export const Calendar = ({
               <div
                 key={`${day.dayNumber}-${day.monthIndex}`}
                 aria-hidden
-                onClick={() => {
-                  const monthIndex = day.monthIndex + 1;
-                  const formattedMonthIndex =
-                    monthIndex < 10 ? `0${monthIndex}` : day.monthIndex;
-                  const selectedDate = `${day.year}-${formattedMonthIndex}-${day.dayNumber}`;
-
-                  functions.setSelectedDay(day);
-                  selectDay(selectedDate);
-                  setSelectedDayIndex(index);
-                }}
+                onClick={() => handleSelectDate(day, index)}
                 tabIndex="0"
-                className={[
-                  css.calendar__day,
-                  isToday ? css.calendar__today__item : '',
-                  isSelectedDay ? css.calendar__selected__item : '',
-                  isAdditionalDay ? css.calendar__additional__day : '',
-                  index === selectedDayIndex ? css.calendar__day__selected : '',
-                  waterPercentage < 100 ? css.calendar__day__incomplete : '', // Додаємо клас для днів з меншим ніж 100% води
-                  waterPercentage > 0 ? css.calendar__day__with_water : '', // Додаємо клас для днів з водою
-                ].join(' ')}
+                className={getClassNames(
+                  isToday,
+                  isSelectedDay,
+                  isAdditionalDay,
+                  index,
+                  selectedDayIndex,
+                  waterPercentage
+                )}
               >
                 <div>{day.dayNumber}</div>
-                <div className={css.waterPercentageWrap}>
-                  <div className={css.waterPercentage}>{waterPercentage}%</div>
+                <div
+                  className={`${css.waterPercentage} my-custom-water-percentage`}
+                >
+                  {waterPercentage}%
                 </div>
               </div>
             );

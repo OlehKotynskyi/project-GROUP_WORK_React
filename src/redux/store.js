@@ -22,7 +22,7 @@ const authPersistConfig = {
 const waterPersistConfig = {
   key: 'water',
   storage,
-  whitelist: [],
+  whitelist: ['list', 'monthlyList', "selectedDate"],
 };
 
 export const store = configureStore({

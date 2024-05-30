@@ -3,14 +3,17 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 axios.defaults.baseURL = 'https://project-group-8-backend.onrender.com';
 
-export const fetchWaters = createAsyncThunk('waters/fetch', async (date, thunkAPI) => {
-  try {
-    const response = await axios.get(`api/waters/${date}`);
-    return response.data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+export const fetchWaters = createAsyncThunk(
+  'waters/fetch',
+  async (date, thunkAPI) => {
+    try {
+      const response = await axios.get(`api/waters/${date}`);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
-});
+);
 
 export const deleteWater = createAsyncThunk(
   'waters/delete',
@@ -26,9 +29,13 @@ export const deleteWater = createAsyncThunk(
 
 export const addWater = createAsyncThunk(
   'waters/add',
-  async (water, thunkAPI) => {
+  async ({ timeDose, amountDose, dateDose }, thunkAPI) => {
     try {
-      const response = await axios.post('api/waters/add', water);
+      const response = await axios.post('api/waters/add', {
+        timeDose,
+        amountDose,
+        dateDose,
+      });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

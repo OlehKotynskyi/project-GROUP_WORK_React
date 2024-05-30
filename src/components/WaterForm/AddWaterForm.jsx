@@ -3,10 +3,11 @@ import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
 
-import { addWater } from '../../redux/water/operations';
+import { addWater, fetchWatersMonth } from '../../redux/water/operations';
+import { selectSelectedDate } from '../../redux/water/selectors';
 import { Loader } from 'components/Loader/Loader';
 import sprite from '../../img/svg/sprite.svg';
 import css from './WaterForm.module.css';
@@ -34,6 +35,8 @@ export const AddWaterForm = ({ onClose }) => {
   const [load, setLoad] = useState(false);
   const [timeWithSeconds, setTimeWithSeconds] = useState(getCurrentTime());
 
+  const selectedDay = useSelector(selectSelectedDate);
+
   const currentTime = timeWithSeconds.slice(0, 5);
 
   const {
@@ -56,7 +59,15 @@ export const AddWaterForm = ({ onClose }) => {
     setLoad(true);
     const timeToSend = getCurrentTime();
     setTimeWithSeconds(timeToSend);
-    dispatch(addWater({ timeDose: timeToSend, amountDose: values.amount }))
+    const dateToSend = selectedDay;
+    console.log(dateToSend);
+    dispatch(
+      addWater({
+        timeDose: timeToSend,
+        amountDose: values.amount,
+        dateDose: dateToSend,
+      })
+    )
       .unwrap()
       .then(() => {
         toast.success('Water successfully added!', {
@@ -71,10 +82,11 @@ export const AddWaterForm = ({ onClose }) => {
           },
         });
         setLoad(false);
+        dispatch(fetchWatersMonth(dateToSend.slice(0, 7)));
         onClose();
       })
       .catch(() => {
-        toast.error('Oops, something go wrong!', {
+        toast.error('Oops, something went wrong!', {
           style: {
             border: '1px solid #F1041B',
             padding: '16px',
@@ -105,6 +117,7 @@ export const AddWaterForm = ({ onClose }) => {
     }
     setValue('amount', Math.floor(parseInt(amount) / 50) * 50 - 50);
   };
+
   const handleKeyDown = event => {
     if (!/[0-9]/.test(event.key) && event.key !== 'Backspace') {
       event.preventDefault();
