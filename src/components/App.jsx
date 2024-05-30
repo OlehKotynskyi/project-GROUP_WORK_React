@@ -1,4 +1,3 @@
-
 import { lazy, useEffect, useRef } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
@@ -11,6 +10,7 @@ import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
 
 import { RestrictedRoute } from './RestrictedRoute';
 import { PrivateRoute } from './PrivateRoute';
+import { LoaderBase } from './Loader/LoaderBase.jsx';
 
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
 const SignUpPage = lazy(() => import('../pages/SignUpPage/SignUpPage'));
@@ -21,7 +21,7 @@ export const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
   const accessToken = useSelector(selectAccessToken);
-  const isRequestingRef = useRef(false); 
+  const isRequestingRef = useRef(false);
 
   useEffect(() => {
     if (accessToken && !isRequestingRef.current) {
@@ -37,11 +37,11 @@ export const App = () => {
         });
     }
   }, [dispatch, accessToken]);
-  
+
   return (
     <>
       {isRefreshing ? (
-        <div>Loading...</div>
+        <LoaderBase />
       ) : (
         <Routes>
           <Route path="/" element={<SharedLayout />}>
