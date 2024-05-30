@@ -90,7 +90,7 @@
 	grid-template-columns: repeat(7, auto);
 	column-gap: 5px;
 	justify-content: space-between;
-	row-gap: 2px;
+	row-gap: 24px;
 }
 
 @media screen and (min-width: 768px) {
@@ -140,9 +140,12 @@
 	transition: all 0.3s ease-in-out;
 }
 
-.calendar__day:hover {
-	background-color: var(--background);
+@media (hover: hover) and (pointer: fine) {
+	.calendar__day:hover {
+		background-color: var(--background);
+	}
 }
+
 
 .calendar__day:focus,
 .calendar__day:active {
