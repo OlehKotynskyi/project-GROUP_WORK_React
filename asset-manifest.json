@@ -1,0 +1,43 @@
+{
+  "files": {
+    "main.css": "/project-GROUP_WORK_React/static/css/main.c0120469.css",
+    "main.js": "/project-GROUP_WORK_React/static/js/main.449cb777.js",
+    "static/css/393.e6abe86e.chunk.css": "/project-GROUP_WORK_React/static/css/393.e6abe86e.chunk.css",
+    "static/js/393.daf5313b.chunk.js": "/project-GROUP_WORK_React/static/js/393.daf5313b.chunk.js",
+    "static/css/246.ac9a9f72.chunk.css": "/project-GROUP_WORK_React/static/css/246.ac9a9f72.chunk.css",
+    "static/js/246.0648367a.chunk.js": "/project-GROUP_WORK_React/static/js/246.0648367a.chunk.js",
+    "static/css/697.a58f4490.chunk.css": "/project-GROUP_WORK_React/static/css/697.a58f4490.chunk.css",
+    "static/js/697.f16fe6de.chunk.js": "/project-GROUP_WORK_React/static/js/697.f16fe6de.chunk.js",
+    "static/css/219.636f4295.chunk.css": "/project-GROUP_WORK_React/static/css/219.636f4295.chunk.css",
+    "static/js/219.bc434b87.chunk.js": "/project-GROUP_WORK_React/static/js/219.bc434b87.chunk.js",
+    "static/js/42.5e750df2.chunk.js": "/project-GROUP_WORK_React/static/js/42.5e750df2.chunk.js",
+    "static/js/625.2fe16bf4.chunk.js": "/project-GROUP_WORK_React/static/js/625.2fe16bf4.chunk.js",
+    "static/media/thermos_desk@2x.png": "/project-GROUP_WORK_React/static/media/thermos_desk@2x.ca595fc8250f3c3d89bd.png",
+    "static/media/girl_tab@2x.jpg": "/project-GROUP_WORK_React/static/media/girl_tab@2x.0630c2461b0c0afb13ab.jpg",
+    "static/media/girl_desk@2x.jpg": "/project-GROUP_WORK_React/static/media/girl_desk@2x.7ac0b291658357e643a7.jpg",
+    "static/media/thermos_desk@1x.png": "/project-GROUP_WORK_React/static/media/thermos_desk@1x.7f5d564156e21fab868f.png",
+    "static/media/girl_tab@1x.jpg": "/project-GROUP_WORK_React/static/media/girl_tab@1x.35431373218e03b12767.jpg",
+    "static/media/girl_mob@2x.jpg": "/project-GROUP_WORK_React/static/media/girl_mob@2x.fc1df01f6ecc301e01b8.jpg",
+    "static/media/girl_desk@1x.jpg": "/project-GROUP_WORK_React/static/media/girl_desk@1x.b377784b225846f20425.jpg",
+    "static/media/girl_mob@1x.jpg": "/project-GROUP_WORK_React/static/media/girl_mob@1x.5c11a6c447d636cc3782.jpg",
+    "static/media/sprite.svg": "/project-GROUP_WORK_React/static/media/sprite.801ff86e3754a719a83e768c6a054b7e.svg",
+    "index.html": "/project-GROUP_WORK_React/index.html",
+    "static/media/arrow.svg": "/project-GROUP_WORK_React/static/media/arrow.0403aab2c79192717da5.svg",
+    "main.c0120469.css.map": "/project-GROUP_WORK_React/static/css/main.c0120469.css.map",
+    "main.449cb777.js.map": "/project-GROUP_WORK_React/static/js/main.449cb777.js.map",
+    "393.e6abe86e.chunk.css.map": "/project-GROUP_WORK_React/static/css/393.e6abe86e.chunk.css.map",
+    "393.daf5313b.chunk.js.map": "/project-GROUP_WORK_React/static/js/393.daf5313b.chunk.js.map",
+    "246.ac9a9f72.chunk.css.map": "/project-GROUP_WORK_React/static/css/246.ac9a9f72.chunk.css.map",
+    "246.0648367a.chunk.js.map": "/project-GROUP_WORK_React/static/js/246.0648367a.chunk.js.map",
+    "697.a58f4490.chunk.css.map": "/project-GROUP_WORK_React/static/css/697.a58f4490.chunk.css.map",
+    "697.f16fe6de.chunk.js.map": "/project-GROUP_WORK_React/static/js/697.f16fe6de.chunk.js.map",
+    "219.636f4295.chunk.css.map": "/project-GROUP_WORK_React/static/css/219.636f4295.chunk.css.map",
+    "219.bc434b87.chunk.js.map": "/project-GROUP_WORK_React/static/js/219.bc434b87.chunk.js.map",
+    "42.5e750df2.chunk.js.map": "/project-GROUP_WORK_React/static/js/42.5e750df2.chunk.js.map",
+    "625.2fe16bf4.chunk.js.map": "/project-GROUP_WORK_React/static/js/625.2fe16bf4.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c0120469.css",
+    "static/js/main.449cb777.js"
+  ]
+}
