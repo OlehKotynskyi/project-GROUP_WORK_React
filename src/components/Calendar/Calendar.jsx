@@ -146,16 +146,12 @@ export const Calendar = ({
                   isAdditionalDay ? css.calendar__additional__day : '',
                   index === selectedDayIndex ? css.calendar__day__selected : '',
                   waterPercentage < 100 ? css.calendar__day__incomplete : '', // Додаємо клас для днів з меншим ніж 100% води
+                  waterPercentage > 0 ? css.calendar__day__with_water : '', // Додаємо клас для днів з водою
                 ].join(' ')}
               >
                 <div>{day.dayNumber}</div>
-                <div
-                  className={`${css.waterPercentage} my-custom-water-percentage`}
-                  style={{
-                    width: `${waterPercentage}%`,
-                  }}
-                >
-                  {waterPercentage}%
+                <div className={css.waterPercentageWrap}>
+                  <div className={css.waterPercentage}>{waterPercentage}%</div>
                 </div>
               </div>
             );
