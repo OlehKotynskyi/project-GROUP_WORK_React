@@ -49,13 +49,12 @@ export default function UserSettingsForm() {
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      name: user.name || '',
-      email: user.email || '',
-      weight: user.weight || 0,
-      activeSportTime: user.activeSportTime || 0,
-      dailyWaterNorma: user.dailyWaterNorma || 0,
-      gender: user.gender || 'female',
-
+      name: '',
+      email: '',
+      weight: 0,
+      activeSportTime: 0,
+      dailyWaterNorma: 0,
+      gender: 'female',
     },
   });
 
@@ -65,13 +64,12 @@ export default function UserSettingsForm() {
 
   useEffect(() => {
     if (user) {
-      setValue('name', user.name);
-      setValue('email', user.email);
-      setValue('weight', user.weight);
-      setValue('activeSportTime', user.activeSportTime);
-      setValue('dailyWaterNorma', user.dailyWaterNorma);
-      setValue('gender', user.gender);
-   
+      setValue('name', user.name || '');
+      setValue('email', user.email || '');
+      setValue('weight', user.weight || 0);
+      setValue('activeSportTime', user.activeSportTime || 0);
+      setValue('dailyWaterNorma', user.dailyWaterNorma || 0);
+      setValue('gender', user.gender || 'female');
     }
   }, [user, setValue]);
 
@@ -85,9 +83,13 @@ export default function UserSettingsForm() {
 
   const calculate = () => {
     if (watch('gender') === 'female') {
-      return (watch('weight') * 0.03 + watch('activeSportTime') * 0.04).toFixed(1);
+      return (watch('weight') * 0.03 + watch('activeSportTime') * 0.04).toFixed(
+        1
+      );
     } else if (watch('gender') === 'male') {
-      return (watch('weight') * 0.04 + watch('activeSportTime') * 0.06).toFixed(1);
+      return (watch('weight') * 0.04 + watch('activeSportTime') * 0.06).toFixed(
+        1
+      );
     }
     return 0;
   };
@@ -113,7 +115,7 @@ export default function UserSettingsForm() {
   };
 
   return (
-     <form className={css.form} onSubmit={handleSubmit(submit)}>
+    <form className={css.form} onSubmit={handleSubmit(submit)}>
       <div className={css.imageWrap}>
         <img
           src={file ? URL.createObjectURL(file) : avatarURL}
@@ -150,7 +152,6 @@ export default function UserSettingsForm() {
                 value="female"
                 className={css.genderInput}
                 {...register('gender')}
-                defaultChecked={watch('gender') === 'female'}
               />
               <span className={css.iconWrap}>
                 <svg className={css.iconRadio} width="20" height="20">
@@ -172,7 +173,6 @@ export default function UserSettingsForm() {
                 value="male"
                 className={css.genderInput}
                 {...register('gender')}
-                defaultChecked={watch('gender') === 'male'}
               />
               <span className={css.iconWrap}>
                 <svg className={css.iconRadio} width="20" height="20">
@@ -206,20 +206,19 @@ export default function UserSettingsForm() {
                 Your name
               </label>
               <input
-                  type="text"
-                  name="name"
-                  id={nameId}
-                  className={`${css.inputField} ${errors.name && css.inputError}`}
-                value={watch('name')}
+                type="text"
+                name="name"
+                id={nameId}
+                className={`${css.inputField} ${errors.name && css.inputError}`}
                 {...register('name')}
-/>
+              />
               {errors.name && (
                 <p className={css.error}>{errors.name.message}</p>
               )}
             </div>
             <div
               className={`${css.inputContainer} ${
-                errors.name ? css.hasError : ''
+                errors.email ? css.hasError : ''
               }`}
             >
               <label htmlFor={emailId} className={css.inputTitleBold}>
@@ -230,7 +229,6 @@ export default function UserSettingsForm() {
                 name="email"
                 id={emailId}
                 className={css.inputField}
-                value={watch('email')}
                 {...register('email')}
               />
               {errors.email && (
@@ -275,7 +273,7 @@ export default function UserSettingsForm() {
           <div className={css.partWrap}>
             <div
               className={`${css.inputContainer} ${
-                errors.name ? css.hasError : ''
+                errors.weight ? css.hasError : ''
               }`}
             >
               <label className={css.inputTitle}>
@@ -285,7 +283,6 @@ export default function UserSettingsForm() {
                 type="number"
                 name="weight"
                 className={css.inputField}
-                value={watch('weight')}
                 {...register('weight')}
               />
               {errors.weight && (
@@ -294,7 +291,7 @@ export default function UserSettingsForm() {
             </div>
             <div
               className={`${css.inputContainer} ${
-                errors.name ? css.hasError : ''
+                errors.activeSportTime ? css.hasError : ''
               }`}
             >
               <label className={css.inputTitle}>
@@ -304,7 +301,6 @@ export default function UserSettingsForm() {
                 type="number"
                 name="activeSportTime"
                 className={css.inputField}
-                value={watch('activeSportTime')}
                 {...register('activeSportTime')}
               />
               {errors.activeSportTime && (
@@ -325,7 +321,7 @@ export default function UserSettingsForm() {
 
             <div
               className={`${css.inputContainer} ${
-                errors.name ? css.hasError : ''
+                errors.dailyWaterNorma ? css.hasError : ''
               }`}
             >
               <label className={css.inputTitleBold}>
@@ -335,7 +331,6 @@ export default function UserSettingsForm() {
                 type="number"
                 name="dailyWaterNorma"
                 className={css.inputField}
-                value={watch('dailyWaterNorma')}
                 {...register('dailyWaterNorma')}
               />
               {errors.dailyWaterNorma && (
