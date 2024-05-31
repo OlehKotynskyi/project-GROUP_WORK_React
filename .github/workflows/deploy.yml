@@ -22,3 +22,14 @@ jobs:
         with:
           branch: gh-pages
           folder: build
+
+      - name: Save deployment status if successful
+        if: success()
+        run: echo "deployment_status=success" >> $GITHUB_STATE
+
+      - name: Save deployment status if failed
+        if: failure()
+        run: echo "deployment_status=failure" >> $GITHUB_STATE
+
+      - name: Set output
+        run: echo "status=$(cat $GITHUB_STATE)" >> $GITHUB_OUTPUT
