@@ -25,6 +25,11 @@ const schema = Yup.object().shape({
     .required('Required field!'),
   time: Yup.string().required('Required field!'),
 });
+ const handleKeyDown = event => {
+   if (!/[0-9]/.test(event.key) && event.key !== 'Backspace') {
+     event.preventDefault();
+   }
+ };
 
 export const EditWaterForm = ({ onClose, selectedWater }) => {
   const [load, setLoad] = useState(false);
@@ -146,6 +151,7 @@ export const EditWaterForm = ({ onClose, selectedWater }) => {
               value={time}
               onChange={e => setValue('time', e.target.value)}
               {...register('time')}
+              onKeyDown={handleKeyDown}
             />
             {errors.time && <p className={css.error}>{errors.time.message}</p>}
           </div>

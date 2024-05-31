@@ -202,10 +202,8 @@ export const Calendar = ({
                 )}
               >
                 <div>{day.dayNumber}</div>
-                <div
-                  className={`${css.waterPercentage} my-custom-water-percentage`}
-                >
-                  {waterPercentage}%
+                <div className={css.waterPercentageWrap}>
+                  <div className={css.waterPercentage}>{waterPercentage}%</div>
                 </div>
               </div>
             );
