@@ -98,12 +98,20 @@ export const Calendar = ({
     [state.calendarDays]
   );
 
-  const getClassNames = (isToday, isSelectedDay, isAdditionalDay, index, selectedDayIndex, waterPercentage) => {
+  const getClassNames = (
+    isToday,
+    isSelectedDay,
+    isAdditionalDay,
+    index,
+    selectedDayIndex,
+    waterPercentage
+  ) => {
     let classNames = [css.calendar__day];
 
     switch (true) {
-      case isToday:
+      case isToday && isSelectedDay:
         classNames.push(css.calendar__today__item);
+        classNames.push(css.calendar__day__selected);
         break;
       case isSelectedDay:
         classNames.push(css.calendar__selected__item);
@@ -120,6 +128,16 @@ export const Calendar = ({
     }
     if (waterPercentage < 100) {
       classNames.push(css.calendar__day__incomplete);
+    }
+    if (waterPercentage > 0) {
+      classNames.push(css.calendar__day__with_water);
+    }
+    if (waterPercentage > 100) {
+      classNames.push(css.calendar__day__green_water);
+    }
+    // Додамо умову для залишення бордеру на поточному дні
+    if (isToday && !isSelectedDay) {
+      classNames.push(css.calendar__today__item);
     }
 
     return classNames.join(' ');

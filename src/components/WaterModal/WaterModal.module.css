@@ -1,62 +1,61 @@
 .modal {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-    border-radius: 15px;
-    background-color: #FFFFFF;
-    box-shadow: 0 1px 4px rgb(47 47 47 / 40%);
-    outline: none;
-    border: none;
-    max-width: 343px;
-    min-height: 490px;
-    width: 100%;
-    @media screen and (min-width: 768px) {
-        max-width: 518px;
-        min-height: 587px;
-    }
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 1000;
+	border-radius: 15px;
+	background-color: #FFFFFF;
+	box-shadow: 0 1px 4px rgb(47 47 47 / 40%);
+	outline: none;
+	border: none;
+	max-width: 343px;
+	width: 100%;
+
+	@media screen and (min-width: 768px) {
+		max-width: 518px;
+	}
 }
 
 .container {
-    padding: 40px 20px;
-    display: flex;
-    flex-direction: column;
+	padding: 40px 20px;
+	display: flex;
+	flex-direction: column;
 
-    @media screen and (min-width: 768px) {
-        padding: 40px 40px;
-    }
+	@media screen and (min-width: 768px) {
+		padding: 40px 40px;
+	}
 }
 
 .buttonContainer {
-    position: absolute;
-    top: 20px;
-    right: 16px;
+	position: absolute;
+	top: 20px;
+	right: 16px;
 }
 
 .button {
-    background-color: transparent;
+	background-color: transparent;
 }
 
 .icon {
-    stroke: #2F2F2F;
-    width: 24px;
-    height: 24px;
+	stroke: #2F2F2F;
+	width: 24px;
+	height: 24px;
 
-    @media screen and (min-width: 768px) {
-        width: 28px;
-        height: 28px;
-    }
+	@media screen and (min-width: 768px) {
+		width: 28px;
+		height: 28px;
+	}
 }
 
 .title {
-    font-size: 20px;
-    line-height: 24px;
-    font-weight: 800;
-    margin-bottom: 24px;
+	font-size: 20px;
+	line-height: 24px;
+	font-weight: 800;
+	margin-bottom: 24px;
 
-    @media screen and (min-width: 768px) {
-        font-size: 28px;
-        line-height: 32px;
-    }
+	@media screen and (min-width: 768px) {
+		font-size: 28px;
+		line-height: 32px;
+	}
 }

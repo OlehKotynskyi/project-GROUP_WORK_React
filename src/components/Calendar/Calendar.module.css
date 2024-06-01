@@ -90,7 +90,7 @@
 	grid-template-columns: repeat(7, auto);
 	column-gap: 5px;
 	justify-content: space-between;
-	row-gap: 24px;
+	row-gap: 27px;
 }
 
 @media screen and (min-width: 768px) {
@@ -170,6 +170,7 @@
 	align-items: center;
 	pointer-events: none;
 	left: 2px;
+
 }
 
 .waterPercentage {
@@ -177,6 +178,7 @@
 	font-size: 10px;
 	line-height: 100%;
 	color: rgba(47, 47, 47, 0.6);
+	transition: all 0.3s ease-in-out;
 }
 
 @media screen and (min-width: 768px) {
@@ -192,16 +194,38 @@
 	}
 }
 
-.calendar__today__item {
-	background: #ef5050;
-	color: var(--accent);
-	border: #323F47 1px solid;
-}
-
 .calendar__day__incomplete {
-	background: rgba(50, 63, 71, 0.2);
+	background-color: rgba(50, 63, 71, 0.2);
 }
 
 .calendar__day__with_water {
 	background-color: #fff;
+}
+
+.calendar__day__green_water {
+	background-color: var(--accent);
+	color: #323F47;
+}
+
+.calendar__day__selected {
+	border: 1px solid var(--accent);
+}
+
+.calendar__selected__item {
+	background-color: #323F47;
+	color: var(--accent);
+}
+
+.calendar__today__item {
+	border: 1.5px solid var(--accent);
+
+}
+
+.calendar__day__selected.calendar__today__item {
+	background-color: #323F47;
+	color: var(--accent);
+}
+
+.calendar__day__selected .waterPercentage {
+	color: var(--accent);
 }
