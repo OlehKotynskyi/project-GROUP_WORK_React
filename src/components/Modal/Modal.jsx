@@ -2,7 +2,7 @@
 import ReactModal from 'react-modal';
 
 //import sprite from "../../img/svg/sprite.svg";
-import css from "./Modal.module.css";
+import css from './Modal.module.css';
 
 export const Modal = ({ isMainModalOpen, children, onClose, onAfterOpen }) => {
   return (
