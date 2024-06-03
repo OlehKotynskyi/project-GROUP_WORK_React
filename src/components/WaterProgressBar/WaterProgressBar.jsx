@@ -9,19 +9,17 @@ export const WaterProgressBar = ({ dailyNorm, selectedDate, currentDay }) => {
   const dispatch = useDispatch();
   const waters = useSelector(selectWaters);
 
-  // Додаємо локальний стан для відстеження зміни дат
   const [lastFetchDate, setLastFetchDate] = useState(null);
 
   useEffect(() => {
     const dateToFetch = !selectedDate ? currentDay : selectedDate;
-    // Перевіряємо, чи змінюється дата, і уникаємо повторних запитів
+
     if (dateToFetch && dateToFetch !== lastFetchDate) {
       dispatch(fetchWaters(dateToFetch));
       setLastFetchDate(dateToFetch);
     }
   }, [dispatch, currentDay, selectedDate, lastFetchDate]);
 
-  // Перерахунок поточного об'єму води та відсотків
   const currentAmount = waters
     ? waters.reduce((total, water) => total + water.amountDose, 0)
     : 0;
@@ -29,7 +27,6 @@ export const WaterProgressBar = ({ dailyNorm, selectedDate, currentDay }) => {
     ? Math.min((currentAmount / dailyNorm) * 100, 100)
     : 0;
 
-  // Допоміжні функції та константи для стилів та форматування
   const shouldDisplayPercentage = value =>
     [10, 20, 30, 60, 70, 80].includes(value);
   const screenWidth = document.documentElement.scrollWidth;
@@ -46,22 +43,26 @@ export const WaterProgressBar = ({ dailyNorm, selectedDate, currentDay }) => {
           border: 'none',
           padding: '0px 0px 0px 0px',
           pointerEvents: 'none',
+          transition: 'width 0.8s ease-in-out',
           '& .MuiSlider-thumb': {
             color: 'var(--main-white)',
-            border: ' 1px solid var(--accent)',
+            border: '1px solid var(--accent)',
             width: '12px',
             height: '12px',
+            transition: 'left 0.8s ease-in-out',
           },
           '& .MuiSlider-track': {
             color: 'var(--accent)',
+            transition: 'width 0.8s ease-in-out',
           },
           '& .MuiSlider-root': {
             padding: '0px',
             margin: '0px',
             lineHeight: '0',
           },
-          '& .MuiSlider-rail ': {
+          '& .MuiSlider-rail': {
             opacity: '100%',
+            transition: 'width 0.8s ease-in-out',
           },
           '& .MuiSlider-valueLabel': {
             background: 'transparent',

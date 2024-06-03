@@ -1,38 +1,53 @@
 .backdrop {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(47, 47, 47, 0.6);
-	opacity: 1;
-	visibility: visible;
-	pointer-events: initial;
-	overflow: scroll;
-	z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.365);
+  backdrop-filter: blur(2px);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: initial;
+  overflow: auto;
+  z-index: 999;
 }
 
 .modal {
-	background-color: none;
+  width: 100%;
+  height: 100%;
+  animation: fadeInScaleUp 0.350s ease-in-out;
+}
+@keyframes fadeInScaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .button {
-	position: absolute;
-	top: 30px;
-	right: 40px;
-	background-color: transparent;
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  background-color: transparent;
 }
 
 .icon {
-	stroke: #2F2F2F;
-	width: 24px;
-	height: 24px;
+  stroke: #2f2f2f;
+  width: 24px;
+  height: 24px;
+}
 
-	@media screen and (min-width: 768px) {
-		width: 28px;
-		height: 28px;
-	}
+@media screen and (min-width: 768px) {
+  .icon {
+    width: 28px;
+    height: 28px;
+  }
 }

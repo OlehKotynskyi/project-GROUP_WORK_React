@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { motion } from 'framer-motion';
 import { WaterItem } from '../WaterItem/WaterItem';
-import { useDispatch } from 'react-redux';
 
 import { selectWaters } from '../../redux/water/selectors';
 import { fetchWaters } from '../../redux/water/operations';
@@ -30,6 +30,11 @@ export const WaterList = ({
     sectionRef.current.scrollLeft += delta * scrollAmount;
   };
 
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
+
   return (
     <section
       className={css.sectionWaterList}
@@ -38,18 +43,22 @@ export const WaterList = ({
     >
       <ul className={css.waterList}>
         {waterData && waterData.length > 0 ? (
-          waterData.map(item => (
-            <li
+          waterData.map((item, index) => (
+            <motion.li
               className={css.waterItem}
               key={item._id}
               onClick={() => selectWater(item)}
+              initial="hidden"
+              animate="visible"
+              variants={itemVariants}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <WaterItem
                 time={item.timeDose}
                 amount={item.amountDose}
                 openModal={openModal}
               />
-            </li>
+            </motion.li>
           ))
         ) : (
           <li className={css.noDataText}>
