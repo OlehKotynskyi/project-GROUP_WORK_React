@@ -22,7 +22,7 @@ const schema = Yup.object().shape({
   dailyWaterNorma: Yup.number()
     .positive('Water consumption must be a positive number')
     .max(10000, 'Water consumption must be less than or equal to 10000'),
-  gender: Yup.string().oneOf(['woman', 'man']),
+  gender: Yup.string().oneOf(['woman', 'man']).allow(''),
 });
 
 export default function UserSettingsForm() {
