@@ -22,7 +22,7 @@ const schema = Yup.object().shape({
   dailyWaterNorma: Yup.number()
     .positive('Water consumption must be a positive number')
     .max(10000, 'Water consumption must be less than or equal to 10000'),
-  gender: Yup.string().oneOf(['woman', 'man']).allow(''),
+  gender: Yup.string().oneOf(['woman', 'man', '']).nullable(), // дозволяємо порожнє значення
 });
 
 export default function UserSettingsForm() {
@@ -45,7 +45,7 @@ export default function UserSettingsForm() {
       weight: 0,
       activeSportTime: 0,
       dailyWaterNorma: 0,
-      gender: 'woman',
+      gender: '',
     },
   });
 
@@ -60,7 +60,7 @@ export default function UserSettingsForm() {
       setValue('weight', user.weight || 0);
       setValue('activeSportTime', user.activeSportTime || 0);
       setValue('dailyWaterNorma', user.dailyWaterNorma || 0);
-      setValue('gender', user.gender || 'woman');
+      setValue('gender', user.gender || '');
     }
   }, [user, setValue]);
 
