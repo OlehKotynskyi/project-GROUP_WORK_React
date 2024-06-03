@@ -1,176 +1,214 @@
 .userInfo {
-	margin-bottom: 40px;
+  margin-bottom: 40px;
+  position: relative;
 }
 
 .helloUser {
-	font-family: "Gilroy", sans-serif;
-	font-weight: 400;
-	font-size: 32px;
-	line-height: 100%;
-	letter-spacing: -0.01em;
-	color: var(--main);
-	margin-bottom: 20px;
+  font-family: 'Gilroy', sans-serif;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 100%;
+  letter-spacing: -0.01em;
+  color: var(--main);
+  margin-bottom: 20px;
 }
 
 .userName {
-	font-weight: 700;
+  font-weight: 700;
+  position: relative;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: 90%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--main-white);
+  color: var(--main);
+  padding: 5px 10px;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.847) 0px 25px 20px -20px;
+  white-space: nowrap;
+  z-index: 10;
+  font-size: 22px;
+  font-weight: 700;
 }
 
 .exclamationPoint {
-	font-weight: 700;
+  font-weight: 700;
 }
 
 .btnContainer {
-	display: inline-block;
-	position: relative;
+  display: inline-block;
+  position: relative;
 }
 
 .btnUser {
-	display: flex;
-	gap: 10px;
-	align-items: center;
-	border-radius: 30px;
-	padding: 6px 12px;
-	background: var(--main);
-
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  border-radius: 30px;
+  padding: 6px 12px;
+  background: var(--main);
 }
 
 .popover {
-	position: absolute;
-	border-radius: 15px;
-	padding: 14px 20px;
-	width: 100%;
-	margin-top: 8px;
-	box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
-	background: var(--main-white);
-	opacity: 0;
-	transform: translateY(-10px);
-	transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-	pointer-events: none;
+  position: absolute;
+  border-radius: 15px;
+  padding: 14px 20px;
+  width: 100%;
+  margin-top: 8px;
+  box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+  background: var(--main-white);
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  pointer-events: none;
 }
 
 .popover.visible {
-	opacity: 1;
-	transform: translateY(0);
-	pointer-events: auto;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 .btnUserName {
-	font-family: var(--font-family);
-	font-weight: 700;
-	font-size: 14px;
-	line-height: 129%;
-	letter-spacing: -0.01em;
-	text-align: center;
-	color: var(--main-white);
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: var(--main-white);
+  cursor: pointer;
 }
 
 .imgAvatar {
-	border-radius: 50%;
-	width: 38px;
-	height: 38px;
-	overflow: hidden;
+  width: 38px;
+  height: 38px;
+  overflow: hidden;
+  cursor: pointer;
 }
 
 .imgAvatar img {
-	width: 100%;
-	object-fit: cover;
+  width: 100%;
+  object-fit: cover;
 }
 
 .iconUserSetting {
-	stroke-width: 1.50px;
-	stroke: var(--main-white);
-	width: 16px;
-	height: 16px;
-	transform: rotate(360deg);
-	transition: transform 0.3s ease-in-out;
+  stroke-width: 1.5px;
+  stroke: var(--main-white);
+  width: 16px;
+  height: 16px;
+  transform: rotate(360deg);
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
 }
 
 .iconUserSettingUp {
-	transform: rotate(3.142rad);
+  transform: rotate(3.142rad);
 }
 
-
 .iconSettings {
-	fill: none;
-	stroke: var(--main);
-	transition: 0.3s ease-in-out;
+  fill: none;
+  stroke: var(--main);
+  transition: 0.3s ease-in-out;
 }
 
 .settingsBtn {
-	font-weight: 700;
-	font-size: 15px;
-	line-height: 149%;
-	color: var(--main);
-	background-color: transparent;
-	padding: 0;
-	display: flex;
-	gap: 8px;
-	align-items: center;
-	margin-bottom: 8px;
-	transition: 0.3s ease-in-out;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 149%;
+  color: var(--main);
+  background-color: transparent;
+  padding: 0;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+  transition: 0.3s ease-in-out;
 }
 
 @media (hover: hover) and (pointer: fine) {
-	.settingsBtn:hover {
-		color: var(--accent);
-	}
+  .settingsBtn:hover {
+    color: var(--accent);
+  }
 
-	.settingsBtn:hover .iconSettings {
-		stroke: var(--accent);
-	}
-
+  .settingsBtn:hover .iconSettings {
+    stroke: var(--accent);
+  }
 }
 
 .iconLogout {
-	fill: none;
-	stroke: rgba(50, 63, 71, 0.4);
-	transition: 0.3s ease-in-out;
+  fill: none;
+  stroke: rgba(50, 63, 71, 0.4);
+  transition: 0.3s ease-in-out;
 }
 
 .logoutBtn {
-	font-weight: 700;
-	font-size: 15px;
-	line-height: 149%;
-	color: rgba(50, 63, 71, 0.4);
-	background-color: transparent;
-	padding: 0;
-	display: flex;
-	gap: 8px;
-	align-items: center;
-	transition: 0.3s ease-in-out;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 149%;
+  color: rgba(50, 63, 71, 0.4);
+  background-color: transparent;
+  padding: 0;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  transition: 0.3s ease-in-out;
 }
 
 @media (hover: hover) and (pointer: fine) {
-	.logoutBtn:hover {
-		color: var(--main);
-	}
+  .logoutBtn:hover {
+    color: var(--main);
+  }
 
-	.logoutBtn:hover .iconLogout {
-		stroke: var(--main);
-	}
-
+  .logoutBtn:hover .iconLogout {
+    stroke: var(--main);
+  }
 }
 
 @media screen and (min-width: 768px) {
-	.userInfo {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-	}
+  .userInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-	.btnContainer {
-		margin-bottom: 0px;
-	}
+  .btnContainer {
+    margin-bottom: 0px;
+  }
 
-	.helloUser {
-		font-size: 36px;
-		line-height: 106%;
-		margin-bottom: 0px;
-	}
+  .helloUser {
+    font-size: 36px;
+    line-height: 106%;
+    margin-bottom: 0px;
+  }
 
-	.btnUserName {
-		font-size: 16px;
-		line-height: 150%;
-	}
+  .btnUserName {
+    font-size: 16px;
+    line-height: 150%;
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.292);
+  backdrop-filter: blur(3px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.expandedAvatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50px;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  z-index: 1001;
 }
