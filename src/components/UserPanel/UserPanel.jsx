@@ -51,8 +51,8 @@ export const UserPanel = ({ username, openModal }) => {
   const isMobile = window.innerWidth < 768;
   const displayUsername = username
     ? isMobile
-      ? username.length > 10
-        ? `${username.slice(0, 10)}...`
+      ? username.length > 7
+        ? `${username.slice(0, 7)}...`
         : username
       : username.length > 15
       ? `${username.slice(0, 15)}...`
@@ -130,9 +130,9 @@ export const UserPanel = ({ username, openModal }) => {
                 boxShadow: hovered ? '0 0 15px rgba(0,0,0,0.2)' : 'none',
                 rotate: hovered ? [0, -2, 2, 0] : 0,
                 borderRadius: '50%',
-                zIndex: 10
+                zIndex: 10,
               }}
-              transition={{ type: 'tween', duration: 0.350 }}
+              transition={{ type: 'tween', duration: 0.35 }}
               layoutId="avatar"
             >
               <img src={avatarURL} alt="avatar" />
@@ -196,7 +196,7 @@ export const UserPanel = ({ username, openModal }) => {
               layoutId="avatar"
               onClick={e => e.stopPropagation()}
               variants={avatarVariants}
-              initial={{ borderRadius: '50%', width: 320, height:380 }}
+              initial={{ borderRadius: '50%', width: 320, height: 380 }}
               animate={{ borderRadius: '50%', width: 320, height: 380 }}
               exit={{ borderRadius: '50%', width: 38, height: 38 }}
               transition={{ duration: 0.35099 }}
